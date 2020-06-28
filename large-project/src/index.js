@@ -71,12 +71,12 @@ class LoginBox extends React.Component {
       <div className="box">
 
         <div className="input-group">
-          <label htmlFor="username">E-Mail Address</label>
+          
           <input type="email" name="e-mail" className="login-input" placeholder="E-Mail Address"/>
         </div>
 
         <div className="input-group">
-          <label htmlFor="password">Password</label>
+          
           <input type="password" name="password" className="register-input" placeholder="Password"/>
         </div>
 
@@ -109,18 +109,16 @@ class RegisterBox extends React.Component {
       <div className="box">
 
         <div className="input-group">
-          <label htmlFor="username">E-Mail Address</label>
+          
           <input type="email" name="e-mail" className="login-input" placeholder="E-Mail Address"/>
         </div>
 
         <div className="input-group">
-          <label htmlFor="password">Password</label>
           <input type="password" name="password" className="register-input" placeholder="Password"/>
         </div>
 
         <div className="input-group">
-          <label htmlFor="password">Confirm Password</label>
-          <input type="password" name="password" className="register-input" placeholder="Password"/>
+          <input type="password" name="password" className="register-input" placeholder="Confirm Password"/>
         </div>
 
         <button type="button" className="register-button" onClick={this.submitRegister.bind(this)}>Register</button>
