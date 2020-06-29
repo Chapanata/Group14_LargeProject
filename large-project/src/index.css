@@ -4,7 +4,7 @@ body,
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(background.jpg);
+    background-image:  url(Resources/donut_web_light.jpg);
     font-family: Ozxgen, sans-serif;
 }
 
@@ -27,7 +27,6 @@ body,
     height: 35px;
     -webkit-box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
     box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
-    
     margin-bottom: 30px;
     align-items: center;
     transition: visibility 0.5s ease-out;
@@ -35,10 +34,16 @@ body,
     border-radius: 6px;
 }
 
+.Logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
 .slider {
     flex: 1;
     text-align: center;
-    height: 100%;
     line-height: 2;
     cursor: pointer;
 }
@@ -47,12 +52,13 @@ body,
 .box-container {
     display: flex;
     flex-direction: column;
-    height: 500px;
+    height: 550px;
     width: 500px;
     box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
-    border-radius: 6px;
+    border-radius: 10px;
     padding: 24px;
     background-color: white;
+    border: 3px solid #da667b;
 }
 
 
@@ -83,7 +89,7 @@ body,
 
 .login-input, .register-input {
     height: 2.1em;
-    border-radius: 3px;
+    border-radius: 10px;
     border: 1px solid #373738;
     padding: 5px;
     font-size: 19px;

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import logo from './Resources/logo.png';
 class App extends React.Component {
 
   constructor(props){
@@ -31,6 +32,11 @@ class App extends React.Component {
           <div className="slider" onClick={this.showRegisterBox.bind(this)}>
             Register
           </div>
+
+      {/*         
+          <button type="button" className="slider" onClick={this.showLoginBox.bind(this)}>Login</button>
+          <button type="button" className="slider" onClick={this.showRegisterBox.bind(this)}>Register</button>
+           */}
         </div>
 
         <div className="box-container">
@@ -47,7 +53,7 @@ class App extends React.Component {
 
   }
 
-
+  
 }
 
 class LoginBox extends React.Component {
@@ -55,7 +61,6 @@ class LoginBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {  };
-
   }
 
   submitLogin(e) {
@@ -65,6 +70,9 @@ class LoginBox extends React.Component {
   render() {
     return(
     <div className="inner-container">
+
+      <img src={logo} className="Logo" />
+
       <div className="header">
             Login  
       </div>
@@ -81,7 +89,7 @@ class LoginBox extends React.Component {
         </div>
 
         <button type="button" className="login-button" onClick={this.submitLogin.bind(this)}>Login</button>
-      </div>
+      </div>      
     </div>
     );
   }
@@ -103,6 +111,9 @@ class RegisterBox extends React.Component {
   render() {
     return(
     <div className="inner-container">
+
+      <img src={logo} className="Logo" /> 
+
       <div className="header">
         Register  
       </div>
