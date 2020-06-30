@@ -19,5 +19,7 @@ To get started you first need,
 First open up your operating system's console and change directories to the repository under the folder ExpressServer. An example of this in Windows,<br>
 <img src="http://samuelarminana.com/u/16f5c0219-e753-4e80-acb9-b51ff2104fdc.png" width="600">
 
-Next run, `node index.js` to execute the index.js file. This will start a node.js server and open up a connection at `http://localhost:300`. You can then run the app by opening that url in your browser. An example of this in Windows and Chrome,<br>
+Next run, `npm install` to install necessary dependencies.
+
+Finally run, `node index.js` to execute the index.js file. This will start a node.js server and open up a connection at `http://localhost:3000`. You can then run the app by opening that url in your browser. An example of this in Windows and Chrome,<br>
 <img src="http://samuelarminana.com/u/15f08ea74-8967-4e2b-b53e-bd9339c074db.png" width="600">
