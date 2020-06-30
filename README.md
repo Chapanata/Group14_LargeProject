@@ -26,6 +26,6 @@ Finally run, `node index.js` to execute the index.js file. This will start a nod
 
 <img src="http://samuelarminana.com/u/15f08ea74-8967-4e2b-b53e-bd9339c074db.png" width="600">
 
-# MongoDB
+### MongoDB
 MongoDB is hosted by MongoDB Atlas.
 Contact armi.sam99@gmail.com (Samuel) to get an IP whitelisted to the mongodb server.
