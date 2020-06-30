@@ -24,8 +24,8 @@ Next run, `npm install` to install necessary dependencies.
 
 Finally run, `node index.js` to execute the index.js file. This will start a node.js server and open up a connection at `http://localhost:3000`. You can then run the app by opening that url in your browser. An example of this in Windows and Chrome,<br>
 
+<img src="http://samuelarminana.com/u/15f08ea74-8967-4e2b-b53e-bd9339c074db.png" width="600">
+
 # MongoDB
 MongoDB is hosted by MongoDB Atlas.
 Contact armi.sam99@gmail.com (Samuel) to get an IP whitelisted to the mongodb server.
-
-<img src="http://samuelarminana.com/u/15f08ea74-8967-4e2b-b53e-bd9339c074db.png" width="600">
