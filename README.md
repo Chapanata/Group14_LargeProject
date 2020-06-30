@@ -10,6 +10,7 @@ Some stuff about how to setup React...
 The backend uses MongoDB, Express.js and Node.js. 
 
 The documentation is available on [Google Docs.](https://docs.google.com/document/d/1IGp-tKLyITR1by4X_w0z_eS_EsLMuYM4Ql3BN7xiJkg/edit#)
+The postman is available [here](https://www.getpostman.com/collections/799caafcdf17f9fd0bc5)
 
 ### Getting Started
 To get started you first need,
@@ -22,4 +23,9 @@ First open up your operating system's console and change directories to the repo
 Next run, `npm install` to install necessary dependencies.
 
 Finally run, `node index.js` to execute the index.js file. This will start a node.js server and open up a connection at `http://localhost:3000`. You can then run the app by opening that url in your browser. An example of this in Windows and Chrome,<br>
+
+# MongoDB
+MongoDB is hosted by MongoDB Atlas.
+Contact armi.sam99@gmail.com (Samuel) to get an IP whitelisted to the mongodb server.
+
 <img src="http://samuelarminana.com/u/15f08ea74-8967-4e2b-b53e-bd9339c074db.png" width="600">
