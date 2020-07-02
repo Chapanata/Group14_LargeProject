@@ -3,18 +3,31 @@ header,
 body,
 footer,
 
+#root {
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    background-image:  url(../../Resources/donut_web_light.jpg);
+    font-family: Ozxgen, sans-serif;
+}
+
 .header {
     display: flex;
-    background-image: url(../../Resources/donut_web_light.jpg);
+    background: rgba(255, 255, 255, 0.8);
 
 }
 
 .body {
-    background-color: gray;
+    background: rgba(255, 255, 255, 0.8);
 }
 
 .footer {
-    background-image: url(../../Resources/donut_web_light.jpg);
+    background: rgba(255, 255, 255, 0.8);
     position: absolute;
     left: 0;
     bottom: 0;
@@ -24,7 +37,6 @@ footer,
 .left-box {
     width: 50%;
     height: 50%;
-    background-color: palevioletred;
 }
 
 .logo {
@@ -35,4 +47,5 @@ footer,
 .right-box {
     width: 50%;
     height: 50%;
+    
 }
