@@ -1,0 +1,38 @@
+html,
+header,
+body,
+footer,
+
+.header {
+    display: flex;
+    background-image: url(../../Resources/donut_web_light.jpg);
+
+}
+
+.body {
+    background-color: gray;
+}
+
+.footer {
+    background-image: url(../../Resources/donut_web_light.jpg);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.left-box {
+    width: 50%;
+    height: 50%;
+    background-color: palevioletred;
+}
+
+.logo {
+    width: 70%;
+    height: 70%;
+}
+
+.right-box {
+    width: 50%;
+    height: 50%;
+}
