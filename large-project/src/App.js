@@ -1,25 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Home from "./Pages/Home/Home";
+import Login from "./Pages/Login/Login";
 
-// components
-import Header from './components/header_component/header';
-import Footer from './components/footer_component/footer';
-import Homepage from './components/pages/homepage';
-
-class App extends React.Component {
+class App extends Component {
   render() {
     return(
-      <div className="App">
-
-        <Header />
-
-          <Homepage />
-
-        <Footer />
-
-      
-
-      </div>
+      < BrowserRouter>
+        <div className="App">
+          <Route path="/" exact component={Home} />
+          <Route path="/Login" exact component={Login} />
+        </div> 
+      </BrowserRouter>
     );
   }
 }
