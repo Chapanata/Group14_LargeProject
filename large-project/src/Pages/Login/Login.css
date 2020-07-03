@@ -27,22 +27,6 @@ body,
     flex-direction: column;
 }
 
-.box-slider {
-    visibility: visible;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    max-width: 24em;
-    min-width: 21em;
-    height: 35px;
-    -webkit-box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
-    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
-    margin-bottom: 30px;
-    align-items: center;
-    transition: visibility 0.5s ease-out;
-    background-color: white;
-    border-radius: 6px;
-}
 
 .Logo {
     display: block;
@@ -51,12 +35,6 @@ body,
     margin-bottom: 10px;
 }
 
-.slider {
-    flex: 1;
-    text-align: center;
-    line-height: 2;
-    cursor: pointer;
-}
 
 .box-container {
     display: flex;
@@ -68,6 +46,7 @@ body,
     padding: 24px;
     background-color: white;
     border: 3px solid #da667b;
+    margin-top: 30px;
 }
 
 .title {
