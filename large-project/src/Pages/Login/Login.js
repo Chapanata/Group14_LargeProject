@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import logo from './../../Resources/logo.png';
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
     constructor(props) {
@@ -33,6 +33,7 @@ class Login extends Component {
                     Login  
               </div>
               <div className="box">
+                
 
                 <div className="input-group">
                   <label className="login-label">E-Mail Address:</label>
@@ -46,9 +47,8 @@ class Login extends Component {
 
                 <button type="button" className="login-button" onClick={this.submitLogin.bind(this)}>LOGIN</button>
               
-                <div className="seperator"> or </div>
 
-                <button type="button" className="register-button" onClick={this.submitLogin.bind(this)}>REGISTER</button>
+                <div className="backToReg">Don't have an Account? <Link to="/register">Click Here</Link></div>
 
               </div>      
             </div>
