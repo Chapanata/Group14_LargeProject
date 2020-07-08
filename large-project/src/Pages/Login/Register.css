@@ -43,7 +43,7 @@ body,
 .box-container {
     display: flex;
     flex-direction: column;
-    height: 160px;
+    height: 760px;
     width: 500px;
     box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
     border-radius: 10px;

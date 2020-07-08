@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import './Login.css';
+import './Register.css';
 import logo from './../../Resources/logo.png';
 import { Link } from "react-router-dom";
 
 class Register extends Component {
     constructor(props) {
       super(props);
-      this.state = { email:"", password:"", errors: []};
+      this.state = { email:"", password:"", confirmPassword:"", errors: []};
     }
 
     showValidationErr(elm, msg) {
@@ -37,6 +37,10 @@ class Register extends Component {
       this.clearValidationErr("password");
     }
 
+    onConfirmPasswordChange(e) {
+      this.setState({ confirmPassword: e.target.value});
+      this.clearValidationErr("confirmPassword");
+    }
     submitRegister(e) {
      
       if(this.state.email == "") {
@@ -51,21 +55,27 @@ class Register extends Component {
          this.showValidationErr("password", "Password cannot be empty!");
       }
 
-      else if (this.state.password.match("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$") != 1) {
-        this.showValidationErr("password", "Password does not meet requirements");
+      if (this.state.confirmPassword == "") {
+          this.showValidationErr("confirmPassword", "Password cannot be empty!");
       }
+
+      // else if (this.state.password.match("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,32}$") != 1) {
+      //   this.showValidationErr("password", "Password does not meet requirements\nNeeds more funny");
+      // }
 
     }
   
     render() {
 
-      let emailErr = null, passwordErr = null;
+      let emailErr = null, passwordErr = null, confirmPasswordErr = null;
 
       for(let err of this.state.errors) {
         if(err.elm == "email") {
           emailErr = err.msg;
         } if (err.elm == "password") {
           passwordErr = err.msg;
+        } if (err.elm == "confirmPassword") {
+          confirmPasswordErr = err.msg;
         }
       }
 
@@ -117,9 +127,9 @@ class Register extends Component {
                     name="password" 
                     className="register-input" 
                     placeholder="Confirm Password" 
-                    onChange={this.onPasswordChange.bind(this)}
+                    onChange={this.onConfirmPasswordChange.bind(this)}
                   />
-                  <small className="error">{ passwordErr ? passwordErr : ""}</small>
+                  <small className="error">{ confirmPasswordErr ? confirmPasswordErr : ""}</small>
                 </div>
 
                 <button type="button" className="register-button" onClick={this.submitRegister.bind(this)}>REGISTER</button>
