@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Login.css';
+import './Register.css';
 import logo from './../../Resources/logo.png';
 import { Link } from "react-router-dom";
 
@@ -27,7 +27,7 @@ class Login extends Component {
           <div className="root-container">
             <div className="box-container">
       
-              <img src={logo} className="Logo" />
+              <img src={logo} className="Logo" alt="logo"/>
 
               <div className="title">
                     Login  
@@ -36,19 +36,20 @@ class Login extends Component {
                 
 
                 <div className="input-group">
-                  <label className="login-label">E-Mail Address:</label>
+                  <label className="some-label">E-Mail Address:</label>
                   <input type="email" name="e-mail" className="login-input" placeholder="E-Mail Address"/>
                 </div>
 
                 <div className="input-group">
-                  <label className="login-label">Password:</label>
+                  <label className="some-label">Password:</label>
                   <input type="password" name="password" className="register-input" placeholder="Password"/>
                 </div>
 
-                <button type="button" className="login-button" onClick={this.submitLogin.bind(this)}>LOGIN</button>
+                <button type="button" className="some-button" onClick={this.submitLogin.bind(this)}>LOGIN</button>
               
 
                 <div className="backToReg">Don't have an Account? <Link to="/register">Click Here</Link></div>
+                <div className="backToLog">Go back home?<Link to="/home"> Home</Link></div>
 
               </div>      
             </div>

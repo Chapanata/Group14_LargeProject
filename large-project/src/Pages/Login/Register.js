@@ -18,7 +18,7 @@ class Register extends Component {
       this.setState((prevState) => {
         let newArr = [];
         for(let err of prevState.errors) {
-          if(elm != err.elm) {
+          if(elm !== err.elm) {
             newArr.push(err);
           }
         }
@@ -43,19 +43,19 @@ class Register extends Component {
     }
     submitRegister(e) {
      
-      if(this.state.email == "") {
+      if(this.state.email === "") {
          this.showValidationErr("email", "E-Mail cannot be empty!");
       } 
       
-      else if(this.state.email.includes("@") != 1 ) {
+      else if(this.state.email.includes("@") !== 1 ) {
         this.showValidationErr("email", "Invalid E-Mail");
       }
       
-      if (this.state.password == ""){
+      if (this.state.password === ""){
          this.showValidationErr("password", "Password cannot be empty!");
       }
 
-      if (this.state.confirmPassword == "") {
+      if (this.state.confirmPassword === "") {
           this.showValidationErr("confirmPassword", "Password cannot be empty!");
       }
 
@@ -70,11 +70,11 @@ class Register extends Component {
       let emailErr = null, passwordErr = null, confirmPasswordErr = null;
 
       for(let err of this.state.errors) {
-        if(err.elm == "email") {
+        if(err.elm === "email") {
           emailErr = err.msg;
-        } if (err.elm == "password") {
+        } if (err.elm === "password") {
           passwordErr = err.msg;
-        } if (err.elm == "confirmPassword") {
+        } if (err.elm === "confirmPassword") {
           confirmPasswordErr = err.msg;
         }
       }
@@ -83,7 +83,7 @@ class Register extends Component {
         <div className="root-container">
           <div className="inner-container">
             <div className="box-container">
-              <img src={logo} className="Logo" /> 
+              <img src={logo} className="Logo" alt="logo"/> 
 
               <div className="title">
                 Register  
@@ -135,6 +135,8 @@ class Register extends Component {
                 <button type="button" className="register-button" onClick={this.submitRegister.bind(this)}>REGISTER</button>
               
                 <div className="backToLog">Already have an Account? <Link to="/login">Click Here</Link></div>
+                <div className="backToLog">Go back home?<Link to="/home"> Home</Link></div>
+
               </div>
             </div>
           </div>  
