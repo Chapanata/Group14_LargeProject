@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import "./Home.css";
 
-import logo from './../../Resources/logo.png';
+import logo from './../../Resources/spoonfork.png';
 
 class Home extends Component { 
     constructor(props) {

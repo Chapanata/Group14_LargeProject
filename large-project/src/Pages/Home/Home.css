@@ -40,8 +40,9 @@ footer,
 }
 
 .logo {
-    width: 70%;
-    height: 70%;
+  height: 40%;
+  width: 40%;
+  margin-left: 720px;
 }
 
 .right-box {
