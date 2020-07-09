@@ -17,8 +17,17 @@ class Home extends Component {
     render() {
         return(
             <div className="in-container">
-
-                <div className="header">
+                <nav>
+                    <div class="nav-wrapper">
+                        <ul>
+                        <li><Link to="/Home">Home</Link></li>
+                        <li><Link to="/About">About Us</Link></li>
+                        <li><Link to="/Contact">Contact Us</Link></li>
+                        </ul>
+                        
+                    </div>
+                </nav>
+                <div className="headerBox">
                     <div className="left-box">
                         <img src={logo} className="logo" />
                     </div>
