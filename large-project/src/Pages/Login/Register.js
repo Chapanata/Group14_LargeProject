@@ -59,8 +59,13 @@ class Register extends Component {
           this.showValidationErr("confirmPassword", "Password cannot be empty!");
       }
 
-      // else if (this.state.password.match("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,32}$") != 1) {
-      //   this.showValidationErr("password", "Password does not meet requirements\nNeeds more funny");
+      if (this.state.password !== this.state.confirmPassword) {
+          this.showValidationErr("password", "Passwords do not match!");
+          this.showValidationErr("confirmPassword", "Passwords do not match!");
+      }
+
+      // if (this.statevalue.match(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/) != 1) {
+      //   this.showValidationErr("password", "Password needs at least 1 ");
       // }
 
     }
