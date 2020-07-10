@@ -7,13 +7,11 @@
     android:background="@drawable/donut_light"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="20dp"
     tools:context=".MainActivity">
 
     <FrameLayout
         android:id="@+id/frame_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
+        android:layout_height="match_parent"></FrameLayout>
 
 </LinearLayout>

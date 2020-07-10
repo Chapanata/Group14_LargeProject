@@ -27,7 +27,6 @@ public class LoginFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_login, container, false);
 
-
         Button login = rootView.findViewById(R.id.btn_login);
         Button register = rootView.findViewById(R.id.btn_register);
 
@@ -35,6 +34,8 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO: validate login
+
+                mainInterface.changeFragment(R.layout.fragment_home);
             }
         });
 
