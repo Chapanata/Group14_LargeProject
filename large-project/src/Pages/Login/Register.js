@@ -3,86 +3,107 @@ import './Register.css';
 import logo from './../../Resources/logo.png';
 import { Link } from "react-router-dom";
 
+const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
+const passRegex = RegExp(/^(?=.*\d)(?=.*[!?<>@#$%^&*])(?=.*[a-zA-Z]).{8,}$/);
+
+
+
+const formValid = ({ errors, ...rest }) => {
+  let valid = true;
+
+  Object.values(errors).forEach(val => {
+    val.length > 0 && (valid = false);
+});
+
+  Object.values(rest).forEach(val => {
+    val === null && (valid = false)
+  });
+
+  return valid;
+};
+
 class Register extends Component {
     constructor(props) {
       super(props);
-      this.state = { email:"", password:"", confirmPassword:"", errors: []};
-    }
-
-    showValidationErr(elm, msg) {
-      this.setState((prevState) => ( { errors: [...prevState.errors, { elm, msg}] } ));
-    }
-
-
-    clearValidationErr(elm) {
-      this.setState((prevState) => {
-        let newArr = [];
-        for(let err of prevState.errors) {
-          if(elm !== err.elm) {
-            newArr.push(err);
-          }
+      this.state = {
+        fullName: null, 
+        email: null, 
+        password: null, 
+        confirmPassword: null, 
+        errors: {
+          fullName:"",
+          email:"", 
+          password:"", 
+          confirmPassword:""
         }
-        return {errors: newArr};
-      });
+      };
     }
 
+    handleSubmit = e => {
+      e.preventDefault();
 
-    onEmailChange(e) {
-      this.setState({ email: e.target.value });
-      this.clearValidationErr("email");
+      if (formValid(this.state)) {
+        console.log(`
+          -- Submitting --
+          Full Name: ${this.state.fullName}
+          Email: ${this.state.email}
+          Password: ${this.state.password}
+          Confirm Password: ${this.state.confirmPassword}
+        `);
+      } else {
+        console.error('FORM INVALID');
+      }
     }
 
-    onPasswordChange(e) {
-      this.setState({ password: e.target.value});
-      this.clearValidationErr("password");
-    }
+    
+    handleChange = e => {
+      e.preventDefault();
+      const { name, value } = e.target;
+      let errors = this.state.errors;
 
-    onConfirmPasswordChange(e) {
-      this.setState({ confirmPassword: e.target.value});
-      this.clearValidationErr("confirmPassword");
-    }
-    submitRegister(e) {
-     
-      if(this.state.email === "") {
-         this.showValidationErr("email", "E-Mail cannot be empty!");
-      } 
       
-      else if(this.state.email.includes("@") !== 1 ) {
-        this.showValidationErr("email", "Invalid E-Mail");
-      }
-      
-      if (this.state.password === ""){
-         this.showValidationErr("password", "Password cannot be empty!");
+      switch (name) {
+    
+        case 'fullName':
+          errors.fullName = value.length < 2  
+          ? "Minimum 2 characters required"
+          : "";
+        break;
+
+        case 'email':
+          errors.email = emailRegex.test(value)  
+          ? ""
+          : "Invalid E-mail Address";
+        break;
+
+        case 'password':
+          errors.password = passRegex.test(value) != true
+          ? "Minimum 6 characters required with at least 1  letter and 1 special character"
+          : errors.password = value == confirmPassword.value
+          ? ""
+          : "Passwords do not match" ;
+        break;
+
+        case 'confirmPassword':
+          errors.confirmPassword = passRegex.test(value) != true
+          ? "Minimum 6 characters required with at least 1 letter and 1 special character"
+          : errors.confirmPassword = value == password.value
+          ? ""
+          : "Passwords do not match";
+        break;
+
+        default:
+          break;
       }
 
-      if (this.state.confirmPassword === "") {
-          this.showValidationErr("confirmPassword", "Password cannot be empty!");
-      }
+      this.setState({errors, [name]: value}, () => console.log(this.state));
+    };
 
-      if (this.state.password !== this.state.confirmPassword) {
-          this.showValidationErr("password", "Passwords do not match!");
-          this.showValidationErr("confirmPassword", "Passwords do not match!");
-      }
-
-      // if (this.statevalue.match(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/) != 1) {
-      //   this.showValidationErr("password", "Password needs at least 1 ");
-      // }
-
-    }
+    
   
     render() {
-
-      let emailErr = null, passwordErr = null, confirmPasswordErr = null;
-
-      for(let err of this.state.errors) {
-        if(err.elm === "email") {
-          emailErr = err.msg;
-        } if (err.elm === "password") {
-          passwordErr = err.msg;
-        } if (err.elm === "confirmPassword") {
-          confirmPasswordErr = err.msg;
-        }
-      }
+      const { errors } = this.state;
+     
 
       return (
         <div className="root-container">
@@ -93,24 +114,36 @@ class Register extends Component {
               <div className="title">
                 Register  
               </div>
-
+              <form onSubmit={this.handleSubmit} noValidate>
               <div className="box">
 
                 <div className="input-group">
                   <label className="login-label">Enter your Full Name:</label>
-                  <input type="text" name="name" className="login-input" placeholder="Full Name"/>
+                  <input 
+                    type="text" 
+                    name="fullName" 
+                    className={ errors.fullName.length > 0 ? "error" : null} 
+                    placeholder="Full Name"
+                    onChange={this.handleChange} 
+                  />
+                  {errors.fullName.length > 0 && (
+                    <span className="error">{errors.fullName}</span>
+                  )}
                 </div>
 
                 <div className="input-group">
                   <label className="login-label">Enter an E-Mail Address:</label>
                   <input 
                     type="email" 
-                    name="e-mail" 
-                    className="login-input" 
+                    name="email"
+                    noValidate 
+                    className={ errors.email.length > 0 ? "error" : null}  
                     placeholder="E-Mail Address" 
-                    onChange={this.onEmailChange.bind(this)} 
+                    onChange={this.handleChange} 
                   />
-                  <small className="error">{ emailErr ? emailErr : ""}</small>
+                    {errors.email.length > 0 && (
+                    <span className="error">{errors.email}</span>
+                  )}                  
                 </div>
 
                 <div className="input-group">
@@ -118,31 +151,36 @@ class Register extends Component {
                   <input 
                     type="password" 
                     name="password" 
-                    className="register-input" 
+                    className={ errors.password.length > 0 ? "error" : null}  
                     placeholder="Password" 
-                    onChange={this.onPasswordChange.bind(this)}
-                  />
-                  <small className="error">{ passwordErr ? passwordErr : ""}</small>
+                    onChange={this.handleChange}                   
+                    />
+                    {errors.password.length > 0 && (
+                    <span className="error">{errors.password}</span>
+                  )}                 
                 </div>
 
                 <div className="input-group">
                   <label className="login-label">Confirm Password:</label>
                   <input 
                     type="password" 
-                    name="password" 
-                    className="register-input" 
+                    name="confirmPassword" 
+                    className={ errors.confirmPassword.length > 0 ? "error" : null}  
                     placeholder="Confirm Password" 
-                    onChange={this.onConfirmPasswordChange.bind(this)}
-                  />
-                  <small className="error">{ confirmPasswordErr ? confirmPasswordErr : ""}</small>
+                    onChange={this.handleChange}                   
+                    />
+                    {errors.confirmPassword.length > 0 && (
+                    <span className="error">{errors.confirmPassword}</span>
+                  )}               
                 </div>
 
-                <button type="button" className="register-button" onClick={this.submitRegister.bind(this)}>REGISTER</button>
+                <button type="submit" className="register-button">REGISTER</button>
               
                 <div className="backToLog">Already have an Account? <Link to="/login">Click Here</Link></div>
                 <div className="backToLog">Go back home?<Link to="/home"> Home</Link></div>
 
               </div>
+              </form>
             </div>
           </div>  
         </div>

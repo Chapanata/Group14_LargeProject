@@ -41,7 +41,7 @@ body,
 .box-container {
     display: flex;
     flex-direction: column;
-    height: 760px;
+    height: 840px;
     width: 500px;
     box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
     border-radius: 10px;
@@ -79,7 +79,7 @@ body,
     margin-bottom: 10px;
 }
 
-.login-input, .register-input {
+.input-group input{
     height: 2.1em;
     border-radius: 10px;
     border: 1px solid #373738;
@@ -91,6 +91,10 @@ body,
     font-weight: 600px;
     padding-left: 5px;
 }
+
+input.error {
+    border: 1px solid red;
+  }
 
 .login-input:hover, .register-input:hover {
     border: 2px solid #0044fd;
