@@ -17,6 +17,7 @@ public class MainActivity extends FragmentActivity implements MainActivityInterf
 
     LoginFragment loginFragment = new LoginFragment();
     RegisterFragment registerFragment = new RegisterFragment();
+    HomeFragment homeFragment = new HomeFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,9 @@ public class MainActivity extends FragmentActivity implements MainActivityInterf
                 break;
             case R.layout.fragment_register:
                 fragment = registerFragment;
+                break;
+            case R.layout.fragment_home:
+                fragment = homeFragment;
                 break;
         }
 
