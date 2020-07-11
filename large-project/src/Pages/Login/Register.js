@@ -6,7 +6,19 @@ import { Link } from "react-router-dom";
 const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 const passRegex = RegExp(/^(?=.*\d)(?=.*[!?<>@#$%^&*])(?=.*[a-zA-Z]).{8,}$/);
 
+var pass="";
+var confirm="";
 
+
+function comparePass(value1, value2) {
+
+  if(pass === confirm) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
 
 const formValid = ({ errors, ...rest }) => {
   let valid = true;
@@ -23,6 +35,7 @@ const formValid = ({ errors, ...rest }) => {
 };
 
 class Register extends Component {
+
     constructor(props) {
       super(props);
       this.state = {
@@ -57,6 +70,9 @@ class Register extends Component {
 
     
     handleChange = e => {
+
+      
+
       e.preventDefault();
       const { name, value } = e.target;
       let errors = this.state.errors;
@@ -65,8 +81,8 @@ class Register extends Component {
       switch (name) {
     
         case 'fullName':
-          errors.fullName = value.length < 2  
-          ? "Minimum 2 characters required"
+          errors.fullName = value.length < 1 
+          ? "Cannot be empty"
           : "";
         break;
 
@@ -77,19 +93,37 @@ class Register extends Component {
         break;
 
         case 'password':
-          errors.password = passRegex.test(value) != true
-          ? "Minimum 6 characters required with at least 1  letter and 1 special character"
-          : errors.password = value == confirmPassword.value
-          ? ""
-          : "Passwords do not match" ;
+          pass = value;
+          if (passRegex.test(value) != true) {
+            errors.password = "Minimum 6 characters required with at least 1 letter and 1 special character";
+          }
+          
+          else {
+            errors.password ="";
+          }
+          // if (x = 1) {
+          //   if ()
+          // }
+          // // pass = value;
+          // errors.password = pass;
+          // if (comparePass != true) {
+          //   errors.password = "Wrong";
+          // }
         break;
 
         case 'confirmPassword':
-          errors.confirmPassword = passRegex.test(value) != true
-          ? "Minimum 6 characters required with at least 1 letter and 1 special character"
-          : errors.confirmPassword = value == password.value
-          ? ""
-          : "Passwords do not match";
+          confirm = value;
+          if (passRegex.test(value) != true) {
+            errors.confirmPassword = "Minimum 6 characters required with at least 1 letter and 1 special character";
+          }
+          else if (!pass.match(confirm)){
+            errors.confirmPassword = "Passwords do not match";
+          }
+
+          else {
+            errors.confirmPassword = "";
+          }
+
         break;
 
         default:
@@ -143,7 +177,7 @@ class Register extends Component {
                   />
                     {errors.email.length > 0 && (
                     <span className="error">{errors.email}</span>
-                  )}                  
+                    )}                  
                 </div>
 
                 <div className="input-group">
@@ -153,11 +187,11 @@ class Register extends Component {
                     name="password" 
                     className={ errors.password.length > 0 ? "error" : null}  
                     placeholder="Password" 
-                    onChange={this.handleChange}                   
+                    onChange={this.handleChange}                  
                     />
                     {errors.password.length > 0 && (
                     <span className="error">{errors.password}</span>
-                  )}                 
+                    )}                 
                 </div>
 
                 <div className="input-group">
@@ -167,11 +201,11 @@ class Register extends Component {
                     name="confirmPassword" 
                     className={ errors.confirmPassword.length > 0 ? "error" : null}  
                     placeholder="Confirm Password" 
-                    onChange={this.handleChange}                   
+                    onChange={this.handleChange}  
                     />
                     {errors.confirmPassword.length > 0 && (
                     <span className="error">{errors.confirmPassword}</span>
-                  )}               
+                    )}            
                 </div>
 
                 <button type="submit" className="register-button">REGISTER</button>
