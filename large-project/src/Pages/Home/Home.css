@@ -29,7 +29,9 @@ footer,
     -ms-flex: 1;
     flex: 1;
     padding: 0 10px;
-    background-color: #333333
+    background-color: #333333;
+    width: auto;
+    
 }
 
 .nav-wrapper ul {

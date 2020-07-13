@@ -60,8 +60,7 @@ class Register extends Component {
           -- Submitting --
           Full Name: ${this.state.fullName}
           Email: ${this.state.email}
-          Password: ${this.state.password}
-          Confirm Password: ${this.state.confirmPassword}
+          
         `);
       } else {
         console.error('FORM INVALID');
@@ -113,10 +112,7 @@ class Register extends Component {
 
         case 'confirmPassword':
           confirm = value;
-          if (passRegex.test(value) != true) {
-            errors.confirmPassword = "Minimum 6 characters required with at least 1 letter and 1 special character";
-          }
-          else if (!pass.match(confirm)){
+          if (confirm !== pass){
             errors.confirmPassword = "Passwords do not match";
           }
 

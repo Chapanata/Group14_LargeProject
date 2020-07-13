@@ -18,7 +18,7 @@ class Home extends Component {
         return(
             <div className="in-container">
                 <nav>
-                    <div class="nav-wrapper">
+                    <div className="nav-wrapper">
                         <ul>
                         <li><Link to="/Home">Home</Link></li>
                         <li><Link to="/About">About Us</Link></li>
@@ -70,17 +70,7 @@ class Home extends Component {
                      <div> . </div>
                  </div>
 
-                 <div className="footer">
-                    <div>
-                        <p><Link to="/Home">Home</Link></p>
-                    </div>
-                     <div>
-                        <p><Link to="/About">About Us</Link></p>
-                     </div>
-                     <div>
-                        <p><Link to="/Contact">Contact Us</Link></p>
-                     </div>
-                 </div>
+
 
             </div>
         );
