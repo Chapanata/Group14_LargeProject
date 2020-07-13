@@ -7,6 +7,7 @@ import Login from "./Pages/Login/Login";
 import Register from "./Pages/Login/Register";
 import About from "./Pages/Dashboard/About";
 import Contact from "./Pages/Dashboard/Contact";
+import Settings from "./Pages/User Pages/Settings";
 
 class App extends Component {
   render() {
@@ -19,6 +20,8 @@ class App extends Component {
           <Route path="/Register" exact component={Register} />
           <Route path="/About" exact component={About} />
           <Route path="/Contact" exact component={Contact} />
+          <Route path="/Settings" exact component={Settings} />
+
         </div> 
       </BrowserRouter>
     );
