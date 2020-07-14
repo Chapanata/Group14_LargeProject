@@ -78,27 +78,94 @@ body,
 .inner-container h1{
     padding-bottom: 10px;
     border-bottom:2px solid black;
+    
 }
 
 .name-box{
-    border: 3px solid #da667b;
     display: inline-block;
     float: left; 
     width: 23%;
     margin-left: 50px;
 }
 
+.name-box h2 {
+    border-bottom: 3px solid #da667b;
+    padding-bottom: 10px;
+}
+
 .email-box {
-    border: 3px solid #da667b;
     display: inline-block;
     float: none;
     width: 23%;
 }
 
+.email-box h2 {
+    border-bottom: 3px solid #da667b;
+    padding-bottom: 10px;
+}
+
 .pass-box {
-    border: 3px solid #da667b;
-    display: inline-block;
+display: inline-block;
     float: right;
     width: 23%;
     margin-right: 50px;
+}
+
+.pass-box h2 {
+    border-bottom: 3px solid #da667b;
+    padding-bottom: 10px;
+}
+
+.name-box button {
+    border: 0;
+    font-size: 17px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 30px;
+    width: 80%;   
+}
+
+.name-box input {
+    margin-bottom: 15px;
+}
+
+.email-box button {
+    border: 0;
+    font-size: 17px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 30px;
+    width: 80%;   
+}
+
+.email-box input {
+    margin-bottom: 15px;
+}
+
+.pass-box button {
+    border: 0;
+    font-size: 17px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 30px;
+    width: 80%;   
+}
+
+.pass-box input {
+    margin-bottom: 15px;
 }
