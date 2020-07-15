@@ -105,7 +105,7 @@ body,
 }
 
 .pass-box {
-display: inline-block;
+    display: inline-block;
     float: right;
     width: 23%;
     margin-right: 50px;
