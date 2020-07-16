@@ -14,6 +14,9 @@ class Contact extends Component {
                     </div>
                 </div>
                 <div className="footer">
+                    <div>
+                        <p><Link to="/Home">Home</Link></p>
+                    </div>
                      <div>
                         <p><Link to="/About">About Us</Link></p>
                      </div>
