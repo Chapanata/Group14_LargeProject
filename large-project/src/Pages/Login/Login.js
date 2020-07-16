@@ -49,6 +49,7 @@ class Login extends Component {
               
 
                 <div className="backToReg">Don't have an Account? <Link to="/register">Click Here</Link></div>
+                <div className="forgot">Forgot your Password? <a href="#">Click Here</a></div>
                 <div className="backToLog">Go back home?<Link to="/home"> Home</Link></div>
 
               </div>      

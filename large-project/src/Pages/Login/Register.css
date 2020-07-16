@@ -11,7 +11,6 @@ body,
     /*background-image:  url(../../Resources/donut_web_light.jpg);*/
     font-family: Ozxgen, sans-serif;
     margin: auto;
-    overflow: scroll;
 }
 
 .page {
@@ -123,6 +122,12 @@ input.error {
 }
 
 .backToLog {
+    margin-top: 20px;
+    text-align: center;
+    color: #92ADB6;
+}
+
+.forgot {
     margin-top: 20px;
     text-align: center;
     color: #92ADB6;
