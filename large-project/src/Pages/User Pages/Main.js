@@ -14,8 +14,6 @@ class Main extends Component {
     render() {
         return(
         <div className="page">
-            <div className="init-container">
-                <div className="square-container">
                     <div className="nav-bar">
                         <div className="nav-centered">
                             {/* Replace href with Link later */}
@@ -36,8 +34,6 @@ class Main extends Component {
                     
                     
                     </div>    
-                </div>
-            </div>
         </div>
         )
     }

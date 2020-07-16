@@ -52,8 +52,7 @@ class Settings extends Component {
     render() {
         return(
         <div className="page">
-            <div className="init-container">
-                <div className="square-container">
+            <div className="box">
                     <div className="nav-bar">
                         <div className="nav-centered">
                             {/* Replace href with Link later */}
@@ -122,10 +121,9 @@ class Settings extends Component {
                             </div>
                         </form>
                     
+                        </div>  
                     
-                    
-                    </div>    
-                </div>
+              
             </div>
         </div>
         )
