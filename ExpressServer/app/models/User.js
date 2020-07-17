@@ -1,15 +1,16 @@
-// app/models/bear.js
+// app/models/user.js
 
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+var mongoose    = require('mongoose');
+var Schema      = mongoose.Schema;
 
-var BearSchema   = new Schema({
-    email: String,
-    password: String,
-    confirmCode: String,
-    confirmed: Int8Array,
-    name: String,
+var UserSchema  = new Schema(
+    {
+    name: { type: String, required: true},
+    email: { type: String, required: true},
+    password: { type: String, required: true},
+    confirmCode: { type: String, required: true},
+    confirmed: { type: Boolean, required: true, default: false},
     sessionToken: String
-});
+    });
 
-module.exports = mongoose.model('User', BearSchema);
+module.exports = mongoose.model('User', UserSchema);
