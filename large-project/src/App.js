@@ -7,8 +7,8 @@ import Login from "./Pages/Login/Login";
 import Register from "./Pages/Login/Register";
 import About from "./Pages/Dashboard/About";
 import Contact from "./Pages/Dashboard/Contact";
-import Settings from "./Pages/User Pages/Settings";
-import Main from "./Pages/User Pages/Main";
+import Settings from "./Pages/User-Pages/Settings";
+import Main from "./Pages/User-Pages/Main";
 
 class App extends Component {
   render() {

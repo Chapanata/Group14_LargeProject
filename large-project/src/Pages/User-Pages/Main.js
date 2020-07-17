@@ -9,8 +9,6 @@ class Main extends Component {
         
     }
     
-   
-
     render() {
         return(
         <div className="page">
@@ -20,8 +18,10 @@ class Main extends Component {
                             <a href="#" className="active">Home</a>
                         </div>
 
-                        <a href="#">Food</a>
-                        <a href="#">Account</a>
+                        <div class="nav-left">
+                            <a href="#">Food</a>
+                            <a href="#">Account</a>
+                        </div>
 
                         <div class="nav-right">
                             <a href="#" >Settings</a>
@@ -29,10 +29,17 @@ class Main extends Component {
                         </div>
                     </div>
 
-                    <div className = "inner-container"> 
+                    <div className="inner-container"> 
+                        <div className="init-container">
+                            <div className="square-container">
+                                <h1>Calendar:</h1>
+                                <h2>Stacked Bar Chart:</h2>
+                                <h3>General Information:</h3>
+
+                            </div>
+                            
+                        </div>
                        
-                    
-                    
                     </div>    
         </div>
         )

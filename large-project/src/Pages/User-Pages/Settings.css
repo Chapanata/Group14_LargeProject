@@ -28,11 +28,10 @@ body,
     height: 90%;
 }
 
-
-.square-container {
-    margin: auto;
-    height: 700px;
-    width: 80%;
+.square-container h1{
+    float: left;
+    height: 875px;
+    width: 60%;
     box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
     border-radius: 10px;
     background-color: white;
@@ -42,11 +41,36 @@ body,
     padding: 0;
 }
 
+.square-container h2{
+    float: right;
+    height: 500px;
+    width: 40%;
+    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid #da667b;
+    margin-top: 30px;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.square-container h3{
+    float: right;
+    height: 375px;
+    width: 40%;
+    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid #da667b;
+    margin-top: -20px;
+    box-sizing: border-box;
+    padding: 0;
+}
+
 .nav-bar{
     position: relative;
     background-color: #333;
     overflow: hidden;
- 
 }
 
 .nav-bar a {
