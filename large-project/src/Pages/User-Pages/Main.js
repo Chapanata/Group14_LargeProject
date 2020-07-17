@@ -20,12 +20,12 @@ class Main extends Component {
                     <div className="nav-bar">
                         <div className="nav-centered">
                             {/* Replace href with Link later */}
-                            <a href="#" className="active">Home</a>
+                            <a href="#" className="active">Overview</a>
                         </div>
 
                         <div class="nav-left">
                             <a href="#">Food</a>
-                            <a href="#">Account</a>
+                            <a href="#">Biometrics</a>
                         </div>
 
                         <div class="nav-right">

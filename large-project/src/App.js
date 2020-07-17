@@ -9,6 +9,7 @@ import About from "./Pages/Dashboard/About";
 import Contact from "./Pages/Dashboard/Contact";
 import Settings from "./Pages/User-Pages/Settings";
 import Main from "./Pages/User-Pages/Main";
+import Biometrics from "./Pages/User-Pages/Biometrics";
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
           <Route path="/Contact" exact component={Contact} />
           <Route path="/Settings" exact component={Settings} />
           <Route path="/Main" exact component={Main} />
+          <Route path="/Biometrics" exact component={Biometrics} />
 
         </div> 
       </BrowserRouter>
