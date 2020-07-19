@@ -1,6 +1,6 @@
 //email.js
 
-const server = require('./server.js');
+const auth = require('./routes/auth');
 
 // > npm install --save @sendgrid/mail
 // > npm install nodemailer-sendgrid-transport
@@ -15,20 +15,17 @@ const options = {
 };
 const client = nodemailer.createTransport(sgTransport(options));
 
-var userName = server.getName();
-var userEmail = server.getEmail();
-
 const emailActivate = {
     from: "Nutrition Manager, aaron.k.koo@gmail.com",
-    to: userEmail,
+    to: auth.userEmail,
     subject: "Nutrition App Account Verification",
     text: `Hello ${
-    userName
+    auth.userName
     }, Your account has been created and requires activation. Click on the following link to finish your registration:
     
     https://www.google.com`,
     html: `Hello<strong> ${
-    userName
+    auth.userName
     }</strong>,<br><br>Your account has been created and requires activation. Click on the following link to finish your registration:
     
     https://www.google.com`
