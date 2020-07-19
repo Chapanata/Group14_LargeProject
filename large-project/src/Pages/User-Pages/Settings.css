@@ -30,7 +30,7 @@ body,
 
 .square-container1{
     float: left;
-    height: 875px;
+    height: 100%;
     width: 60%;
     box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
     border-radius: 10px;
@@ -44,7 +44,7 @@ body,
 
 .square-container2{
     float: right;
-    height: 500px;
+    height: 40%;
     width: 40%;
     box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
     border-radius: 10px;
@@ -58,7 +58,9 @@ body,
 
 .grid-container1 {
     display: grid;
-    grid-template-columns: 100px 100px 100px 100px;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: 25% 25% 25% 25%;
     padding: 10px;
     justify-content: space-evenly;
   
@@ -66,20 +68,23 @@ body,
   
 .grid-container2 {
     display: grid;
-    grid-template-columns: 100px 100px 100px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: 33% 33% 33%;
     padding: 10px;
     justify-content: space-evenly;
 }
   
 .grid-item {
-    font-size: 20px;
+    font-size: 40%;
     text-align: center;
     
 }
 
 .square-container3{
     float: right;
-    height: 375px;
+    height: 50%;
     width: 40%;
     box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
     border-radius: 10px;
