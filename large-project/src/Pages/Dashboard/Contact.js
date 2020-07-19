@@ -2,30 +2,26 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
 
-import logo from './../../Resources/spoonfork.png';
+import logo from './../../Resources/spoonfork_only.png';
 
 class Contact extends Component { 
     render() {
         return(
             <div className="in-container">
                 <div className="nav-bar">
-                    <div className="nav-centered">
-                        {/* Replace href with Link later */}
-                        <a href="#"><Link to="/Home">Home</Link></a>
-                    </div>
+                    <img src={logo} className="logo"/>
 
-                    <a href="#"><Link to="/About">About Us</Link></a>
-                    <a href="#"><Link to="/Contact">Contact Us</Link></a>
+                    <Link to="/Home">Welcome</Link>
+                    <Link to="/About">About</Link>
+                    <Link to="/Contact" className="active">Contact Us</Link>
+                    <Link to="/Login">Login</Link>
+                    <Link to="/Register">Register</Link>
 
-                    <div class="nav-right">
-                        <a href="#" ><Link to="/Login">Login</Link></a>
-                        <a href="#"><Link to="/Register">Register</Link></a>
-                    </div>
                 </div>
 
-                <div className="contactBox">
-                    <img src={logo} className="logo" />
-                    <div className="contactText">
+                <div className="mainBox">
+
+                    <div className="mainText">
                         <h1>Contact Us</h1>
                             <p>
                             Got any feedback about Nutrition Manager Deluxe&trade;? Reach out to us! Currently the best way to reach us
@@ -34,23 +30,22 @@ class Contact extends Component {
                             <br></br>
                             Thank you for using our app!
                             <br></br>
-                            <ul>
-                                <li>Front End Designers:
-                                    <dl>Tommy To - E-Mail</dl>
-                                    <dl>Samantha Chou - E-Mail</dl>
-                                    <dl>Kris Choudhury - E-Mail</dl>
-                                </li>
-                                <br></br>
-                                <li>Back End Designers:
-                                    <dl>Aaron Koo - E-Mail</dl>
-                                    <dl>Samuel Arminana</dl>
-                                </li>
-                                <br></br>
-                                <li>Mobile Designers:
-                                    <dl>Cameron Lindsey - E-Mail</dl>
-                                    <dl>Jordy Pantoja - E-Mail</dl>
-                                </li>
-                            </ul>
+                            <h3>Front End Developers</h3>
+
+                            <div className="contactCard">Tommy To</div>
+                            <div className="contactCard">Samantha Chou</div>
+                            <div className="contactCard">Kris Choudhury</div>
+
+
+                            <h3>Back End Developers</h3>
+                            <div className="contactCard">Aaron Koo</div>
+                            <div className="contactCard">Samuel Arminana</div>
+
+                            <h3>Mobile Developers</h3>
+                           <div className="contactCard">Cameron Lindsey</div>
+                            <div className="contactCard">Jordy Pantoja</div>
+
+
                             </p>
                     </div>
                  </div>
