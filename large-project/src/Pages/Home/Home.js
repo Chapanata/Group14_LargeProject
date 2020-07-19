@@ -59,6 +59,8 @@ class Home extends Component {
                  <Link to="/Settings">Settings</Link>
                  <br></br>
                  <Link to="/Main">Main</Link>
+                 <br></br>
+                 <Link to="/Biometrics">Biometrics</Link>
 
             </div>
         );

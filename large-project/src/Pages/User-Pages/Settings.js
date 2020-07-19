@@ -56,11 +56,11 @@ class Settings extends Component {
                     <div className="nav-bar">
                         <div className="nav-centered">
                             {/* Replace href with Link later */}
-                            <a href="#" >Home</a>
+                            <a href="#" ><Link to="/Main">Overview</Link></a>
                         </div>
 
                         <a href="#">Food</a>
-                        <a href="#">Account</a>
+                        <a href="#">Biometrics</a>
 
                         <div class="nav-right">
                             <a href="#" className="active">Settings</a>
