@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import './Settings.css'
 import './progressbar.css'
 import DataTable from 'react-data-table-component'
-
 import {CircularProgressbar, buildstyles} from 'react-circular-progressbar';
 
 const percentage = 33;
@@ -11,38 +10,38 @@ const percentage = 33;
 const data = [
     { 
         id: 1, 
-        nutrient: 'Energy', 
-        amount: '8,400 kJ/2,000 kcal' 
+        nutrient: 'Energy (in kcal)', 
+        amount: '2000' 
     },
     {
         id: 2, 
-        nutrient: 'Total fat', 
-        amount: '<70g' 
+        nutrient: 'Total fat (in grams)', 
+        amount: '70' 
     },
     {
         id: 3, 
-        nutrient: 'Saturates', 
-        amount: '<20g' 
+        nutrient: 'Saturates (in grams)', 
+        amount: '20' 
     },
     {
         id: 4, 
-        nutrient: 'Carbohydrate', 
-        amount: '=>260g' 
+        nutrient: 'Carbohydrate (in grams)', 
+        amount: '260' 
     },
     {
         id: 5, 
-        nutrient: 'Total sugars', 
-        amount: '90g' 
+        nutrient: 'Total sugars (in grams)', 
+        amount: '90' 
     },
     {
         id: 6, 
-        nutrient: 'Protein', 
-        amount: '50g' 
+        nutrient: 'Protein (in grams)', 
+        amount: '50' 
     },
     {
         id: 7, 
-        nutrient: 'Salt', 
-        amount: '<6g' 
+        nutrient: 'Salt (in grams)', 
+        amount: '6' 
     },
 ];
 
@@ -97,11 +96,12 @@ class Main extends Component {
                                     value={percentage} 
                                     text={`${percentage}%`}
                                     />
+                                    Energy
                                 </div>
                                 <div class="grid-item">
-                                    <CircularProgressbar 
+                                    <CircularProgressbar
                                         value={percentage} 
-                                        text={`${percentage}%`}
+                                        text={`${data.id}%`}
                                     />
                                     Total Fat
                                 </div>
@@ -154,15 +154,6 @@ class Main extends Component {
                                     columns={columns}
                                     data={data}
                                 />
-                                <br></br>
-                                <div>
-                                    What are daily reference intakes?
-                                </div>
-                                <br></br>
-                                <div>
-                                    "Daily reference intakes are not meant to be targets. They just give you a rough idea of how much energy you should be eating each day, and how much fat, sugar, salt, and so on. Unless the label says otherwise, reference intakes are based on an average-sized woman doing an average amount of physical activity. This is to reduce the risk of people with lower energy requirements eating too much, and to make sure information on labels is clear and consistent."
-                                </div>
-
                             </div>
                         </div>     
                     </div>

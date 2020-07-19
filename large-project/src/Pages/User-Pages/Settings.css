@@ -14,7 +14,7 @@ body,
 }
 
 .page {
-    height: 120vh;
+    height: 100vmax;
     background: rgba(255, 255, 255, 0.8);
     box-sizing: border-box;
 }
@@ -44,8 +44,8 @@ body,
 
 .square-container2{
     float: right;
-    height: 40%;
     width: 40%;
+    object-fit: fill;
     box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
     border-radius: 10px;
     background-color: white;
@@ -84,7 +84,6 @@ body,
 
 .square-container3{
     float: right;
-    height: 50%;
     width: 40%;
     box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
     border-radius: 10px;
@@ -94,6 +93,9 @@ body,
     box-sizing: border-box;
     padding: 0;
 }
+
+
+
 
 .nav-bar{
     position: relative;
