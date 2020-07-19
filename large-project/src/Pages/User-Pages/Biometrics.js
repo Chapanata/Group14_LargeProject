@@ -25,15 +25,38 @@ class Biometrics extends Component {
             isInEditMode: !this.state.isInEditMode
         })
         console.log("This works");
+        console.log("Weight:" + this.state.weight)
     }
 
-    updateComponentValues = () => {
+    updateWeight = (e) => {
         this.setState({
-            isInEditMode: false,
-            weight: this.state.weight
-        })
+            weight: e.target.value, 
+        })  
     }
 
+    updateGender = (e) => { 
+        this.setState({
+            gender: e.target.value,     
+        })  
+    }
+
+    updateFeet = (e) => { 
+        this.setState({
+            feet: e.target.value,     
+        })  
+    }
+
+    updateInches = (e) => { 
+        this.setState({
+            inches: e.target.value,     
+        })  
+    }
+
+    updateBMI = (e) => { 
+        this.setState({
+            BMI: e.target.value,     
+        })  
+    }
 
     renderDefaultView = () => {
         return <div className="biogrid-container1">
@@ -51,9 +74,7 @@ class Biometrics extends Component {
         {
             this.state.isInEditMode 
             ? 
-                <input type="text" defaultValue={this.state.weight} ref="weightInput"/>
-              
-              
+                <input type="text" onChange={this.updateWeight}/>
             : <div>
                 {this.state.weight}
               </div>
@@ -64,7 +85,8 @@ class Biometrics extends Component {
         {
             this.state.isInEditMode
             ?
-                <select name="genderChoice">
+                <select name="genderChoice" onChange={this.updateGender}>
+                    <option value="">Choose Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                 </select>
@@ -80,7 +102,7 @@ class Biometrics extends Component {
         {
             this.state.isInEditMode
             ? 
-                <input type="text" ref = "feetInput" defaultValue={this.state.feet}/>
+                <input type="text" onChange={this.updateFeet}/>
             
             : <div className="feet">
                 {this.state.feet};
@@ -91,7 +113,7 @@ class Biometrics extends Component {
         {
             this.state.isInEditMode
             ? 
-                <input type="text" ref = "inchesInput" defaultValue={this.state.inches}/>
+                <input type="text" onChange={this.updateInches}/>
             
             : <div className="inches">
                 {this.state.inches};
@@ -105,7 +127,7 @@ class Biometrics extends Component {
         {
             this.state.isInEditMode 
             ? 
-                <input type="text" ref = "BMIinput" defaultValue={this.state.BMI} />
+                <input type="text" onChange={this.updateBMI} />
               
               
             : <div>
@@ -114,7 +136,7 @@ class Biometrics extends Component {
 
         } 
         </h3>
-        <button type="button" class="saveStats" onClick={this.updateComponentValues}>Save Changes</button>
+        <button type="button" class="saveStats" onClick={this.changeEditMode}>Save Changes</button>
         </div>
     }
 
