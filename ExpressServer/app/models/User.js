@@ -51,6 +51,10 @@ var UserSchema  = new Schema(
     heightInch: {
         type: Number,
         required: false
+    },
+    bmi: {
+        type: Number,
+        required: false
     }
 });
 
