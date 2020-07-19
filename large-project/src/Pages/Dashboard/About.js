@@ -14,11 +14,12 @@ class About extends Component {
                     <Link to="/Home">Welcome</Link>
                     <Link to="/About" className="active">About</Link>
                     <Link to="/Contact">Contact Us</Link>
-                    <Link to="/Login">Login</Link>
-                    <Link to="/Register">Register</Link>
-
+                    <div className="nav-right">
+                        <Link to="/Login">Login</Link>
+                        <Link to="/Register">Register</Link>
+                    </div>
                 </div>
-
+                <div className="highlight-bar"></div>
                 <div className="mainBox">
 
                     <div className="mainText">

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import "./Dashboard.css";
 import logo from './../../Resources/spoonfork_only.png';
 
 class Home extends Component {
@@ -22,10 +21,12 @@ class Home extends Component {
                     <Link to="/Home" className="active" >Welcome</Link>
                     <Link to="/About">About</Link>
                     <Link to="/Contact">Contact Us</Link>
-                    <Link to="/Login">Login</Link>
-                    <Link to="/Register">Register</Link>
-
+                    <div className="nav-right">
+                        <Link to="/Login">Login</Link>
+                        <Link to="/Register">Register</Link>
+                    </div>
                 </div>
+                <div className="highlight-bar"></div>
 
 
              <div className="mainBox">

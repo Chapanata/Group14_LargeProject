@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
-
+import { Email, LocationOn, Notifications } from '@material-ui/icons';
 import logo from './../../Resources/spoonfork_only.png';
+
 
 class Contact extends Component { 
     render() {
@@ -14,11 +15,12 @@ class Contact extends Component {
                     <Link to="/Home">Welcome</Link>
                     <Link to="/About">About</Link>
                     <Link to="/Contact" className="active">Contact Us</Link>
-                    <Link to="/Login">Login</Link>
-                    <Link to="/Register">Register</Link>
-
+                    <div className="nav-right">
+                        <Link to="/Login">Login</Link>
+                        <Link to="/Register">Register</Link>
+                    </div>
                 </div>
-
+                <div className="highlight-bar"></div>
                 <div className="mainBox">
 
                     <div className="mainText">
@@ -32,18 +34,18 @@ class Contact extends Component {
                             <br></br>
                             <h3>Front End Developers</h3>
 
-                            <div className="contactCard">Tommy To</div>
-                            <div className="contactCard">Samantha Chou</div>
-                            <div className="contactCard">Kris Choudhury</div>
+                            <div className="contactCard"><Email></Email><br></br>Tommy To</div>
+                            <div className="contactCard"><Email></Email><br></br>Samantha Chou</div>
+                            <div className="contactCard"><Email></Email><br></br>Kris Choudhury</div>
 
 
                             <h3>Back End Developers</h3>
-                            <div className="contactCard">Aaron Koo</div>
-                            <div className="contactCard">Samuel Arminana</div>
+                            <div className="contactCard"><Email></Email><br></br>Aaron Koo</div>
+                            <div className="contactCard"><Email></Email><br></br>Samuel Arminana</div>
 
                             <h3>Mobile Developers</h3>
-                           <div className="contactCard">Cameron Lindsey</div>
-                            <div className="contactCard">Jordy Pantoja</div>
+                           <div className="contactCard"><Email></Email><br></br>Cameron Lindsey</div>
+                            <div className="contactCard"><Email></Email><br></br>Jordy Pantoja</div>
 
 
                             </p>
