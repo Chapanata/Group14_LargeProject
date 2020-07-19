@@ -1,9 +1,64 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import './Settings.css';
+import './Settings.css'
 import './progressbar.css'
+import DataTable from 'react-data-table-component'
 
 import {CircularProgressbar, buildstyles} from 'react-circular-progressbar';
+
+const percentage = 33;
+
+const data = [
+    { 
+        id: 1, 
+        nutrient: 'Energy', 
+        amount: '8,400 kJ/2,000 kcal' 
+    },
+    {
+        id: 2, 
+        nutrient: 'Total fat', 
+        amount: '<70g' 
+    },
+    {
+        id: 3, 
+        nutrient: 'Saturates', 
+        amount: '<20g' 
+    },
+    {
+        id: 4, 
+        nutrient: 'Carbohydrate', 
+        amount: '=>260g' 
+    },
+    {
+        id: 5, 
+        nutrient: 'Total sugars', 
+        amount: '90g' 
+    },
+    {
+        id: 6, 
+        nutrient: 'Protein', 
+        amount: '50g' 
+    },
+    {
+        id: 7, 
+        nutrient: 'Salt', 
+        amount: '<6g' 
+    },
+];
+
+const columns = [
+  {
+    name: 'Nutrient',
+    selector: 'nutrient',
+    sortable: true,
+  },
+  {
+    name: 'Amount (in grams)',
+    selector: 'amount',
+    sortable: true,
+    right: true,
+  },
+];
 
 class Main extends Component {
 
@@ -11,10 +66,8 @@ class Main extends Component {
         super(props);
         
     }
-    
-    render() {
-        const percentage = 66;
 
+    render() {
         return(
         <div className="page">
                     <div className="nav-bar">
@@ -44,7 +97,6 @@ class Main extends Component {
                                     value={percentage} 
                                     text={`${percentage}%`}
                                     />
-                                    Calories
                                 </div>
                                 <div class="grid-item">
                                     <CircularProgressbar 
@@ -96,7 +148,22 @@ class Main extends Component {
                         </div>
 
                         <div className="square-container3">
-                            3
+                            <div class="table">
+                                <DataTable
+                                    title="Reference Intakes (RI) for Adults"
+                                    columns={columns}
+                                    data={data}
+                                />
+                                <br></br>
+                                <div>
+                                    What are daily reference intakes?
+                                </div>
+                                <br></br>
+                                <div>
+                                    "Daily reference intakes are not meant to be targets. They just give you a rough idea of how much energy you should be eating each day, and how much fat, sugar, salt, and so on. Unless the label says otherwise, reference intakes are based on an average-sized woman doing an average amount of physical activity. This is to reduce the risk of people with lower energy requirements eating too much, and to make sure information on labels is clear and consistent."
+                                </div>
+
+                            </div>
                         </div>     
                     </div>
                        
