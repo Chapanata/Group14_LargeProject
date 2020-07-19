@@ -25,5 +25,17 @@ const loginValidation = data =>
     return schema.validate(data);
 }
 
+// Confirmation validation
+const confirmValidation = data =>
+{
+    const schema = Joi.object({
+        email: Joi.string().required().email(),
+        confirmCode: Joi.string().required()
+    });
+
+    return schema.validate(data);
+}
+
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
+module.exports.confirmValidation = confirmValidation;

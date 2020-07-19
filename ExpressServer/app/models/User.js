@@ -5,6 +5,7 @@ var Schema      = mongoose.Schema;
 
 var UserSchema  = new Schema(
 {
+    // Account related fields
     name: { 
         type: String, 
         required: true
@@ -32,6 +33,24 @@ var UserSchema  = new Schema(
     },
     sessionToken: {
         type: String
+    },
+
+    // User's physical properties
+    gender: {
+        type: String,
+        required: false
+    },
+    weight: {
+        type: Number,
+        required: false
+    },
+    heightFeet: {
+        type: Number,
+        required: false
+    },
+    heightInch: {
+        type: Number,
+        required: false
     }
 });
 

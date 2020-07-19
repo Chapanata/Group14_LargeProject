@@ -4,7 +4,8 @@ const router                = require('express').Router();
 const bcrypt                = require('bcryptjs');
 const jwt                   = require('jsonwebtoken');
 const { registerValidation, 
-    loginValidation }       = require('../validation');
+        loginValidation,
+        confirmValidation }   = require('../validation');
 
 
 // Pull the user model from its directory
@@ -94,6 +95,76 @@ router.route('/register')
     });
 
   //-----------------------------//
+ //      Confirmation API       //
+//-----------------------------//
+router.route('/confirmCode/:email/:confirmCode')
+
+    // get the user with the given email and check
+    // if the confirmCode matches the account
+    .get(function(req, res)
+    {
+        // Make sure the parameters aren't empty
+        if (req.params.email == null || req.params.confirmCode == null)
+        {
+            res.json({Error: 'Missing Parameters'});
+            return;
+        }
+
+        // Make sure a valid email is entered
+        const {error} = confirmValidation(req.params);
+        if (error)
+        {
+            res.json({Error: error.details[0].message});
+            return;
+        }
+
+        console.log(req.params.email);
+
+        User.findOne( { 'email': req.params.email}, function(err, dbUser)
+        {
+            // Check if the email exists in the system
+            if (!dbUser)
+            {
+                console.log('Email does not exist');
+                res.json({Error: 'Email does not exist'});
+                return;
+            }
+
+            if (dbUser.confirmed)
+            {
+                console.log('User already confirmed');
+                res.json({ Error: 'User Already Confirmed' });
+                return;
+            }
+
+            if (req.params.confirmCode != dbUser.confirmCode)
+            {
+                console.log("Confirm code does not match");
+                res.json({ Success: "false" });
+                return;
+            }
+            else
+            {
+                console.log("Codes match. Activating account");
+
+                // Set user's account to active
+                User.updateOne( 
+                    { '_id': dbUser.id }, 
+                    { $set: { confirmed: true } },
+                    function(err, res)
+                    {
+                        if (err)
+                            res.send(err);
+                    });
+
+                res.json({ Success: "true" });
+                return;
+            }
+        });
+    });
+
+
+  //-----------------------------//
  //         login API           //
 //-----------------------------//
 router.route('/login')
@@ -126,7 +197,7 @@ router.route('/login')
             // Check if the email exists in the system
             if (!dbUser)
             {
-                console.log('Incorrect Email Or Password');
+                console.log('Email does not exist in the system');
                 res.json({Error: 'Incorrect Email Or Password'});
                 return;
             }
@@ -137,8 +208,15 @@ router.route('/login')
 
             if (!passMatch)
             {
-                console.log("oh noes");
+                console.log('Email and password did not match');
                 res.json({Error: 'Incorrect Email Or Password'});
+                return;
+            }
+
+            if (!dbUser.confirmed)
+            {
+                console.log('Account Not Confirmed');
+                res.json({Error: 'Account Not Confirmed'});
                 return;
             }
 
