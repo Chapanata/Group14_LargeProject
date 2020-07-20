@@ -22,7 +22,7 @@ First open up your operating system's console and change directories to the repo
 
 Next run, `npm install` to install necessary dependencies.
 
-Finally run, `node server.js` to execute the index.js file. This will start a node.js server and open up a connection at `http://localhost:8080`. You can then run the app by opening that url in your browser. An example of this in Windows and Chrome,<br>
+Finally run, `node server.js` to execute the server.js file. This will start a node.js server and open up a connection at `http://localhost:8080`. You can then run the app by opening that url in your browser. An example of this in Windows and Chrome,<br>
 
 <img src="http://samuelarminana.com/u/15f08ea74-8967-4e2b-b53e-bd9339c074db.png" width="600">
 
