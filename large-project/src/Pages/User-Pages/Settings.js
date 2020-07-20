@@ -118,9 +118,12 @@ class Settings extends Component {
                         </form>
                     
                         </div>  
-                    
+                       
               
             </div>
+            <div class="biogrid-container1">
+                                
+                                </div>
         </div>
         )
     }

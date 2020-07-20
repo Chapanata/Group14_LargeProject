@@ -253,7 +253,7 @@ input.error {
 .page
 {
     background-color:hsla(0,0%,100%,.8);
-    height: 100vmax;
+    height: 120vh;
 }
 
 /* Backend Pages */
@@ -356,6 +356,8 @@ input.error {
 
 }
 
+/* Settings Styling */
+
 .name-box{
     display: inline-block;
     float: left;
@@ -445,7 +447,7 @@ input.error {
     margin-bottom: 15px;
 }
 
-/* Biometrics Styling */
+/* Overview Styling */
 .bio-container1{
     float: right;
     height: 875px;
