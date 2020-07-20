@@ -21,12 +21,12 @@ const emailActivate = {
     subject: "Nutrition App Account Verification",
     text: `Hello ${ auth.userName }, Your account has been created and requires activation. Go to the following link to finish your registration:
 
-    https://www.website.com/confirmCode/${auth.userEmail}/${auth.confirmCode}`,
+    https://nutrition-heroku.herokuapp.com/confirmCode/${auth.userEmail}/${auth.confirmCode}`,
     html: `Hello<strong> ${
     auth.userName
     }</strong>,<br><br>Your account has been created and requires activation. Go to the following link to finish your registration:
 
-    https://www.website.com/confirmCode/${auth.userEmail}/${auth.confirmCode}`
+    https://nutrition-heroku.herokuapp.com/confirmCode/${auth.userEmail}/${auth.confirmCode}`
     };
 
     module.exports = {
