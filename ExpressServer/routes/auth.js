@@ -5,7 +5,9 @@ const bcrypt                = require('bcryptjs');
 const jwt                   = require('jsonwebtoken');
 const { registerValidation, 
         loginValidation,
-        confirmValidation }   = require('../validation');
+        confirmValidation } = require('../validation');
+
+const verify = require('./verifyToken');
 
 
 // Pull the user model from its directory
@@ -59,9 +61,9 @@ router.route('/register')
             // and supplies it with the information required. 
             module.exports = {
                 userName: user.name,
-                userEmail: user.email
+                userEmail: user.email,
+                confirmCode: user.confirmCode
             };
-
 
             var email = require('../email');
 
