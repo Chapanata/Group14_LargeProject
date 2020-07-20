@@ -253,7 +253,7 @@ input.error {
 .page
 {
     background-color:hsla(0,0%,100%,.8);
-    height: 100vmax;
+    height: 120vh;
 }
 
 /* Backend Pages */
@@ -344,9 +344,12 @@ input.error {
 }
 
 .inner-container {
+    float:left;
     background-color: white;
     border: 3px solid #da667b;
-    height: 100vh;
+    height: 60vh;
+    width: 70%;
+    border-radius: 10px;
 }
 
 
@@ -355,6 +358,8 @@ input.error {
     border-bottom:2px solid black;
 
 }
+
+/* Settings Styling */
 
 .name-box{
     display: inline-block;
@@ -445,7 +450,21 @@ input.error {
     margin-bottom: 15px;
 }
 
-/* Biometrics Styling */
+.user-stats {
+    float: right;
+    height: 61vh;
+    width: 29.6%;
+    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid #da667b;
+    box-sizing: border-box;
+    text-align: center;
+    
+}
+
+
+/* Overview Styling */
 .bio-container1{
     float: right;
     height: 875px;
@@ -532,9 +551,9 @@ input.error {
     transition: background-color 0.3s ease-out;
     cursor: pointer;
     height: 30px;
-    width: 520px;
+    width: 420px; 
     margin-top: 35px;
-    margin-left: 45px;
+    margin-left: 35px;
 }
 
 input{
