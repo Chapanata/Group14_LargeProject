@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Register.css';
+
 import logo from './../../Resources/logo.png';
 import { Link } from "react-router-dom";
 
@@ -23,11 +23,11 @@ class Login extends Component {
 
     render() {
       return (
-        <div className="page">
+
           <div className="root-container">
             <div className="box-container">
       
-              <img src={logo} className="Logo" alt="logo"/>
+              <img src={logo} className="modal_logo" alt="logo"/>
 
               <div className="title">
                     Login  
@@ -48,14 +48,14 @@ class Login extends Component {
                 <button type="button" className="some-button" onClick={this.submitLogin.bind(this)}>LOGIN</button>
               
 
-                <div className="backToReg">Don't have an Account? <Link to="/register">Click Here</Link></div>
-                <div className="forgot">Forgot your Password? <a href="#">Click Here</a></div>
-                <div className="backToLog">Go back home?<Link to="/home"> Home</Link></div>
+                <div className="backToLog"><Link to="/register">Don't have an Account?</Link></div>
+                <div className="forgot"><a href="#">Forgot your Password?</a></div>
+                <div className="backToLog"><Link to="/home">Go back home?</Link></div>
 
               </div>      
             </div>
           </div>
-        </div>
+
       );
     }
 }

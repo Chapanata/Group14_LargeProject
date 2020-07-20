@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import './Settings.css';
+
 
 class Settings extends Component {
 
@@ -53,20 +53,16 @@ class Settings extends Component {
         return(
         <div className="page">
             <div className="box">
-                    <div className="nav-bar">
-                        <div className="nav-centered">
-                            {/* Replace href with Link later */}
-                            <a href="#" ><Link to="/Main">Overview</Link></a>
-                        </div>
+                <div className="nav-bar">
 
-                        <a href="#">Food</a>
-                        <a href="#">Biometrics</a>
+                    <Link to="/Main" >Overview</Link>
+                    <Link to="#">Food</Link>
+                    <Link to="/Biometrics">Biometrics</Link>
+                    <Link to="/Settings" className="active">Settings</Link>
+                    <div className="nav-right"><Link to="#">Log Out</Link></div>
 
-                        <div class="nav-right">
-                            <a href="#" className="active">Settings</a>
-                            <a href="#">Log Out</a>
-                        </div>
-                    </div>
+                </div>
+                <div className="highlight-bar"></div>
 
                     <div className = "inner-container"> 
                         <form id="my-settings">
