@@ -24,6 +24,8 @@ router.route('/register')
         var user = new User();
         user.email = req.body.email;
         user.name = req.body.name;
+        
+        console.log("Registering a user! (" + user.email + ", " + user.name + ", " + req.body.password);
 
         // Generate a random 4 digit confirmation code
         user.confirmCode = Math.floor(1000 + Math.random() * 9000);
@@ -62,6 +64,8 @@ router.route('/register')
 
 
             var email = require('../email');
+
+            console.log("Creating user and sending confirmation!");
 
             // Send the confirmation email.
             var failedSend = false;
