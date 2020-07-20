@@ -55,11 +55,11 @@ class Settings extends Component {
             <div className="box">
                 <div className="nav-bar">
 
-                    <Link to="/Main" >Overview</Link>
+                    <Link to="/Overview" >Overview</Link>
                     <Link to="#">Food</Link>
-                    <Link to="/Biometrics">Biometrics</Link>
+                    <Link to="/Daily">Daily Intake</Link>
                     <Link to="/Settings" className="active">Settings</Link>
-                    <div className="nav-right"><Link to="#">Log Out</Link></div>
+                    <div className="nav-right"><Link to="/Home">Log Out</Link></div>
 
                 </div>
                 <div className="highlight-bar"></div>

@@ -52,9 +52,11 @@ class Home extends Component {
                         <br></br>
                         To start today register an account with us and begin your journey today!
                         </p>
-               <Link to="/Settings">Settings</Link>
+                <Link to="/Settings">Settings</Link>
                  <br></br>
-                 <Link to="/Main">Main</Link>
+                 <Link to="/Daily">Daily</Link>
+                 <br></br>
+                 <Link to="/Overview">Overview</Link>
                  </div>
                 </div>
 

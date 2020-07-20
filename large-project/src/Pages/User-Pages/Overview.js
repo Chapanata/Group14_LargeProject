@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
 
-class Biometrics extends Component {
+class Overview extends Component {
     
     constructor(props) {
         super(props);
@@ -146,11 +146,11 @@ class Biometrics extends Component {
             <div className="page">
                 <div className="nav-bar">
 
-                    <Link to="/Main" >Overview</Link>
+                    <Link to="/Overview" className="active">Overview</Link>
                     <Link to="#">Food</Link>
-                    <Link to="/Biometrics" className="active">Biometrics</Link>
+                    <Link to="/Daily" >Daily Intake</Link>
                     <Link to="/Settings">Settings</Link>
-                    <div className="nav-right"><Link to="#">Log Out</Link></div>
+                    <div className="nav-right"><Link to="/Home">Log Out</Link></div>
 
                 </div>
                 <div className="highlight-bar"></div>
@@ -195,4 +195,4 @@ class Biometrics extends Component {
     }
 } 
 
-export default Biometrics;
+export default Overview;

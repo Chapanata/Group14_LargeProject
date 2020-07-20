@@ -57,7 +57,7 @@ const columns = [
   },
 ];
 
-class Main extends Component {
+class Daily extends Component {
 
     constructor(props) {
         super(props);
@@ -69,11 +69,11 @@ class Main extends Component {
         <div className="page">
                 <div className="nav-bar">
 
-                    <Link to="/Main" className="active">Overview</Link>
+                    <Link to="/Overview" >Overview</Link>
                     <Link to="#">Food</Link>
-                    <Link to="/Biometrics">Biometrics</Link>
+                    <Link to="/Daily" className="active">Daily Intake</Link>
                     <Link to="/Settings">Settings</Link>
-                    <div className="nav-right"><Link to="#">Log Out</Link></div>
+                    <div className="nav-right"><Link to="/Home">Log Out</Link></div>
 
                 </div>
                 <div className="highlight-bar"></div>
@@ -155,4 +155,4 @@ class Main extends Component {
     }
 }
 
-export default Main;
+export default Daily;
