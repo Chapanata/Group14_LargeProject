@@ -8,8 +8,8 @@ const { registerValidation,
 const verify = require('./verifyToken');
 
 // Pull the user model from its directory
-var User = require('../models/user');
-var Consumed = require('../models/consumed');
+var User = require('./models/user');
+var Consumed = require('./models/consumed');
 
 
   //-----------------------------//
