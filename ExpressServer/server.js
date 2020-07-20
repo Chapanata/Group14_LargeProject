@@ -38,11 +38,14 @@ var port = process.env.PORT || 8080; // set the port
 
 // Route for authentication: Deals with registration and login
 const authRoute = require('./routes/auth');
+// Route for food: Deals with food calls
+const foodRoute = require('./routes/food');
 
 // Route Middlewares
 // if we want a prefix (such as '/user/register', uncomment the below line:
 // app.use('/user', authRoute);
 app.use('', authRoute);
+app.use('', foodRoute);
 
 //START THE SERVER
 ///////////////////////////////////////////////////////////////////////////////
