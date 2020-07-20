@@ -8,7 +8,8 @@ var express     = require('express');       // call express
 var app         = express();                // define app using express
 var bodyParser  = require('body-parser');   // used for HTTP verbs
 var mongoose    = require('mongoose');      // mongoose for the database
-var dotenv      = require('dotenv').config();        // dotenv to store env variables
+var dotenv      = require('dotenv');        // dotenv to store env variables
+dotenv.config({path:'app/.env'});
 
 // Configure app to use bodyParser()
 // This lets us get data from a POST
