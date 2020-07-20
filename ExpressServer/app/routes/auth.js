@@ -99,8 +99,7 @@ router.route('/register')
   //-----------------------------//
  //      Confirmation API       //
 //-----------------------------//
-router.route('/confirmCode/:email/:confirmCode')
-
+router.route('/confirmCode')
     // get the user with the given email and check
     // if the confirmCode matches the account
     .get(function(req, res)
