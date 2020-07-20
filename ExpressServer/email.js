@@ -19,16 +19,14 @@ const emailActivate = {
     from: "Nutrition Manager, aaron.k.koo@gmail.com",
     to: auth.userEmail,
     subject: "Nutrition App Account Verification",
-    text: `Hello ${
-    auth.userName
-    }, Your account has been created and requires activation. Click on the following link to finish your registration:
-    
-    https://www.google.com`,
+    text: `Hello ${ auth.userName }, Your account has been created and requires activation. Go to the following link to finish your registration:
+
+    https://www.website.com/confirmCode/${auth.userEmail}/${auth.confirmCode}`,
     html: `Hello<strong> ${
     auth.userName
-    }</strong>,<br><br>Your account has been created and requires activation. Click on the following link to finish your registration:
-    
-    https://www.google.com`
+    }</strong>,<br><br>Your account has been created and requires activation. Go to the following link to finish your registration:
+
+    https://www.website.com/confirmCode/${auth.userEmail}/${auth.confirmCode}`
     };
 
     module.exports = {
