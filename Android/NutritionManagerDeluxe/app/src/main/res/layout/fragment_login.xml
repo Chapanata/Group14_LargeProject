@@ -43,7 +43,7 @@
             android:textColor="@color/black" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/txt_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:drawable/editbox_background"
@@ -65,7 +65,7 @@
             android:textColor="@color/black" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/txt_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:drawable/editbox_background"

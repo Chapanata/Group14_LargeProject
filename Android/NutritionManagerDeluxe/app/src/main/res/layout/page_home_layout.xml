@@ -48,14 +48,6 @@
             android:textColor="@color/black"
             android:textSize="28dp" />
 
-        <Button
-            android:id="@+id/button"
-            style="@style/TextAppearance.AppCompat.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:text="Log Item" />
-
         <TextView
             android:id="@+id/textView9"
             android:layout_width="match_parent"
@@ -66,13 +58,14 @@
             android:textSize="20dp" />
 
         <ListView
+            android:id="@+id/list_recent_foods"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
             android:layout_weight="1"
             android:background="@drawable/menu_border_dark"
-            android:cacheColorHint="@color/black" >
+            android:cacheColorHint="@color/black">
 
         </ListView>
 
@@ -81,7 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
-            android:text="View Recent Items" />
+            android:text="VIEW ALL" />
 
     </LinearLayout>
 </ScrollView>

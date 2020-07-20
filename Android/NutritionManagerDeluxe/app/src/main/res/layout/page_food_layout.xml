@@ -14,7 +14,7 @@
         android:weightSum="10">
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/txt_food_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -28,7 +28,7 @@
             android:textColorHint="@android:color/darker_gray" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/btn_search_food"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -39,12 +39,14 @@
     </LinearLayout>
 
     <ListView
-        style="@style/Widget.AppCompat.ListView"
+        android:id="@+id/list_foods_search_results"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         android:layout_weight="1"
+        android:divider = "#000"
+        android:dividerHeight = "1dp"
         android:cacheColorHint="@color/black">
 
     </ListView>
