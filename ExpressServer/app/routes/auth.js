@@ -11,7 +11,7 @@ const verify = require('./verifyToken');
 
 
 // Pull the user model from its directory
-var User = require('../app/models/user');
+var User = require('../models/user');
 
 
   //-----------------------------//

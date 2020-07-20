@@ -7,8 +7,8 @@ const { registerValidation,
 
 
 // Pull the user model from its directory
-var User = require('../app/models/user');
-var Consumed = require('../app/models/consumed');
+var User = require('../models/user');
+var Consumed = require('../models/consumed');
 
 
   //-----------------------------//
