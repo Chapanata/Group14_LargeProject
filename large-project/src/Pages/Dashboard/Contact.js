@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import "./Dashboard.css";
+
 import { Email, LocationOn, Notifications } from '@material-ui/icons';
 import logo from './../../Resources/spoonfork_only.png';
 
@@ -13,8 +13,8 @@ class Contact extends Component {
                     <img src={logo} className="logo"/>
 
                     <Link to="/Home">Welcome</Link>
-                    <Link to="/About">About</Link>
-                    <Link to="/Contact" className="active">Contact Us</Link>
+                    <Link to="/About">About Us</Link>
+                    <Link to="/Contact" className="active">Contact</Link>
                     <div className="nav-right">
                         <Link to="/Login">Login</Link>
                         <Link to="/Register">Register</Link>

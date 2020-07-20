@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import './Settings.css'
-import './progressbar.css'
 import DataTable from 'react-data-table-component'
 import {CircularProgressbar, buildstyles} from 'react-circular-progressbar';
 
@@ -69,23 +67,16 @@ class Main extends Component {
     render() {
         return(
         <div className="page">
-                    <div className="nav-bar">
-                        <div className="nav-centered">
-                            {/* Replace href with Link later */}
-                            <a href="#" className="active">Overview</a>
-                        </div>
+                <div className="nav-bar">
 
-                        <div class="nav-left">
-                            <a href="#">Food</a>
-                            <a href="#">Biometrics</a>
-                        </div>
+                    <Link to="/Main" className="active">Overview</Link>
+                    <Link to="#">Food</Link>
+                    <Link to="/Biometrics">Biometrics</Link>
+                    <Link to="/Settings">Settings</Link>
+                    <div className="nav-right"><Link to="#">Log Out</Link></div>
 
-                        <div class="nav-right">
-                            <a href="#" >Settings</a>
-                            <a href="#">Log Out</a>
-                        </div>
-                    </div>
-
+                </div>
+                <div className="highlight-bar"></div>
                     <div className="init-container">
                         <div className="square-container1"></div>
 

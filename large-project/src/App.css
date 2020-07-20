@@ -1,12 +1,23 @@
 .App {
   text-align: center;
+
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+    url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+    url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -36,3 +47,566 @@
     transform: rotate(360deg);
   }
 }
+
+html
+{
+    background-image:  url(Resources/donut_web_light.jpg);
+}
+
+/* Contact */
+.contactCard
+{
+    display: inline-block;
+    padding:10px;
+    margin:5px;
+    background-color: #DA667B;
+    border-radius:4px;
+    margin-top:-12px;
+    text-align: center;
+    color:white;
+    cursor:pointer;
+}
+.contactCard:hover
+{
+    color:black;
+}
+
+/* Nav Bar */
+
+.logo
+{
+    display: inline-block;
+    position:relative;
+    width:35px;
+    padding:5px;
+    float:left;
+}
+
+.nav-bar
+{
+    position: relative;
+    background-color: #333;
+    overflow: hidden;
+    height:44px;
+}
+
+.nav-bar a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding:10px;
+    text-decoration: none;
+    font-size: 16pt;
+}
+
+.nav-bar a:hover {
+    color: #ffffff;
+    background-color: rgba(23, 23, 23, 0.9);
+}
+
+.nav-bar a:active {
+    background-color: #DA667B;
+    color: white;
+
+}
+.nav-bar .active:hover, .active
+{
+   background-color: #DA667B;
+}
+
+
+/* Nav Bar Bottom Bar */
+.highlight-bar
+{
+    width:100%;
+    background-color:#DA667B;
+    height:3px;
+}
+
+/* Main Page */
+.mainBox {
+    display: flex;
+    vertical-align: top;
+    background: rgba(255, 255, 255, 0.8);
+    height: 900px;
+}
+
+.mainText {
+
+    padding: 20px;
+    text-align: center;
+    margin-left: 50px;
+
+    margin: 0 auto;
+}
+
+
+/* Modals */
+.modal_logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width: 138px;
+    max-width: 138px;
+}
+/* Main Container */
+.root-container {
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.box-container {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    width: 400px;
+    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    padding: 24px;
+    background-color: white;
+    border: 3px solid #da667b;
+    margin-top: 30px;
+
+}
+
+.title {
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 15px;
+    font-size: 22px;
+    border-bottom: 2px solid black;
+}
+
+/* Input Label */
+.some-label {
+    text-align:left;
+}
+/* Register / Login Elements */
+.some-button,.register-button {
+    padding: 2px 30px;
+    border: 0;
+    font-size: 16px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    margin-top: 10px;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 40px;
+
+    margin: 0 auto;
+    text-align: center;
+}
+.error {
+    margin-top: 5px;
+    color: red;
+
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    padding-bottom:10px;
+}
+
+.login-label {
+
+    text-align:left;
+
+}
+
+.input-group input{
+
+    border-radius: 3px;
+    border: 1px solid #373738;
+    font-size: 18px;
+    color: #747474;
+    background: rgba(15, 15, 15, 0.01);
+    font-weight: 600px;
+    padding-left: 5px;
+    width:100%;
+
+}
+
+input.error {
+    border: 1px solid #DA667B;
+}
+
+.backToLog a, .forgot a {
+    margin-top: 20px;
+    text-align: center;
+    color: #92ADB6;
+
+    text-decoration: none;
+}
+.backToLog a:hover, .forgot a:hover {
+    color: #658a97;
+
+}
+.backToLog, .forgot
+{
+    padding-top:10px;
+}
+.page
+{
+    background-color:hsla(0,0%,100%,.8);
+    height: 100vmax;
+}
+
+/* Backend Pages */
+
+
+
+.init-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+}
+
+.square-container1{
+    float: left;
+    height: 100%;
+    width: 60%;
+    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid #da667b;
+    margin-top: 30px;
+    box-sizing: border-box;
+    padding: 0;
+    text-align: left;
+}
+
+.square-container2{
+    float: right;
+    width: 40%;
+    object-fit: fill;
+    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid #da667b;
+    margin-top: 30px;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0;
+}
+
+.grid-container1 {
+    display: grid;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: 25% 25% 25% 25%;
+    padding: 10px;
+    justify-content: space-evenly;
+
+}
+
+.grid-container2 {
+    display: grid;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: 33% 33% 33%;
+    padding: 10px;
+    justify-content: space-evenly;
+}
+
+.grid-item {
+    font-size: 40%;
+    text-align: center;
+
+}
+
+.square-container3{
+    float: right;
+    width: 40%;
+    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid #da667b;
+    margin-top: 00px;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+
+
+
+
+.nav-right {
+    float: right;
+}
+
+.inner-container {
+    background-color: white;
+    border: 3px solid #da667b;
+    height: 100vh;
+}
+
+
+.inner-container h1{
+    padding-bottom: 10px;
+    border-bottom:2px solid black;
+
+}
+
+.name-box{
+    display: inline-block;
+    float: left;
+    width: 23%;
+    margin-left: 50px;
+}
+
+.name-box h2 {
+    border-bottom: 3px solid #da667b;
+    padding-bottom: 10px;
+}
+
+.email-box {
+    display: inline-block;
+    float: none;
+    width: 23%;
+}
+
+.email-box h2 {
+    border-bottom: 3px solid #da667b;
+    padding-bottom: 10px;
+}
+
+.pass-box {
+    display: inline-block;
+    float: right;
+    width: 23%;
+    margin-right: 50px;
+}
+
+.pass-box h2 {
+    border-bottom: 3px solid #da667b;
+    padding-bottom: 10px;
+}
+
+.name-box button {
+    border: 0;
+    font-size: 17px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 30px;
+    width: 80%;
+}
+
+.name-box input {
+    margin-bottom: 15px;
+}
+
+.email-box button {
+    border: 0;
+    font-size: 17px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 30px;
+    width: 80%;
+}
+
+.email-box input {
+    margin-bottom: 15px;
+}
+
+.pass-box button {
+    border: 0;
+    font-size: 17px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 30px;
+    width: 80%;
+}
+
+.pass-box input {
+    margin-bottom: 15px;
+}
+
+/* Biometrics Styling */
+.bio-container1{
+    float: right;
+    height: 875px;
+    width: 60%;
+    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid #da667b;
+    margin-top: 30px;
+    box-sizing: border-box;
+    padding: 0;
+    text-align: left;
+}
+
+.bio-container1 h2{
+    text-align: center;
+}
+
+
+.bio-container2{
+    float: left;
+    height: 375px;
+    width: 40%;
+    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid #da667b;
+    margin-top: 30px;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0;
+}
+
+
+.bio-container3{
+    float: left;
+    height: 500px;
+    width: 40%;
+    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid #da667b;
+    margin-top: 00px;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.biogrid-container1 {
+    text-align: left;
+    padding: 10px;
+    justify-content: space-evenly;
+    float: left;
+}
+
+.BMI-header {
+    font-size: 20px;
+    float: right;
+
+}
+
+.changeStats{
+    border: 0;
+    font-size: 17px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 30px;
+    width: 80%;
+    margin-top: 35px;
+}
+
+.saveStats {
+    border: 0;
+    font-size: 17px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 30px;
+    width: 520px;
+    margin-top: 35px;
+    margin-left: 45px;
+}
+
+input{
+    width: 25px;
+    display: inline-block;
+}
+
+/* */
+
+
+/*
+ * react-circular-progressbar styles
+ * All of the styles in this file are configurable!
+ */
+
+ .CircularProgressbar {
+    /*
+     * This fixes an issue where the CircularProgressbar svg has
+     * 0 width inside a "display: flex" container, and thus not visible.
+     */
+    width: 100%;
+    /*
+     * This fixes a centering issue with CircularProgressbarWithChildren:
+     * https://github.com/kevinsqi/react-circular-progressbar/issues/94
+     */
+    vertical-align: middle;
+  }
+
+  .CircularProgressbar .CircularProgressbar-path {
+    stroke: #3e98c7;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease 0s;
+  }
+
+  .CircularProgressbar .CircularProgressbar-trail {
+    stroke: #d6d6d6;
+    /* Used when trail is not full diameter, i.e. when props.circleRatio is set */
+    stroke-linecap: round;
+  }
+
+  .CircularProgressbar .CircularProgressbar-text {
+    fill: #3e98c7;
+    font-size: 20px;
+    dominant-baseline: middle;
+    text-anchor: middle;
+  }
+
+  .CircularProgressbar .CircularProgressbar-background {
+    fill: #d6d6d6;
+  }
+
+  /*
+   * Sample background styles. Use these with e.g.:
+   *
+   *   <CircularProgressbar
+   *     className="CircularProgressbar-inverted"
+   *     background
+   *     percentage={50}
+   *   />
+   */
+  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-background {
+    fill: #3e98c7;
+  }
+
+  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-text {
+    fill: #fff;
+  }
+
+  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-path {
+    stroke: #fff;
+  }
+
+  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-trail {
+    stroke: transparent;
+  }

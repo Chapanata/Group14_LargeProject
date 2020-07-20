@@ -19,8 +19,8 @@ class Home extends Component {
                     <img src={logo} className="logo"/>
 
                     <Link to="/Home" className="active" >Welcome</Link>
-                    <Link to="/About">About</Link>
-                    <Link to="/Contact">Contact Us</Link>
+                    <Link to="/About">About Us</Link>
+                    <Link to="/Contact">Contact</Link>
                     <div className="nav-right">
                         <Link to="/Login">Login</Link>
                         <Link to="/Register">Register</Link>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import './Settings.css';
 
 
 class Biometrics extends Component {
@@ -145,23 +144,16 @@ class Biometrics extends Component {
 
         return (
             <div className="page">
-                    <div className="nav-bar">
-                        <div className="nav-centered">
-                            {/* Replace href with Link later */}
-                            <a href="#" >Overview</a>
-                        </div>
+                <div className="nav-bar">
 
-                        <div class="nav-left">
-                            <a href="#">Food</a>
-                            <a href="#" className="active">Biometrics</a>
-                        </div>
+                    <Link to="/Main" >Overview</Link>
+                    <Link to="#">Food</Link>
+                    <Link to="/Biometrics" className="active">Biometrics</Link>
+                    <Link to="/Settings">Settings</Link>
+                    <div className="nav-right"><Link to="#">Log Out</Link></div>
 
-                        <div class="nav-right">
-                            <a href="#" >Settings</a>
-                            <a href="#">Log Out</a>
-                        </div>
-                    </div>
-
+                </div>
+                <div className="highlight-bar"></div>
                     <div className="init-container">
                         <div className="bio-container1">
                             <h2>All Activity</h2>
