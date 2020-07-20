@@ -9,7 +9,13 @@ var app         = express();                // define app using express
 var bodyParser  = require('body-parser');   // used for HTTP verbs
 var mongoose    = require('mongoose');      // mongoose for the database
 var dotenv      = require('dotenv');        // dotenv to store env variables
+
+// Configure dotenv
 dotenv.config({path:'app/.env'});
+
+// Get a path to the application
+var path = require('path');
+global.appRoot = path.resolve(__dirname);
 
 // Configure app to use bodyParser()
 // This lets us get data from a POST
