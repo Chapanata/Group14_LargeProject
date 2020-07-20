@@ -8,8 +8,8 @@ import Register from "./Pages/Login/Register";
 import About from "./Pages/Dashboard/About";
 import Contact from "./Pages/Dashboard/Contact";
 import Settings from "./Pages/User-Pages/Settings";
-import Main from "./Pages/User-Pages/Main";
-import Biometrics from "./Pages/User-Pages/Biometrics";
+import Daily from "./Pages/User-Pages/Daily";
+import Overview from "./Pages/User-Pages/Overview";
 
 class App extends Component {
   render() {
@@ -23,8 +23,8 @@ class App extends Component {
           <Route path="/About" exact component={About} />
           <Route path="/Contact" exact component={Contact} />
           <Route path="/Settings" exact component={Settings} />
-          <Route path="/Main" exact component={Main} />
-          <Route path="/Biometrics" exact component={Biometrics} />
+          <Route path="/Daily" exact component={Daily} />
+          <Route path="/Overview" exact component={Overview} />
 
         </div> 
       </BrowserRouter>
