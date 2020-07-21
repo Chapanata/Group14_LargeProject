@@ -105,14 +105,14 @@ router.route('/confirmCode')
     .get(function(req, res)
     {
         // Make sure the parameters aren't empty
-        if (req.params.email == null || req.params.confirmCode == null)
+        if (req.query.email == null || req.query.confirmCode == null)
         {
             res.json({Error: 'Missing Parameters'});
             return;
         }
 
         // Make sure a valid email is entered
-        const {error} = confirmValidation(req.params);
+        const {error} = confirmValidation(req.query);
         if (error)
         {
             res.json({Error: error.details[0].message});
