@@ -6,6 +6,7 @@
 // Call the packages that we need
 var express     = require('express');       // call express
 var app         = express();                // define app using express
+var cors        = require('cors');          // used for HTTP requests
 var bodyParser  = require('body-parser');   // used for HTTP verbs
 var mongoose    = require('mongoose');      // mongoose for the database
 var dotenv      = require('dotenv');        // dotenv to store env variables
@@ -16,6 +17,17 @@ dotenv.config({path:'app/.env'});
 // Get a path to the application
 var path = require('path');
 global.appRoot = path.resolve(__dirname);
+
+// Configure CORS to enable all requests
+app.use(cors())
+ 
+app.get('/products/:id', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+})
+ 
+app.listen(port, function () {
+  console.log('CORS-enabled web server listening on port ' + port)
+})
 
 // Configure app to use bodyParser()
 // This lets us get data from a POST

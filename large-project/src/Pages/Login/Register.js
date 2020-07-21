@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
 import logo from './../../Resources/logo.png';
 import { Link } from "react-router-dom";
 
@@ -47,9 +47,14 @@ class Register extends Component {
           fullName:"",
           email:"", 
           password:"", 
-          confirmPassword:""
+          confirmPassword:"",
         }
-      };
+      }
+    }
+
+    state = {
+  
+      apiError: ''
     }
 
     handleSubmit = e => {
@@ -62,7 +67,26 @@ class Register extends Component {
           Email: ${this.state.email}
           
         `);
-      } else {
+
+        axios.post('http://localhost:8080/register', {
+            name: this.state.fullName,
+            email: this.state.email,
+            password: this.state.password
+        })
+        .then(response => {
+          console.log(response.data)
+          console.log(response.data.Error)
+          this.setState({
+            apiError: response.data.Error
+          })
+        })
+
+        .catch(error => {
+          console.log(error.response)
+        })
+      } 
+      
+      else {
         console.error('FORM INVALID');
       }
     }
@@ -172,6 +196,10 @@ class Register extends Component {
                   />
                     {errors.email.length > 0 && (
                     <span className="error">{errors.email}</span>
+                    )}
+
+                    {this.state.apiError && (
+                      <span className="error">{this.state.apiError}</span>
                     )}                  
                 </div>
 
