@@ -99,20 +99,20 @@ router.route('/register')
   //-----------------------------//
  //      Confirmation API       //
 //-----------------------------//
-router.route('/confirmCode')
+router.route('/confirmCode/:email/:confirmCode')
     // get the user with the given email and check
     // if the confirmCode matches the account
     .get(function(req, res)
     {
         // Make sure the parameters aren't empty
-        if (req.query.email == null || req.query.confirmCode == null)
+        if (req.params.email == null || req.params.confirmCode == null)
         {
             res.json({Error: 'Missing Parameters'});
             return;
         }
 
         // Make sure a valid email is entered
-        const {error} = confirmValidation(req.query);
+        const {error} = confirmValidation(req.params);
         if (error)
         {
             res.json({Error: error.details[0].message});
