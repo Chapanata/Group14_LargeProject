@@ -134,14 +134,7 @@ class Register extends Component {
           else {
             errors.password ="";
           }
-          // if (x = 1) {
-          //   if ()
-          // }
-          // // pass = value;
-          // errors.password = pass;
-          // if (comparePass != true) {
-          //   errors.password = "Wrong";
-          // }
+      
         break;
 
         case 'confirmPassword':
