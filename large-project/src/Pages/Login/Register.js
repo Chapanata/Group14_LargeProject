@@ -54,7 +54,8 @@ class Register extends Component {
 
     state = {
   
-      apiError: ''
+      apiError: '',
+      anyErrors: ''
     }
 
     handleSubmit = e => {
@@ -68,17 +69,27 @@ class Register extends Component {
           
         `);
 
-        axios.post('https://nutrition-heroku.herokuapp.com/register', {
+
+        axios.post("https://nutrition-heroku.herokuapp.com/register", {
             name: this.state.fullName,
             email: this.state.email,
             password: this.state.password
         })
         .then(response => {
           console.log(response.data)
+          console.log(response.data.Success)
           console.log(response.data.Error)
           this.setState({
             apiError: response.data.Error
           })
+          if(response.data.Success === "true") {
+            window.location = "/login"
+          }
+          else {
+            this.setState({
+              anyErrors: "One or more fields are invalid!"
+            })
+          }
         })
 
         .catch(error => {
@@ -124,14 +135,7 @@ class Register extends Component {
           else {
             errors.password ="";
           }
-          // if (x = 1) {
-          //   if ()
-          // }
-          // // pass = value;
-          // errors.password = pass;
-          // if (comparePass != true) {
-          //   errors.password = "Wrong";
-          // }
+      
         break;
 
         case 'confirmPassword':
@@ -230,6 +234,10 @@ class Register extends Component {
                     <span className="error">{errors.confirmPassword}</span>
                     )}            
                 </div>
+                
+                {this.state.anyErrors && (
+                    <span className="error">{this.state.anyErrors}<br></br><br></br></span>
+                )} 
 
                 <button type="submit" className="register-button">REGISTER</button>
               
