@@ -57,42 +57,51 @@ router.route('/register')
 
             // The following code links the API to email.js 
             // and supplies it with the information required. 
-            module.exports = {
-                userName: user.name,
-                userEmail: user.email,
-                confirmCode: user.confirmCode
-            };
+            const getName   = () => { return user.name; };
+            const getEmail  = () => { return user.email; };
+            const getCode   = () => { return user.confirmCode; };
+
+            module.exports.getName = getName;
+            module.exports.getEmail = getEmail;
+            module.exports.getCode = getCode;
 
             var email = require('../email');
 
             // Send the confirmation email.
-            var failedSend = false;
-            email.client.sendMail(email.emailActivate, function(err, info)
+            let promise = new Promise((resolve, reject) => {
+                let didSend = email.sendEmail();
+                if (didSend)
+                    resolve();
+                else
+                    reject();
+            })
+            
+            // If the promise resolves, then the email sent.
+            promise.then(async () => 
             {
-                if (err)
-                    failedSend = true;
-            });
+                console.log("Email has been sent!");
 
-            // Check if the email was sent. If there was a problem, return err.
-            if (failedSend)
+                // If it passes the two error checks, hash the password and save.
+                const salt = await bcrypt.genSalt(10);
+                const hashedPass = await bcrypt.hash(req.body.password, salt);
+                user.password = hashedPass;
+    
+                user.save(function(err)
+                {
+                    if (err)
+                        res.send(err);
+    
+                    res.json({Success: 'true'});
+                });
+            })
+
+            // If an error is caught, that means the email did not send.
+            .catch(() =>
             {
                 console.log("Could not send email!");
                 res.json({Error: 'Unable To Send Email'});
                 return;
-            }
-
-            // If it passes the two error checks, hash the password and save.
-            const salt = await bcrypt.genSalt(10);
-            const hashedPass = await bcrypt.hash(req.body.password, salt);
-            user.password = hashedPass;
-
-            user.save(function(err)
-            {
-                if (err)
-                    res.send(err);
-
-                res.json({Success: 'true'});
-            });
+            })
         });
     });
 
