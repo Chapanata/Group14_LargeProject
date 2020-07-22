@@ -7,7 +7,7 @@ module.exports = function(req, res, next)
 {
     const token = req.header('auth-token');
     if (!token) 
-        return res.status(401).send('Access Denied');
+        return res.status(401).json({ Error: 'Token Missing' });
 
     try
     {
@@ -17,7 +17,7 @@ module.exports = function(req, res, next)
     }
     catch (err)
     {
-        res.status(400).send('Invalid Token');
+        res.status(400).json({ Error: 'Token Not Valid' } );
     }
 }
 

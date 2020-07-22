@@ -4,14 +4,16 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var ConsumedSchema   = new Schema({
-    UserID: {
-      type: Schema.Types.ObjectId, ref: 'User'},
-    FDCID: {
-      type: Number
+    user: {
+      type: Schema.Types.ObjectId, ref: 'User'
     },
-    date: {
-        type: Date,
-        default: Date.now
+    foodId: {
+      type: Number, 
+      required: true
+    },
+    quantity: {
+      type: Number, 
+      required: true
     },
     energy: {
         type: Number, 
@@ -40,6 +42,10 @@ var ConsumedSchema   = new Schema({
     salt: {
       type: Number, 
       required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 });
 
