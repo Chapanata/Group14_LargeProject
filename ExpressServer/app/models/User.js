@@ -55,7 +55,10 @@ var UserSchema  = new Schema(
     bmi: {
         type: Number,
         required: false
-    }
+    },
+    consumed: [{
+        type: Schema.Types.ObjectId, ref: 'Consumed'
+    }]
 });
 
 module.exports = mongoose.model('User', UserSchema);

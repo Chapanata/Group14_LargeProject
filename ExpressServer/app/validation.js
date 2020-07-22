@@ -2,6 +2,10 @@
 
 const Joi = require('@hapi/joi');
 
+  //-----------------------------//
+ //      User Validation        //
+//-----------------------------//
+
 // Register validation
 const registerValidation = data =>
 {
@@ -39,3 +43,26 @@ const confirmValidation = data =>
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.confirmValidation = confirmValidation;
+
+
+  //-----------------------------//
+ //      Food Validation        //
+//-----------------------------//
+
+// Add Food validation
+const addFoodValidation = data =>
+{
+    const schema = Joi.object({
+        foodId: Joi.number().required(),
+        energy: Joi.number().required(),
+        totalFat: Joi.number().required(),
+        saturates: Joi.number().required(),
+        carbs: Joi.number().required(),
+        totalSugars: Joi.number().required(),
+        protein: Joi.number().required(),
+        salt: Joi.number().required()
+    });
+
+    return schema.validate(data);
+}
+module.exports.addFoodValidation = addFoodValidation;

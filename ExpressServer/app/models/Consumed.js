@@ -4,9 +4,10 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var ConsumedSchema   = new Schema({
-    UserID: {
-      type: Schema.Types.ObjectId, ref: 'User'},
-    FDCID: {
+    user: {
+      type: Schema.Types.ObjectId, ref: 'User'
+    },
+    foodId: {
       type: Number
     },
     date: {
