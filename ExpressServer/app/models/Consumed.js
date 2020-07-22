@@ -8,11 +8,12 @@ var ConsumedSchema   = new Schema({
       type: Schema.Types.ObjectId, ref: 'User'
     },
     foodId: {
-      type: Number
+      type: Number, 
+      required: true
     },
-    date: {
-        type: Date,
-        default: Date.now
+    quantity: {
+      type: Number, 
+      required: true
     },
     energy: {
         type: Number, 
@@ -41,6 +42,10 @@ var ConsumedSchema   = new Schema({
     salt: {
       type: Number, 
       required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 });
 

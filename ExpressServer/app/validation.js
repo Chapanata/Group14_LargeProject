@@ -54,6 +54,7 @@ const addFoodValidation = data =>
 {
     const schema = Joi.object({
         foodId: Joi.number().required(),
+        quantity: Joi.number().required(),
         energy: Joi.number().required(),
         totalFat: Joi.number().required(),
         saturates: Joi.number().required(),
@@ -65,4 +66,27 @@ const addFoodValidation = data =>
 
     return schema.validate(data);
 }
+
+// Get Food validation
+const getFoodsValidation = data =>
+{
+    const schema = Joi.object({
+        dayCount: Joi.number().required()
+    });
+
+    return schema.validate(data);
+}
+
+// Remove Food validation
+const removeFoodValidation = data =>
+{
+    const schema = Joi.object({
+        _id: Joi.string().required()
+    });
+
+    return schema.validate(data);
+}
+
 module.exports.addFoodValidation = addFoodValidation;
+module.exports.getFoodsValidation = getFoodsValidation;
+module.exports.removeFoodValidation = removeFoodValidation;
