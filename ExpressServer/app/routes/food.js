@@ -188,7 +188,10 @@ router.route('/getFoods')
             // Filter consumed array to only include from right now to dayCount provided
             dateCheck = new Date(req.body.date);
             dateCheck.setHours(0,0,0,0);
-            res.json(dbUser.consumed.filter((obj) => obj.date.getTime() >= dateCheck.getTime()));
+            dateCheckCompare = new Date(req.body.date);
+            dateCheck.setHours(0,0,0,0);
+            dateCheckCompare.setDate(dateCheck.getDate() + 1);
+            res.json(dbUser.consumed.filter((obj) => obj.date.getTime() >= dateCheck.getTime() && obj.date.getTime() <= dateCheckCompare.getTime()));
             return;
         });
     });
@@ -228,10 +231,14 @@ router.route('/getDeficiencies')
                 return;
             }
 
+            
             // Filter consumed array to only include from right now to dayCount provided
             dateCheck = new Date(req.body.date);
             dateCheck.setHours(0,0,0,0);
-            dbUser.consumed = dbUser.consumed.filter((obj) => obj.date.getTime() >= dateCheck.getTime());
+            dateCheckCompare = new Date(req.body.date);
+            dateCheck.setHours(0,0,0,0);
+            dateCheckCompare.setDate(dateCheck.getDate() + 1);
+            dbUser.consumed = (dbUser.consumed.filter((obj) => obj.date.getTime() >= dateCheck.getTime() && obj.date.getTime() <= dateCheckCompare.getTime()));
 
             var deficiencies = 
             {
