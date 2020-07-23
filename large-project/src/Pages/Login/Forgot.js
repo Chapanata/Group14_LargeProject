@@ -50,7 +50,7 @@ class Forgot extends Component {
 
         // http://localhost:8080/forgotPassword
         // https://nutrition-heroku.herokuapp.com/forgotPassword
-        axios.post('http://localhost:8080/forgotPassword', {
+        axios.post('https://nutrition-heroku.herokuapp.com/forgotPassword', {
             email: this.state.email
         })
         .then(response => {
