@@ -223,6 +223,7 @@ router.route('/login')
             // Create a session token for the user
             const token = jwt.sign({_id: dbUser._id}, process.env.TOKEN_SECRET);
             res.header('auth-token', token);
+            res.header('user-name', dbUser.name);
 
             // Assign the session token to the user
             User.updateOne( 
