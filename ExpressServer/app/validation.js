@@ -40,9 +40,19 @@ const confirmValidation = data =>
     return schema.validate(data);
 }
 
+const forgotPassValidation = data =>
+{
+    const schema = Joi.object({
+        email: Joi.string().required().email(),
+    });
+
+    return schema.validate(data);
+}
+
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.confirmValidation = confirmValidation;
+module.exports.forgotPassValidation = forgotPassValidation;
 
 
   //-----------------------------//
