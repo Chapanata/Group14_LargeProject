@@ -156,7 +156,7 @@ router.route('/removeFood')
 router.route('/getFoods')
 
     // create a food entry pointing to the user from the session token
-    .get(verify, function(req, res)
+    .post(verify, function(req, res)
     {
         // Validate entry
         const {error} = getFoodsValidation(req.body);
