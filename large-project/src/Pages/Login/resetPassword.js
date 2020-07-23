@@ -3,7 +3,6 @@ import axios from 'axios';
 import logo from './../../Resources/logo.png';
 import { Link } from "react-router-dom";
 
-const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 const passRegex = RegExp(/^(?=.*\d)(?=.*[!?<>@#$%^&*])(?=.*[a-zA-Z]).{8,}$/);
 
 var pass="";
@@ -34,18 +33,14 @@ const formValid = ({ errors, ...rest }) => {
   return valid;
 };
 
-class Register extends Component {
+class resetPassword extends Component {
 
     constructor(props) {
       super(props);
       this.state = {
-        fullName: null, 
-        email: null, 
         password: null, 
         confirmPassword: null, 
         errors: {
-          fullName:"",
-          email:"", 
           password:"", 
           confirmPassword:"",
         }
@@ -53,9 +48,9 @@ class Register extends Component {
     }
 
     state = {
-  
       apiError: '',
-      anyErrors: ''
+      apiSuccess: '',
+      successMessage: ''
     }
 
     handleSubmit = e => {
@@ -64,37 +59,34 @@ class Register extends Component {
       if (formValid(this.state)) {
         console.log(`
           -- Submitting --
-          Full Name: ${this.state.fullName}
-          Email: ${this.state.email}
-          
+          Password: ${this.state.password}    
         `);
 
-        // http://localhost:8080/register
-        // https://nutrition-heroku.herokuapp.com/register
-        axios.post("https://nutrition-heroku.herokuapp.com/register", {
-            name: this.state.fullName,
-            email: this.state.email,
+        // http://localhost:8080/resetPassword/email/confirmCode
+        // https://nutrition-heroku.herokuapp.com/resetPassword/email/confirmCode
+        axios.post('https://nutrition-heroku.herokuapp.com/resetPassword/email/confirmCode', {
             password: this.state.password
         })
         .then(response => {
-          console.log(response.data)
-          console.log(response.data.Success)
-          console.log(response.data.Error)
-          this.setState({
-            apiError: response.data.Error
-          })
-          if(response.data.Success === "true") {
-            window.location = "/login"
-          }
-          else {
+            console.log(response.data)
+            console.log(response.data.Success)
+            console.log(response.data.Error)
             this.setState({
-              anyErrors: "One or more fields are invalid!"
+                apiError: response.data.Error,
+                apiSuccess: response.data.Success
             })
-          }
+            if(response.data.Success === "true") {
+                console.log("Successful Change")
+                this.setState({
+                    successMessage: "Password Successfully Changed!"
+                })
+            }
+            else {
+                console.log("Password Change request failed!")
+            }
         })
-
-        .catch(error => {
-          console.log(error.response)
+        .catch(error =>{
+            console.log(error.response)
         })
       } 
       
@@ -114,18 +106,6 @@ class Register extends Component {
 
       
       switch (name) {
-    
-        case 'fullName':
-          errors.fullName = value.length < 1 
-          ? "Cannot be empty"
-          : "";
-        break;
-
-        case 'email':
-          errors.email = emailRegex.test(value)  
-          ? ""
-          : "Invalid E-mail Address";
-        break;
 
         case 'password':
           pass = value;
@@ -170,43 +150,10 @@ class Register extends Component {
               <img src={logo} className="modal_logo" alt="logo"/>
 
               <div className="title">
-                Register  
+                Reset Password  
               </div>
               <form onSubmit={this.handleSubmit} noValidate>
               <div className="box">
-
-                <div className="input-group">
-                  <label className="login-label">Enter your Full Name:</label>
-                  <input 
-                    type="text" 
-                    name="fullName" 
-                    className={ errors.fullName.length > 0 ? "error" : null} 
-                    placeholder="Full Name"
-                    onChange={this.handleChange} 
-                  />
-                  {errors.fullName.length > 0 && (
-                    <span className="error">{errors.fullName}</span>
-                  )}
-                </div>
-
-                <div className="input-group">
-                  <label className="login-label">Enter an E-Mail Address:</label>
-                  <input 
-                    type="email" 
-                    name="email"
-                    noValidate 
-                    className={ errors.email.length > 0 ? "error" : null}  
-                    placeholder="E-Mail Address" 
-                    onChange={this.handleChange} 
-                  />
-                    {errors.email.length > 0 && (
-                    <span className="error">{errors.email}</span>
-                    )}
-
-                    {this.state.apiError && (
-                      <span className="error">{this.state.apiError}</span>
-                    )}                  
-                </div>
 
                 <div className="input-group">
                   <label className="login-label">Enter Password</label>
@@ -236,15 +183,12 @@ class Register extends Component {
                     )}            
                 </div>
                 
-                {this.state.anyErrors && (
-                    <span className="error">{this.state.anyErrors}<br></br><br></br></span>
+                {this.state.successMessage && (
+                    <span className="error">{this.state.successMessage}<br></br><br></br></span>
                 )} 
 
-                <button type="submit" className="register-button">REGISTER</button>
-              
-                <div className="backToLog"><Link to="/login">Already have an Account?</Link></div>
-                <div className="backToLog"><Link to="/home">Go back home?</Link></div>
-
+                <button type="submit" className="register-button">Reset Password</button>
+            
               </div>
               </form>
             </div>
@@ -255,4 +199,4 @@ class Register extends Component {
 }
   
 
-export default Register;
+export default resetPassword;

@@ -7,7 +7,7 @@ const { registerValidation,
         loginValidation,
         confirmValidation } = require('../validation');
 
-const verify = require('./verifyToken');
+// const verify = require('./verifyToken');
 
 
 // Pull the user model from its directory
@@ -56,41 +56,51 @@ router.route('/register')
 
             // The following code links the API to email.js 
             // and supplies it with the information required. 
-            module.exports = {
-                userName: user.name,
-                userEmail: user.email,
-                confirmCode: user.confirmCode
-            };
+            const getName   = () => { return user.name; };
+            const getEmail  = () => { return user.email; };
+            const getCode   = () => { return user.confirmCode; };
+
+            module.exports.getName = getName;
+            module.exports.getEmail = getEmail;
+            module.exports.getCode = getCode;
 
             var email = require('../email');
 
             // Send the confirmation email.
-            var failedSend = false;
-            email.client.sendMail(email.emailActivate, function(err, info)
+            let promise = new Promise((resolve, reject) => 
             {
-                if (err)
-                    failedSend = true;
-            });
+                let didSend = email.sendEmail();
+                if (didSend)
+                    resolve();
+                else
+                    reject();
+            })
+            
+            // If the promise resolves, then the email sent.
+            promise.then(async () => 
+            {
+                console.log("Email has been sent!");
 
-            // Check if the email was sent. If there was a problem, return err.
-            if (failedSend)
+                // If it passes the two error checks, hash the password and save.
+                const salt = await bcrypt.genSalt(10);
+                const hashedPass = await bcrypt.hash(req.body.password, salt);
+                user.password = hashedPass;
+    
+                user.save(function(err)
+                {
+                    if (err)
+                        res.send(err);
+    
+                    res.json({Success: 'true'});
+                });
+            })
+
+            // If an error is caught, that means the email did not send.
+            .catch(() =>
             {
                 res.json({Error: 'Unable To Send Email'});
                 return;
-            }
-
-            // If it passes the two error checks, hash the password and save.
-            const salt = await bcrypt.genSalt(10);
-            const hashedPass = await bcrypt.hash(req.body.password, salt);
-            user.password = hashedPass;
-
-            user.save(function(err)
-            {
-                if (err)
-                    res.send(err);
-
-                res.json({Success: 'true'});
-            });
+            })
         });
     });
 
@@ -126,12 +136,14 @@ router.route('/confirmCode/:email/:confirmCode')
                 return;
             }
 
+            // Check if the user is confirmed
             if (dbUser.confirmed)
             {
                 res.json({ Error: 'User Already Confirmed' });
                 return;
             }
 
+            // Check that the code matches the user's code
             if (req.params.confirmCode != dbUser.confirmCode)
             {
                 res.json({ Success: "false" });
@@ -165,8 +177,6 @@ router.route('/login')
     // log a user in (accessed at POST http://localhost:8080/login)
     .post(async function(req, res)
     {
-        var user = new User();
-
         var inputEmail = req.body.email;
         var inputPassword = req.body.password;
 
@@ -211,7 +221,13 @@ router.route('/login')
             }
 
             // Create a session token for the user
-            const token = jwt.sign({_id: dbUser._id}, process.env.TOKEN_SECRET);
+            const token = jwt.sign(
+                { _id: dbUser._id,
+                  name: dbUser.name },
+                 process.env.TOKEN_SECRET,
+                 { expiresIn: '3d' });
+
+            // Send the token to the header
             res.header('auth-token', token);
 
             // Assign the session token to the user
