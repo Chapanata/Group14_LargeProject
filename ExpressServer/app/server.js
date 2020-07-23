@@ -59,6 +59,8 @@ var port = process.env.PORT || 8080; // set the port
 const authRoute = require('./routes/auth');
 // Route for passwords: Deals with forgot and reset password
 const passRoute = require('./routes/pass');
+// Route for user: Deals with editing user info and BMI info
+const userRoute = require('./routes/editUser');
 // Route for food: Deals with food calls
 const foodRoute = require('./routes/food');
 
@@ -67,6 +69,7 @@ const foodRoute = require('./routes/food');
 // app.use('/user', authRoute);
 app.use('', authRoute);
 app.use('', passRoute);
+app.use('', userRoute);
 app.use('', foodRoute);
 
 //START THE SERVER
