@@ -3,6 +3,7 @@
 const router                = require('express').Router();
 const { addFoodValidation,
         getFoodsValidation,
+        getDeficienciesValidation,
         removeFoodValidation }   = require('../validation');
 
 var nutritionCalculator = require('../nutritionCalculator');
@@ -32,6 +33,7 @@ router.route('/addFood')
         // Instantiate the new user
         var consumed = new Consumed();
         consumed.foodId = req.body.foodId;
+        consumed.date = req.body.date;
         consumed.quantity = req.body.quantity;
         consumed.energy = req.body.energy;
         consumed.totalFat = req.body.totalFat;
@@ -156,6 +158,14 @@ router.route('/getFoods')
     // create a food entry pointing to the user from the session token
     .get(verify, function(req, res)
     {
+        // Validate entry
+        const {error} = getFoodsValidation(req.body);
+        if (error)
+        {
+            res.json({Error: error.details[0].message});
+            return;
+        }
+
         // Find the user from the verifyToken user_id
         User.findOne( { '_id': req.user._id} ).populate( { path: 'consumed', model: 'Consumed'} ).exec(function(err, dbUser)
         {
@@ -176,11 +186,9 @@ router.route('/getFoods')
             }
 
             // Filter consumed array to only include from right now to dayCount provided
-            date1 = new Date();
-            date2 = new Date();
-            date2.setDate(date1.getDate() - req.body.dayCount);
-            date2.setHours(0,0,0,0);
-            res.json(dbUser.consumed.filter((obj) => obj.date.getTime() >= date2.getTime() && obj.date.getTime() <= date1.getTime()));
+            dateCheck = new Date(req.body.date);
+            dateCheck.setHours(0,0,0,0);
+            res.json(dbUser.consumed.filter((obj) => obj.date.getTime() >= dateCheck.getTime()));
             return;
         });
     });
@@ -193,6 +201,14 @@ router.route('/getDeficiencies')
     // create a food entry pointing to the user from the session token
     .post(verify, function(req, res)
     {
+        // Validate entry
+        const {error} = getDeficienciesValidation(req.body);
+        if (error)
+        {
+            res.json({Error: error.details[0].message});
+            return;
+        }
+
         // Find the user from the verifyToken user_id
         User.findOne( { '_id': req.user._id} ).populate( { path: 'consumed', model: 'Consumed'} ).exec(function(err, dbUser)
         {
@@ -211,6 +227,11 @@ router.route('/getDeficiencies')
                 res.json({ Error: 'User not confirmed' });
                 return;
             }
+
+            // Filter consumed array to only include from right now to dayCount provided
+            dateCheck = new Date(req.body.date);
+            dateCheck.setHours(0,0,0,0);
+            dbUser.consumed = dbUser.consumed.filter((obj) => obj.date.getTime() >= dateCheck.getTime());
 
             var deficiencies = 
             {
