@@ -206,11 +206,14 @@ class Login extends Component {
                       <span className="error">{this.state.apiError}<br></br><br></br></span>
                     )} 
                      
+                <br></br>
+                <br></br>
+                <br></br>
                 <button type="submit" className="some-button" >LOGIN</button>
               
 
                 <div className="backToLog"><Link to="/register">Don't have an Account?</Link></div>
-                <div className="forgot"><a href="#">Forgot your Password?</a></div>
+                <div className="forgot"><Link to="/Forgot">Forgot your Password</Link></div>
                 <div className="backToLog"><Link to="/home">Go back home?</Link></div>
                 </form>
               </div>      

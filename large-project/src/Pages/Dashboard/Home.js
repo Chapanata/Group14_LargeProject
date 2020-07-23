@@ -8,9 +8,6 @@ class Home extends Component {
         this.state = {  };
       }
 
-      submitLogin(e) {
-
-      }
 
     render() {
         return(
@@ -57,6 +54,8 @@ class Home extends Component {
                  <Link to="/Daily">Daily</Link>
                  <br></br>
                  <Link to="/Overview">Overview</Link>
+                 <br></br>
+                 <Link to="/Forgot">Forgot Password</Link>
                  </div>
                 </div>
 

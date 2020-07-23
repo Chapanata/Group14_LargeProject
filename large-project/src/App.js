@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import Home from "./Pages/Dashboard/Home";
 import Login from "./Pages/Login/Login";
+import Forgot from "./Pages/Login/Forgot";
 import Register from "./Pages/Login/Register";
 import About from "./Pages/Dashboard/About";
 import Contact from "./Pages/Dashboard/Contact";
@@ -19,6 +20,7 @@ class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/Home" exact component={Home} />
           <Route path="/Login" exact component={Login} />
+          <Route path="/Forgot" exact component={Forgot} />
           <Route path="/Register" exact component={Register} />
           <Route path="/About" exact component={About} />
           <Route path="/Contact" exact component={Contact} />
