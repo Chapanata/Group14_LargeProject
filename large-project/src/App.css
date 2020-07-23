@@ -281,6 +281,7 @@ input.error {
     box-sizing: border-box;
     padding: 0;
     text-align: left;
+    padding-left:10px;
 }
 
 .square-container2{
@@ -629,3 +630,11 @@ input{
   .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-trail {
     stroke: transparent;
   }
+
+
+
+.intake_input
+{
+    padding:5px;
+    width:30%;
+}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import DataTable from 'react-data-table-component'
 import {CircularProgressbar, buildstyles} from 'react-circular-progressbar';
-
+import { Search, LocationOn, Notifications } from '@material-ui/icons';
 const percentage = 33;
 
 const data = [
@@ -69,8 +69,8 @@ class Daily extends Component {
         <div className="page">
                 <div className="nav-bar">
 
-                    <Link to="/Overview" >Overview</Link>
-                    <Link to="#">Food</Link>
+
+                    <Link to="#"><Search></Search></Link>
                     <Link to="/Daily" className="active">Daily Intake</Link>
                     <Link to="/Settings">Settings</Link>
                     <div className="nav-right"><Link to="/Home">Log Out</Link></div>
@@ -78,7 +78,16 @@ class Daily extends Component {
                 </div>
                 <div className="highlight-bar"></div>
                     <div className="init-container">
-                        <div className="square-container1"></div>
+                        <div className="square-container1" >
+                            <h2 className="intake_header">Daily Intake</h2>
+                            <br></br>
+                            <h4 className="intake_header">Select Date</h4>
+                            <input type="date" className="intake_input" placeholder="Select Date" />
+                            <h4 className="intake_header">Input Food</h4>
+                            <input type="text" className="intake_input" placeholder="Input Food" />
+                            <br></br>
+                            <input type="text" className="intake_input" placeholder="Qty" />
+                        </div>
 
                         <div className="square-container2">
                             <div class="grid-container1">
