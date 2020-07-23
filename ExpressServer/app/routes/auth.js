@@ -7,7 +7,7 @@ const { registerValidation,
         loginValidation,
         confirmValidation } = require('../validation');
 
-const verify = require('./verifyToken');
+// const verify = require('./verifyToken');
 
 
 // Pull the user model from its directory
@@ -67,7 +67,8 @@ router.route('/register')
             var email = require('../email');
 
             // Send the confirmation email.
-            let promise = new Promise((resolve, reject) => {
+            let promise = new Promise((resolve, reject) => 
+            {
                 let didSend = email.sendEmail();
                 if (didSend)
                     resolve();
@@ -135,12 +136,14 @@ router.route('/confirmCode/:email/:confirmCode')
                 return;
             }
 
+            // Check if the user is confirmed
             if (dbUser.confirmed)
             {
                 res.json({ Error: 'User Already Confirmed' });
                 return;
             }
 
+            // Check that the code matches the user's code
             if (req.params.confirmCode != dbUser.confirmCode)
             {
                 res.json({ Success: "false" });
@@ -157,7 +160,7 @@ router.route('/confirmCode/:email/:confirmCode')
                     {
                         if (err)
                             res.send(err);
-                    });
+                });
 
                 res.json({ Success: "true" });
                 return;
@@ -174,8 +177,6 @@ router.route('/login')
     // log a user in (accessed at POST http://localhost:8080/login)
     .post(async function(req, res)
     {
-        var user = new User();
-
         var inputEmail = req.body.email;
         var inputPassword = req.body.password;
 
