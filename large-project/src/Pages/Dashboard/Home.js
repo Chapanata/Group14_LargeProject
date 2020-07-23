@@ -56,6 +56,8 @@ class Home extends Component {
                  <Link to="/Overview">Overview</Link>
                  <br></br>
                  <Link to="/Forgot">Forgot Password</Link>
+                 <br></br>
+                 <Link to="/resetPassword">Reset Password</Link>
                  </div>
                 </div>
 
