@@ -32,6 +32,47 @@ class Login extends Component {
        }
     }
 
+    state = {
+  
+      apiError: '',
+      anyErrors: '',
+      isAuthenticated: false,
+      resData: ''
+    }
+
+    
+    // componentDidMount() {
+
+    //   const payload = {
+    //     email: "krischoudhury@hotmail.com",
+    //     password: "poopeater@69"
+    //   }
+    //   fetch('https://nutrition-heroku.herokuapp.com/login', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Accept': '*/*',
+    //         'Content-type':'application/json'
+    //       },
+    //       body: JSON.stringify(payload)
+    //   })
+    //   .then(response => response.json())
+    //   .then((data)=>{
+    //     this.setState({
+    //       isAuthenticated: true,
+    //       resData: data.SessionToken
+    //     });
+    //     console.log(data);
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //     this.setState({
+    //       isAuthenticated: false,
+    //       resData: "Non Data from server"
+    //     })
+    //   }
+    //   );
+    // }
+
     handleSubmit = e => {
       e.preventDefault();
 
@@ -42,7 +83,32 @@ class Login extends Component {
           Pass: ${this.state.password}
         `);
 
-        axios.post('')
+        // http://localhost:8080/login
+        // https://nutrition-heroku.herokuapp.com/login 
+        axios.post('https://nutrition-heroku.herokuapp.com/login', {
+          email: this.state.email,
+          password: this.state.password
+        })
+        .then(response => {
+          console.log(response.data)
+          console.log("UserID: " + response.data.UserID)
+          console.log("SessionToken:" + response.data.SessionToken)
+          console.log("Name: " + response.data.Name)
+          this.setState({
+            apiError: response.data.Error
+          })
+          if(response.data.UserID || response.data.SessionToken || response.data.Name  !== undefined) {
+            console.log("YES IT WORKED")
+            window.location = "../Daily"
+
+          }
+          else {
+            console.log("IT NO WORK TRY AGAIN")
+          }
+        })
+        .catch(error => {
+          console.log(error.response)
+        })
       }
 
       
@@ -81,7 +147,7 @@ class Login extends Component {
           break;
       }
 
-      this.setState({errors, [name]: value}, () => console.log(this.state));
+      this.setState({errors, [name]: value}, () => console.log("yes"));
     };
     
 
@@ -100,6 +166,8 @@ class Login extends Component {
               <div className="title">
                     Login  
               </div>
+              
+              {/* <h1>The request returned is - {this.state.resData}</h1> */}
               <div className="box">
                 
               <form onSubmit={this.handleSubmit} noValidate>
@@ -133,7 +201,11 @@ class Login extends Component {
                     <span className="error">{errors.password}</span>
                     )} 
                 </div>
-              
+
+                {this.state.apiError && (
+                      <span className="error">{this.state.apiError}<br></br><br></br></span>
+                    )} 
+                     
                 <button type="submit" className="some-button" >LOGIN</button>
               
 

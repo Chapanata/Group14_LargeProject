@@ -69,7 +69,8 @@ class Register extends Component {
           
         `);
 
-
+        // http://localhost:8080/register
+        // https://nutrition-heroku.herokuapp.com/register
         axios.post("https://nutrition-heroku.herokuapp.com/register", {
             name: this.state.fullName,
             email: this.state.email,
