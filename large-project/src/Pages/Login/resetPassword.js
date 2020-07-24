@@ -9,14 +9,11 @@ var pass="";
 var confirm="";
 var pageURL = window.location.href;
 
-var heroku = 'https://nutrition-heroku.herokuapp.com/resetPassword'
+var heroku = 'https://nutrition-heroku.herokuapp.com/resetPassword';
 
-var email_address = url.split('=');
-var email_address1 = email_address[1].split('&');
-var email_address2 = email_address1[0];
+var keyValue = pageURL.substring(60);
 
-var code = url.split('=');
-var code1 = code[2];
+var finalURL = heroku.concat(keyValue);
 
 function comparePass(value1, value2) {
 
@@ -139,7 +136,8 @@ class resetPassword extends Component {
           break;
       }
 
-      this.setState({errors, [name]: value}, () => console.log("yes"));
+      this.setState({errors, [name]: value}, () => console.log(this.state));
+      console.log(keyValue)
       console.log(finalURL)
     };
 
