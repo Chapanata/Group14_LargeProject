@@ -9,12 +9,13 @@ var pass="";
 var confirm="";
 var pageURL = window.location.href;
 
+/*
 var heroku = 'https://nutrition-heroku.herokuapp.com/resetPassword';
 
 var keyValue = pageURL.substring(60);
 
 var finalURL = heroku.concat(keyValue);
-
+*/
 function comparePass(value1, value2) {
 
   if(pass === confirm) {
@@ -59,10 +60,6 @@ class resetPassword extends Component {
       successMessage: ''
     }
 
-    
-
-   
-
     handleSubmit = e => {
       e.preventDefault();
 
@@ -74,7 +71,7 @@ class resetPassword extends Component {
 
         // http://localhost:8080/resetPassword
         // https://nutrition-heroku.herokuapp.com/resetPassword
-        axios.post(finalURL, 
+        axios.post(pageURL, 
         { password: this.state.password })
         .then(response => {
             console.log(response.data)
@@ -88,7 +85,7 @@ class resetPassword extends Component {
         .catch(error =>{
             console.log(error.response)
         })
-        window.location("/login")
+        window.location("../login")
       } 
       
       else {
@@ -137,8 +134,6 @@ class resetPassword extends Component {
       }
 
       this.setState({errors, [name]: value}, () => console.log(this.state));
-      console.log(keyValue)
-      console.log(finalURL)
     };
 
     
