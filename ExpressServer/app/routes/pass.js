@@ -113,8 +113,21 @@ router.route('/resetPassword')
     .post(function(req, res)
     {
         // Make sure the parameters aren't empty
-        if (req.query.email == null || req.query.confirmCode == null || req.body.password == null)
+        if (req.query.email == null)
         {
+            console.log('email missing');
+            res.json({Error: 'Missing Parameters'});
+            return;
+        }
+        else if (req.query.confirmCode == null)
+        {
+            console.log('confirmCode missing');
+            res.json({Error: 'Missing Parameters'});
+            return;
+        }
+        else if (req.body.password == null)
+        {
+            console.log('password missing');
             res.json({Error: 'Missing Parameters'});
             return;
         }
