@@ -14,7 +14,6 @@ class Dictionary extends Component {
         return (
             <div className="page">
                 <div className="nav-bar">
-
                     <Link to="/Overview" className="active">Overview</Link>
                     <Link to="/Dictionary">Food Dictionary</Link>
                     <Link to="/Daily" >Daily Intake</Link>
@@ -25,19 +24,22 @@ class Dictionary extends Component {
                 </div>
 
                 <div className="init-food-container">
-                    <div className="search-bar">
+                    <div className="food-container1">
                         <div className="search-bar">
                             <input 
                                 type="food"
                                 name="food"
                                 placeholder="Enter what food or nutrient you would like to know more about..."
-                            />
-                            <button type="submit" className="enter-food-button">Enter</button>     
+                            />                        
                         </div>
                     </div>
+
                     <div className="food-container2">
-                        <div className="dictionary-container">
-                                <h1> Results </h1>
+                        <button type="submit" className="enter-food-button">Enter</button>     
+                    </div>
+
+                    <div className="food-container3">
+                        <div className="dictionary-box">
                         </div>
                     </div>
                 </div>
