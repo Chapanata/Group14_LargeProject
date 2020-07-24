@@ -12,6 +12,7 @@ import Contact from "./Pages/Dashboard/Contact";
 import Settings from "./Pages/User-Pages/Settings";
 import Daily from "./Pages/User-Pages/Daily";
 import Overview from "./Pages/User-Pages/Overview";
+import Dictionary from "./Pages/User-Pages/Food-Dictionary";
 
 class App extends Component {
   render() {
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path="/Settings" exact component={Settings} />
           <Route path="/Daily" exact component={Daily} />
           <Route path="/Overview" exact component={Overview} />
+          <Route path="/Dictionary" exact component={Dictionary} />
 
         </div> 
       </BrowserRouter>
