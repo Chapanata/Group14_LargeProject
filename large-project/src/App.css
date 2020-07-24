@@ -575,62 +575,120 @@ input{
  */
 
  .CircularProgressbar {
-    /*
-     * This fixes an issue where the CircularProgressbar svg has
-     * 0 width inside a "display: flex" container, and thus not visible.
-     */
+/*
+    * This fixes an issue where the CircularProgressbar svg has
+    * 0 width inside a "display: flex" container, and thus not visible.
+    */
+width: 100%;
+/*
+    * This fixes a centering issue with CircularProgressbarWithChildren:
+    * https://github.com/kevinsqi/react-circular-progressbar/issues/94
+    */
+vertical-align: middle;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+stroke: #3e98c7;
+stroke-linecap: round;
+transition: stroke-dashoffset 0.5s ease 0s;
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+stroke: #d6d6d6;
+/* Used when trail is not full diameter, i.e. when props.circleRatio is set */
+stroke-linecap: round;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+fill: #3e98c7;
+font-size: 20px;
+dominant-baseline: middle;
+text-anchor: middle;
+}
+
+.CircularProgressbar .CircularProgressbar-background {
+fill: #d6d6d6;
+}
+
+/*
+* Sample background styles. Use these with e.g.:
+*
+*   <CircularProgressbar
+*     className="CircularProgressbar-inverted"
+*     background
+*     percentage={50}
+*   />
+*/
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-background {
+fill: #3e98c7;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-text {
+fill: #fff;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-path {
+stroke: #fff;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-trail {
+stroke: transparent;
+}
+
+/*Food-Dictionary Page*/
+.init-food-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+}
+
+.search-bar {
+    display: block;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.search-bar input{
+    border-radius: 3px;
+    border: 1px solid #373738;
+    font-size: 30px;
+    color: #747474;
+    background: rgba(15, 15, 15, 0.01);
+    font-weight: 600px;
+    padding-left: 5px;
+    width: 80%;
+}
+
+.enter-food-button {
+    padding: 2px 30px;
+    border: 0;
+    font-size: 16px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    margin-top: 10px;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 40px;
+
+    margin: 0 auto;
+    text-align: center;
+}
+
+.food-container2 {
+    height: 80%;
     width: 100%;
-    /*
-     * This fixes a centering issue with CircularProgressbarWithChildren:
-     * https://github.com/kevinsqi/react-circular-progressbar/issues/94
-     */
-    vertical-align: middle;
-  }
-
-  .CircularProgressbar .CircularProgressbar-path {
-    stroke: #3e98c7;
-    stroke-linecap: round;
-    transition: stroke-dashoffset 0.5s ease 0s;
-  }
-
-  .CircularProgressbar .CircularProgressbar-trail {
-    stroke: #d6d6d6;
-    /* Used when trail is not full diameter, i.e. when props.circleRatio is set */
-    stroke-linecap: round;
-  }
-
-  .CircularProgressbar .CircularProgressbar-text {
-    fill: #3e98c7;
-    font-size: 20px;
-    dominant-baseline: middle;
-    text-anchor: middle;
-  }
-
-  .CircularProgressbar .CircularProgressbar-background {
-    fill: #d6d6d6;
-  }
-
-  /*
-   * Sample background styles. Use these with e.g.:
-   *
-   *   <CircularProgressbar
-   *     className="CircularProgressbar-inverted"
-   *     background
-   *     percentage={50}
-   *   />
-   */
-  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-background {
-    fill: #3e98c7;
-  }
-
-  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-text {
-    fill: #fff;
-  }
-
-  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-path {
-    stroke: #fff;
-  }
-
-  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-trail {
-    stroke: transparent;
-  }
+    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid #da667b;
+    margin-top: 30px;
+    box-sizing: border-box;
+    padding: 0;
+    text-align: left;
+}

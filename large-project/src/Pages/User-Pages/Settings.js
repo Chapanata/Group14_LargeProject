@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
-
 class Settings extends Component {
 
     constructor(props) {
@@ -186,12 +185,13 @@ class Settings extends Component {
         <div className="page">
             <div className="box">
                 <div className="nav-bar">
-
                     <Link to="/Overview" >Overview</Link>
-                    <Link to="#">Food</Link>
+                    <Link to="/Dictionary">Food Dictionary</Link>
                     <Link to="/Daily">Daily Intake</Link>
-                    <Link to="/Settings" className="active">Settings</Link>
-                    <div className="nav-right"><Link to="/Home">Log Out</Link></div>
+                    <div className="nav-right">
+                        <Link to="/Settings" className="active">Settings</Link>
+                        <Link to="/Home">Log Out</Link>
+                    </div>
 
                 </div>
                 <div className="highlight-bar"></div>
@@ -248,14 +248,11 @@ class Settings extends Component {
                                 }
                             </div>
                         </form>
-                    
-                        </div>  
-                       
-              
+                    </div>  
             </div>
+
             <div className="user-stats">
             <h2>Your Statistics</h2>
-
                 {/* Will Contain Render Edits */}
                 <div class="biogrid-container1">
                     {
@@ -265,8 +262,6 @@ class Settings extends Component {
 
                     }
                 </div>
-
-                
                 <button type="button" class="changeStats" onClick={this.changeEditMode}>Make Changes</button>      
             </div>
         </div>
@@ -274,4 +269,8 @@ class Settings extends Component {
     }
 }
 
+/*
+{" "}
+                                    {reactStringReplace(content, /(\d+)/g, (match, i) => ( <span key={i} style={{ color: 'red' }}>{match}</span>))}
+                                    {" "}!*/
 export default Settings;
