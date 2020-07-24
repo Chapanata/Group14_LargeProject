@@ -9,12 +9,13 @@ var pass="";
 var confirm="";
 var pageURL = window.location.href;
 
-var heroku = 'https://nutrition-heroku.herokuapp.com/resetPassword'
+/*
+var heroku = 'https://nutrition-heroku.herokuapp.com/resetPassword';
 
-var keyValue = pageURL.substring(60)
+var keyValue = pageURL.substring(60);
 
-var finalURL = heroku.concat(keyValue)
-
+var finalURL = heroku.concat(keyValue);
+*/
 function comparePass(value1, value2) {
 
   if(pass === confirm) {
@@ -59,8 +60,6 @@ class resetPassword extends Component {
       successMessage: ''
     }
 
-   
-
     handleSubmit = e => {
       e.preventDefault();
 
@@ -72,8 +71,10 @@ class resetPassword extends Component {
 
         // http://localhost:8080/resetPassword
         // https://nutrition-heroku.herokuapp.com/resetPassword
-        axios.post(finalURL, 
-        { password: this.state.password })
+        axios.post(pageURL, 
+        { password: this.state.password },
+        {params: {email, confirmCode}}
+        )
         .then(response => {
             console.log(response.data)
             console.log(response.data.Success)
@@ -82,20 +83,11 @@ class resetPassword extends Component {
                 apiError: response.data.Error,
                 apiSuccess: response.data.Success
             })
-            if(response.data.Success === "true") {
-                console.log("Successful Change")
-                this.setState({
-                    successMessage: "Password Successfully Changed!"
-                })
-                window.location("/login")
-            }
-            else {
-                console.log("Password Change request failed!")
-            }
         })
         .catch(error =>{
             console.log(error.response)
         })
+        window.location.assign("https://nutrition-heroku.herokuapp.com/login")
       } 
       
       else {
@@ -144,8 +136,6 @@ class resetPassword extends Component {
       }
 
       this.setState({errors, [name]: value}, () => console.log(this.state));
-      console.log(keyValue)
-      console.log(finalURL)
     };
 
     
