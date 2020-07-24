@@ -72,7 +72,9 @@ class resetPassword extends Component {
         // http://localhost:8080/resetPassword
         // https://nutrition-heroku.herokuapp.com/resetPassword
         axios.post(pageURL, 
-        { password: this.state.password })
+        { password: this.state.password },
+        {params: {email, confirmCode}}
+        )
         .then(response => {
             console.log(response.data)
             console.log(response.data.Success)
@@ -85,7 +87,7 @@ class resetPassword extends Component {
         .catch(error =>{
             console.log(error.response)
         })
-        window.location("../login")
+        window.location.assign("https://nutrition-heroku.herokuapp.com/login")
       } 
       
       else {
