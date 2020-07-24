@@ -70,12 +70,12 @@ class Daily extends Component {
                 <div className="nav-bar">
 
                     <Link to="/Overview" >Overview</Link>
-                    <Link to="#">Food</Link>
+                    <Link to="/Dictionary">Food Dictionary</Link>
                     <Link to="/Daily" className="active">Daily Intake</Link>
-                    <Link to="/Settings">Settings</Link>
-                    <div className="nav-right"><Link to="/Home">Log Out</Link></div>
-
-                </div>
+                    <div className="nav-right">
+                        <Link to="/Settings">Settings</Link>
+                        <Link to="/Home">Log Out</Link></div>
+                    </div>
                 <div className="highlight-bar"></div>
                     <div className="init-container">
                         <div className="square-container1"></div>
