@@ -24,14 +24,14 @@ const sendEmail = async () =>
         subject: "Nutrition App Account Verification",
         text: `Hello ${ auth.getName() }, Your account has been created and requires activation. Go to the following link to finish your registration:
     
-        https://nutrition-heroku.herokuapp.com/confirmCode/${auth.getEmail()}/${auth.getCode()}`,
+        https://nutrition-manager-deluxe.herokuapp.com/confirmCode/${auth.getEmail()}/${auth.getCode()}`,
         html: `Hello<strong> ${
         auth.getName()
         }</strong>,
         <br>
         <br>Your account has been created and requires activation. Go to the following link to finish your registration:
         <br>
-        https://nutrition-heroku.herokuapp.com/confirmCode/${auth.getEmail()}/${auth.getCode()}`
+        https://nutrition-manager-deluxe.herokuapp.com/confirmCode/${auth.getEmail()}/${auth.getCode()}`
         };
 
     client.sendMail(emailActivate, function(err, info)
@@ -58,7 +58,7 @@ const sendForgotEmail = async () =>
         
         If it was you, then proceed to this link to reset your password:
     
-        https://nutrition-heroku.herokuapp.com/resetPassword/${pass.getEmail()}/${pass.getCode()}`,
+        https://nutrition-manager-deluxe.herokuapp.com/resetPassword/${pass.getEmail()}/${pass.getCode()}`,
         html: `Hello<strong> ${
             pass.getName()
         }</strong>,
@@ -68,7 +68,7 @@ const sendForgotEmail = async () =>
         <br>
         If it was you, then proceed to this link to reset your password:
     
-        https://nutrition-heroku.herokuapp.com/resetPassword/${pass.getEmail()}/${pass.getCode()}`
+        https://nutrition-manager-deluxe.herokuapp.com/resetPassword/${pass.getEmail()}/${pass.getCode()}`
         };
 
     client.sendMail(forgotEmail, function(err, info)
