@@ -169,7 +169,7 @@ router.route('/resetPassword/:email/:confirmCode')
                             res.send(err);
                 });
 
-                res.json({ Success: "true" });
+                res.redirect('https://nutrition-manager-deluxe.herokuapp.com/');
                 return;
             }
         });
