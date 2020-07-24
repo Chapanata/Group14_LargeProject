@@ -11,7 +11,7 @@ var pageURL = window.location.href;
 
 var heroku = 'https://nutrition-heroku.herokuapp.com/resetPassword'
 
-var keyValue = pageURL.substring(35)
+var keyValue = pageURL.substring(60)
 
 var finalURL = heroku.concat(keyValue)
 
