@@ -22,7 +22,24 @@ class Dictionary extends Component {
                         <Link to="/Settings">Settings</Link>
                         <Link to="/Home">Log Out</Link>
                     </div>
+                </div>
 
+                <div className="init-food-container">
+                    <div className="search-bar">
+                        <div className="search-bar">
+                            <input 
+                                type="food"
+                                name="food"
+                                placeholder="Enter what food or nutrient you would like to know more about..."
+                            />
+                            <button type="submit" className="enter-food-button">Enter</button>     
+                        </div>
+                    </div>
+                    <div className="food-container2">
+                        <div className="dictionary-container">
+                                <h1> Results </h1>
+                        </div>
+                    </div>
                 </div>
             </div>
 
