@@ -11,9 +11,12 @@ var pageURL = window.location.href;
 
 var heroku = 'https://nutrition-heroku.herokuapp.com/resetPassword'
 
-var keyValue = pageURL.substring(60)
+var email_address = url.split('=');
+var email_address1 = email_address[1].split('&');
+var email_address2 = email_address1[0];
 
-var finalURL = heroku.concat(keyValue)
+var code = url.split('=');
+var code1 = code[2];
 
 function comparePass(value1, value2) {
 
@@ -59,6 +62,8 @@ class resetPassword extends Component {
       successMessage: ''
     }
 
+    
+
    
 
     handleSubmit = e => {
@@ -82,20 +87,11 @@ class resetPassword extends Component {
                 apiError: response.data.Error,
                 apiSuccess: response.data.Success
             })
-            if(response.data.Success === "true") {
-                console.log("Successful Change")
-                this.setState({
-                    successMessage: "Password Successfully Changed!"
-                })
-                window.location("/login")
-            }
-            else {
-                console.log("Password Change request failed!")
-            }
         })
         .catch(error =>{
             console.log(error.response)
         })
+        window.location("/login")
       } 
       
       else {
@@ -143,8 +139,7 @@ class resetPassword extends Component {
           break;
       }
 
-      this.setState({errors, [name]: value}, () => console.log(this.state));
-      console.log(keyValue)
+      this.setState({errors, [name]: value}, () => console.log("yes"));
       console.log(finalURL)
     };
 
