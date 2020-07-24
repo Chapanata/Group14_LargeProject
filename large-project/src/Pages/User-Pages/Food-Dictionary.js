@@ -69,46 +69,38 @@ class Dictionary extends Component {
             
                 <div className="highlight-bar"></div>
 
-                
-                    <div className="init-food-container">
-                    <form onSubmit={this.handleSubmit} noValidate>
-                        <div className="food-container1">
-                                <div className="search-bar">
-                                    <input 
-                                        type="food"
-                                        name="food"
-                                        value={this.state.foodquery}
-                                        onChange={ this.handleChange }
-                                        placeholder="Enter what food or nutrient you would like to know more about..."
-                                    />                        
-                                </div>
-                        </div>
-                        <div className="food-container2">
-                            <button type="submit" className="enter-food-button">Search</button>     
-                        </div>
-                    </form>
-
-
-                        <div className="food-container3">
-                                <div className="dictionary-box">
-                                    <h1>Searching: {this.state.foodquery}</h1>
-                                    <h1>Returning: {this.state.returnedname}</h1>
-                                    <label for="cars">Choose a car:</label>
-                                    <select name="cars" id="cars">
-                                        <option value="volvo">Volvo</option>
-                                        <option value="saab">Saab</option>
-                                        <option value="mercedes">Mercedes</option>
-                                        <option value="audi">Audi</option>
-                                        
-                                    </select>
-                                    <button type="submit" className="enter-food-button">Select</button>
-
-
-                                </div>
-                        </div>
+                <div className="init-food-container">
+                <form onSubmit={this.handleSubmit} noValidate>
+                    <div className="food-container1">
+                            <div className="search-bar">
+                                <input 
+                                    type="food"
+                                    name="food"
+                                    value={this.state.foodquery}
+                                    onChange={ this.handleChange }
+                                    placeholder="Enter what food or nutrient you would like to know more about..."
+                                />                        
+                            </div>
                     </div>
-            </div>
+                    <div className="food-container2">
+                        <button type="submit" className="enter-food-button">Search</button>     
+                    </div>
+                </form>
+                </div>
 
+                <div className="food-container3">
+                        <div className="results-box">
+                            <h1>Searching: {this.state.foodquery}</h1>
+                            <h1>Returning: {this.state.returnedname}</h1>
+                            <label for="cars">Choose a car:</label>
+                            <select name="cars" id="cars">
+                                <option value="volvo">---</option>
+                                
+                            </select>
+                            <button type="submit" className="enter-food-button">Select</button>
+                        </div>
+                </div>
+            </div>
         )
     }
 } 
