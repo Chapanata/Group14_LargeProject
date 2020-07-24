@@ -31,7 +31,7 @@ const sendEmail = async () =>
         <br>
         <br>Your account has been created and requires activation. Go to the following link to finish your registration:
         <br>
-        https://nutrition-manager-deluxe.herokuapp.com/confirmCode/${auth.getEmail()}/${auth.getCode()}`
+        https://nutrition-deluxe.herokuapp.com/confirmCode/${auth.getEmail()}/${auth.getCode()}`
         };
 
     client.sendMail(emailActivate, function(err, info)
