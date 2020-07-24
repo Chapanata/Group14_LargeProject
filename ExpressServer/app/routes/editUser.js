@@ -107,16 +107,22 @@ router.route('/editUser/physical')
     // (accessed at POST http://localhost:8080/editUser/physical)
     .post(verify, function(req, res)
     {
-        const gender  = req.body.gender;
-        const weight  = parseInt(req.body.weight, 10);
-        const heightFeet    = parseInt(req.body.heightFeet, 10);
-        const heightInch    = parseInt(req.body.heightInch, 10);
+        const gender     = req.body.gender;
+        const weight     = parseInt(req.body.weight, 10);
+        const heightFeet = parseInt(req.body.heightFeet, 10);
+        const heightInch = parseInt(req.body.heightInch, 10);
 
         // Check if the parameters are filled
         if (gender == null || weight == null || 
             heightFeet == null || heightInch == null)
         {
             res.json({ Error: 'Missing Parameters' });
+            return;
+        }
+
+        if (heightInch < 0 || heightInch > 12 || heightFeet > 10)
+        {
+            res.json({ Error: 'Invalid Input' });
             return;
         }
 
@@ -145,7 +151,7 @@ router.route('/editUser/physical')
                     res.send(err);
         });
 
-        res.json({ Success: "true" });
+        res.json({ bmi: bmi });
         return;
     });
 
