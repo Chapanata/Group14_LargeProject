@@ -76,10 +76,11 @@ html
 .logo
 {
     display: inline-block;
-    position:relative;
-    width:35px;
-    padding:5px;
-    float:left;
+    position: relative;
+    width: 35px;
+    padding: 5px;
+    padding-right: 80px;
+    float: center;
 }
 
 .nav-bar
@@ -87,7 +88,7 @@ html
     position: relative;
     background-color: #333;
     overflow: hidden;
-    height:44px;
+    height: 44px;
 }
 
 .nav-bar a {
@@ -659,7 +660,7 @@ stroke: transparent;
     color: #747474;
     background: rgba(15, 15, 15, 0.01);
     font-weight: 600px;
-    padding-left: 100px;
+    padding-left: 10px;
     width: 80%;
 }
 
