@@ -7,7 +7,13 @@ const passRegex = RegExp(/^(?=.*\d)(?=.*[!?<>@#$%^&*])(?=.*[a-zA-Z]).{8,}$/);
 
 var pass="";
 var confirm="";
+var pageURL = window.location.href;
 
+var heroku = 'https://nutrition-heroku.herokuapp.com/resetPassword';
+
+var keyValue = pageURL.substring(60);
+
+var finalURL = heroku.concat(keyValue);
 
 function comparePass(value1, value2) {
 
@@ -53,6 +59,10 @@ class resetPassword extends Component {
       successMessage: ''
     }
 
+    
+
+   
+
     handleSubmit = e => {
       e.preventDefault();
 
@@ -62,11 +72,10 @@ class resetPassword extends Component {
           Password: ${this.state.password}    
         `);
 
-        // http://localhost:8080/resetPassword/email/confirmCode
-        // https://nutrition-heroku.herokuapp.com/resetPassword/email/confirmCode
-        axios.post('https://nutrition-heroku.herokuapp.com/resetPassword/email/confirmCode', {
-            password: this.state.password
-        })
+        // http://localhost:8080/resetPassword
+        // https://nutrition-heroku.herokuapp.com/resetPassword
+        axios.post(finalURL, 
+        { password: this.state.password })
         .then(response => {
             console.log(response.data)
             console.log(response.data.Success)
@@ -75,19 +84,11 @@ class resetPassword extends Component {
                 apiError: response.data.Error,
                 apiSuccess: response.data.Success
             })
-            if(response.data.Success === "true") {
-                console.log("Successful Change")
-                this.setState({
-                    successMessage: "Password Successfully Changed!"
-                })
-            }
-            else {
-                console.log("Password Change request failed!")
-            }
         })
         .catch(error =>{
             console.log(error.response)
         })
+        window.location("/login")
       } 
       
       else {
@@ -136,6 +137,8 @@ class resetPassword extends Component {
       }
 
       this.setState({errors, [name]: value}, () => console.log(this.state));
+      console.log(keyValue)
+      console.log(finalURL)
     };
 
     
@@ -183,8 +186,11 @@ class resetPassword extends Component {
                     )}            
                 </div>
                 
+                {this.state.apiError && (
+                    <span className="error">{this.state.apiError}<br></br><br></br></span>
+                )} 
                 {this.state.successMessage && (
-                    <span className="error">{this.state.successMessage}<br></br><br></br></span>
+                    <span className="success">{this.state.successMessage}<br></br><br></br></span>
                 )} 
 
                 <button type="submit" className="register-button">Reset Password</button>

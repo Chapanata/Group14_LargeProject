@@ -58,7 +58,7 @@ const sendForgotEmail = async () =>
         
         If it was you, then proceed to this link to reset your password:
     
-        https://nutrition-heroku.herokuapp.com/resetPassword/${pass.getEmail()}/${pass.getCode()}`,
+        https://nutrition-manager-deluxe.herokuapp.com/resetPassword?email=${pass.getEmail()}&confirmCode=${pass.getCode()}`,
         html: `Hello<strong> ${
             pass.getName()
         }</strong>,
@@ -68,7 +68,7 @@ const sendForgotEmail = async () =>
         <br>
         If it was you, then proceed to this link to reset your password:
     
-        https://nutrition-heroku.herokuapp.com/resetPassword/${pass.getEmail()}/${pass.getCode()}`
+        https://nutrition-manager-deluxe.herokuapp.com/resetPassword?email=${pass.getEmail()}&confirmCode=${pass.getCode()}`
         };
 
     client.sendMail(forgotEmail, function(err, info)
