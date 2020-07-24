@@ -69,11 +69,14 @@ class resetPassword extends Component {
           Password: ${this.state.password}    
         `);
 
+        var email;
+        var confirmCode;
+
         // http://localhost:8080/resetPassword
         // https://nutrition-heroku.herokuapp.com/resetPassword
         axios.post(pageURL, 
         { password: this.state.password },
-        {params: {email, confirmCode}}
+        { params: {email, confirmCode}}
         )
         .then(response => {
             console.log(response.data)
