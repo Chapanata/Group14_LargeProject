@@ -110,6 +110,30 @@ html
     float: right;
 }
 
+.home-nav-bar {
+    position: fixed;
+    background-color: #333;
+    overflow: hidden;
+    width: 210px;
+    top: 0;
+    z-index: 9999;
+    right: 0;
+}
+.home-nav-bar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 16pt;
+}
+
+.home-nav-bar a:hover {
+    color: #ffffff;
+    background-color: rgba(23, 23, 23, 0.9);
+}
+
 /*
 .nav-bar a:active {
     background-color: #DA667B;
@@ -296,10 +320,11 @@ input.error {
 {
     padding-top:10px;
 }
+
 .page
 {
     background-color:hsla(0,0%,100%,.8);
-    height: 120vmax;
+    height: 100vmax;
 }
 
 /* Backend Pages */
@@ -668,7 +693,7 @@ stroke: transparent;
 
 /*Food-Dictionary Page*/
 .init-food-container {
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -680,7 +705,6 @@ stroke: transparent;
     position: relative;
     float: left;
     flex-direction: column;
-    padding-top: 40px;
     padding-bottom: 10px;
     padding-right: 10px;
     overflow: hidden;
@@ -707,7 +731,6 @@ stroke: transparent;
 .search-button {
     overflow: hidden;
     float: right;
-    padding-top: 40px;
     padding-bottom: 10px;
     width: 9%;
 }
@@ -767,7 +790,7 @@ stroke: transparent;
     float: bottom;
     height: 100%;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 10px;
     padding-top: 50px;
 }
 
@@ -781,8 +804,17 @@ label {
     padding-right: 10px;
 }
 
-.table2 {
+
+.table1 {
     border: 1px solid black;
     width: 100%;
-  }
+    padding-left: 10px;
+    padding-right: 15px;
+    text-align: left;
+}
 
+th, td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
