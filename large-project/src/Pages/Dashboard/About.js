@@ -39,7 +39,21 @@ class About extends Component {
                             </p>
                     </div>
                  </div>
-                
+
+                <div class="footer">
+                    <a href="#Home">
+                        <Link to="/Home">Home</Link>
+                    </a>
+                    <a href="#AboutUs">
+                        <Link to="/About"className="active">About Us</Link>
+                    </a>
+                    <a href="#ContactUs">
+                        <Link to="/Contact">Contact Us</Link>
+                    </a>
+                    <div className="fooder-right">
+                        <p>Nutrition Manager Deluxe TM</p>
+                    </div>
+                </div>
                  
             </div>
         );

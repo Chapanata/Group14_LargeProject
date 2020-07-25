@@ -11,13 +11,11 @@ class Dictionary extends Component {
             sessiontoken: 2,
             foodquery: null,
             returnedname: null,
-
             jsonResponse: null,
-
-            foodItem: 'N/A',
-            brand: 'N/A',
-            descript: 'N/A',
-            ingred: 'N/A',
+            foodItem: '--',
+            brand: '--',
+            descript: '--',
+            ingred: '--',
             ene: 'N/A',
             tfat: 'N/A',
             sat: 'N/A',
@@ -280,48 +278,99 @@ class Dictionary extends Component {
                                         name="food"
                                         value={this.state.foodquery}
                                         onChange={ this.handleChange }
-                                        placeholder="Search for information about food items!"
-                                    />
-                                    <button type="submit" className="enter-food-button">Search</button>                         
-                                </div>                               
+                                        placeholder="Search for information about any food items!"
+                                    />                        
+                                </div>
+                                <div className="search-button">
+                                    <button type="submit" className="enter-food-button">Search</button> 
+                                </div>                             
                         </div>
                     </form>
 
                     <form onSubmit={this.handleSelectSubmit} noValidate>
                         <div className="food-container2">
                             <div className="results-box">
-                                <h1>Searching: {this.state.foodquery}</h1>
-                                <h1>Returning: {this.state.returnedname}</h1>
-                                <label for="cars">Choose a food option:</label>
-                                <select name="selectDropdown" id="selectDropdown">
-                                    <option value="initial">---</option>  
-                                </select>
-                                <button type="submit" className="enter-food-button">Select</button>
-                                <br></br>
-                                <br></br>
-                                <h1>Food Item: {this.state.foodItem} </h1>
-                                <h1>Brand Owner: {this.state.brand}</h1>
-                                <h1>Description : {this.state.descript}</h1>
-                                <h1>Ingredients: {this.state.ingred}</h1>
-                                <br></br>
-                                <br></br>
-                                <h1>Energy: {this.state.ene} kcal</h1>
-                                <h1>Total Fat: {this.state.tfat} grams</h1>
-                                <h1>Saturates: {this.state.sat} grams</h1>
-                                <h1>Carbohydrates: {this.state.carbo} grams</h1>
-                                <h1>Total Sugars: {this.state.tsugars} grams</h1>
-                                <h1>Protein: {this.state.prot} grams</h1>
-                                <h1>Sodium: {this.state.sodium} grams</h1>
-                                <br></br>
-                                <br></br>
-                                <h1>Calcium: {this.state.cal} MG</h1>
-                                <h1>Potassium: {this.state.pot} MG</h1>
-                                <h1>Iron: {this.state.iro} MG</h1>
-                                <h1>Zinc: {this.state.zin} mg</h1>
-                                <h1>Vitamin A: {this.state.vitA} ug</h1>
-                                <h1>Vitamin B12: {this.state.vitB} ug</h1>
-                                <h1>Vitamin C: {this.state.vitC} mg</h1>
-                                <h1>Vitamin D: {this.state.vitD} ug</h1>
+                                    <h1>Searched: {this.state.foodquery}</h1>
+                                    <label for="food">Related Options:</label>
+                                    <select name="selectDropdown" id="selectDropdown">
+                                        <option value="initial">---</option>  
+                                    </select>
+                                        <button type="submit" className="enter-select-button">Select</button>
+                                    <br></br>
+                                    <br></br>
+                                    <h1>Food Item: {this.state.foodItem}</h1>
+                                    <h1>Brand Owner: {this.state.brand}</h1>
+                                    <h1>Description : {this.state.descript}</h1>
+                                    <h1>Ingredients: {this.state.ingred}</h1>
+                                    <br></br>
+
+                                    <table className="table2">
+                                        <h2>Nutritional Facts about {this.state.foodItem}</h2>
+                                        <tr>
+                                            <th> </th>
+                                            <th>Amount</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Calories (Energy)</td>
+                                            <td>{this.state.ene}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Fat</td>
+                                            <td>{this.state.tfat}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Saturates</td>
+                                            <td>{this.state.sat}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Carbohydrates</td>
+                                            <td>{this.state.carbo}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Sugars</td>
+                                            <td>{this.state.tsugars}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Protein</td>
+                                            <td>{this.state.prot}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sodium</td>
+                                            <td>{this.state.sodium}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Calcium</td>
+                                            <td>{this.state.cal}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Potassium</td>
+                                            <td>{this.state.pot}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Iron</td>
+                                            <td>{this.state.iro}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Zinc</td>
+                                            <td>{this.state.zin}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vitamin A</td>
+                                            <td>{this.state.vitA}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vitamin B12</td>
+                                            <td>{this.state.vitB}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vitamin C</td>
+                                            <td>{this.state.vitC}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vitamin D</td>
+                                            <td>{this.state.vitD}</td>
+                                        </tr>
+                                    </table>
                             </div>
                         </div>
                     </form>
@@ -341,8 +390,6 @@ class Dictionary extends Component {
                         <p>Nutrition Manager Deluxe TM</p>
                     </div>
                 </div>
-
-
 
             </div>
         )
