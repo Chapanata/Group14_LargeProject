@@ -85,7 +85,7 @@ class Login extends Component {
 
         // http://localhost:8080/login
         // https://nutrition-heroku.herokuapp.com/login 
-        axios.post('https://nutrition-heroku.herokuapp.com/login', {
+        axios.post('http://localhost:8080/login', {
           email: this.state.email,
           password: this.state.password
         })
@@ -99,7 +99,7 @@ class Login extends Component {
           })
           if(response.data.UserID || response.data.SessionToken || response.data.Name  !== undefined) {
             console.log("YES IT WORKED")
-            window.location = "../Daily"
+            window.location = "../Settings"
 
           }
           else {

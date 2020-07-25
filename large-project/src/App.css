@@ -366,14 +366,25 @@ input.error {
 
 .name-box{
     display: inline-block;
-    float: left;
     width: 23%;
     margin-left: 50px;
+    float: left;
 }
 
 .name-box h2 {
     border-bottom: 3px solid #da667b;
     padding-bottom: 10px;
+}
+
+.name-box input {
+    border-radius: 3px;
+    border: 1px solid #373738;
+    font-size: 18px;
+    color: #747474;
+    background: rgba(15, 15, 15, 0.01);
+    font-weight: 600px;
+    padding-left: 5px;
+    width:100%;
 }
 
 .email-box {
@@ -392,6 +403,17 @@ input.error {
     float: right;
     width: 23%;
     margin-right: 50px;
+}
+
+.pass-box input {
+    border-radius: 3px;
+    border: 1px solid #373738;
+    font-size: 18px;
+    color: #747474;
+    background: rgba(15, 15, 15, 0.01);
+    font-weight: 600px;
+    padding-left: 5px;
+    width:100%;
 }
 
 .pass-box h2 {
@@ -456,14 +478,13 @@ input.error {
 .user-stats {
     float: right;
     height: 61vh;
-    width: 29.6%;
     box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
     border-radius: 10px;
     background-color: white;
     border: 3px solid #da667b;
     box-sizing: border-box;
     text-align: center;
-    
+    width: 26vw;
 }
 
 
