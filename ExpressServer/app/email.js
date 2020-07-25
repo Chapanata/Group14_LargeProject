@@ -24,14 +24,14 @@ const sendEmail = async () =>
         subject: "Nutrition App Account Verification",
         text: `Hello ${ auth.getName() }, Your account has been created and requires activation. Go to the following link to finish your registration:
     
-        https://nutrition-manager-deluxe.herokuapp.com/confirmCode/${auth.getEmail()}/${auth.getCode()}`,
+        https://nutrition-heroku.herokuapp.com/confirmCode/${auth.getEmail()}/${auth.getCode()}`,
         html: `Hello<strong> ${
         auth.getName()
         }</strong>,
         <br>
         <br>Your account has been created and requires activation. Go to the following link to finish your registration:
         <br>
-        https://nutrition-manager-deluxe.herokuapp.com/confirmCode/${auth.getEmail()}/${auth.getCode()}`
+        https://nutrition-heroku.herokuapp.com/confirmCode/${auth.getEmail()}/${auth.getCode()}`
         };
 
     client.sendMail(emailActivate, function(err, info)

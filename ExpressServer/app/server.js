@@ -77,3 +77,5 @@ app.use('', foodRoute);
 
 app.listen(port);
 console.log('Starting on port ' + port);
+
+module.exports = app;

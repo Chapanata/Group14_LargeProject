@@ -69,7 +69,8 @@ class Register extends Component {
           
         `);
 
-
+        // http://localhost:8080/register
+        // https://nutrition-heroku.herokuapp.com/register
         axios.post("https://nutrition-heroku.herokuapp.com/register", {
             name: this.state.fullName,
             email: this.state.email,
@@ -129,7 +130,7 @@ class Register extends Component {
         case 'password':
           pass = value;
           if (passRegex.test(value) != true) {
-            errors.password = "Minimum 6 characters required with at least 1 letter and 1 special character";
+            errors.password = "Minimum 6 characters required with at least 1 number, 1 letter, and 1 special character";
           }
           
           else {

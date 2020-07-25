@@ -50,7 +50,6 @@ router.route('/register')
         {
             if (dbUser != null)
             {
-                console.log("Email already exists!");
                 res.json({Error: 'User Already Exists'});
                 return;
             }
@@ -99,7 +98,6 @@ router.route('/register')
             // If an error is caught, that means the email did not send.
             .catch(() =>
             {
-                console.log("Could not send email!");
                 res.json({Error: 'Unable To Send Email'});
                 return;
             })
@@ -129,14 +127,11 @@ router.route('/confirmCode/:email/:confirmCode')
             return;
         }
 
-        console.log(req.params.email);
-
         User.findOne( { 'email': req.params.email}, function(err, dbUser)
         {
             // Check if the email exists in the system
             if (!dbUser)
             {
-                console.log('Email does not exist');
                 res.json({Error: 'Email does not exist'});
                 return;
             }
@@ -144,7 +139,6 @@ router.route('/confirmCode/:email/:confirmCode')
             // Check if the user is confirmed
             if (dbUser.confirmed)
             {
-                console.log('User already confirmed');
                 res.json({ Error: 'User Already Confirmed' });
                 return;
             }
@@ -152,13 +146,11 @@ router.route('/confirmCode/:email/:confirmCode')
             // Check that the code matches the user's code
             if (req.params.confirmCode != dbUser.confirmCode)
             {
-                console.log("Confirm code does not match");
                 res.json({ Success: "false" });
                 return;
             }
             else
             {
-                console.log("Codes match. Activating account");
 
                 // Set user's account to active
                 User.updateOne( 
@@ -208,7 +200,6 @@ router.route('/login')
             // Check if the email exists in the system
             if (!dbUser)
             {
-                console.log('Email does not exist in the system');
                 res.json({Error: 'Incorrect Email Or Password'});
                 return;
             }
@@ -219,14 +210,12 @@ router.route('/login')
 
             if (!passMatch)
             {
-                console.log('Email and password did not match');
                 res.json({Error: 'Incorrect Email Or Password'});
                 return;
             }
 
             if (!dbUser.confirmed)
             {
-                console.log('Account Not Confirmed');
                 res.json({Error: 'Account Not Confirmed'});
                 return;
             }
