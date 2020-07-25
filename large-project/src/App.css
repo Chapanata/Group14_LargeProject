@@ -422,6 +422,16 @@ input.error {
 
 /* Settings Styling */
 
+.setting-container {
+    float:left;
+    background-color: white;
+    border: 3px solid #da667b;
+    height: 60vh;
+    width: 70%;
+    border-radius: 10px;
+    margin-top: 69px;
+}
+
 .name-box{
     display: inline-block;
     float: left;
@@ -507,8 +517,13 @@ input.error {
     width: 80%;
 }
 
+.name-box input {
+    margin-bottom: 15px;
+    width: 80%;
+}
 .pass-box input {
     margin-bottom: 15px;
+    width: 80%;
 }
 
 .user-stats {
@@ -521,9 +536,24 @@ input.error {
     border: 3px solid #da667b;
     box-sizing: border-box;
     text-align: center;
-    
+    margin-top: 69px;
 }
 
+.changeStats-hide {
+    display: none;
+    border: 0;
+    font-size: 17px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 30px;
+    width: 80%;
+    margin-top: 35px;
+}
 
 /* Overview Styling */
 .bio-container1{

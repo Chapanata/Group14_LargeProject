@@ -37,11 +37,15 @@ class Settings extends Component {
         initFeet: "0",
         initInches: "0",
         initbuttonText: "0",
-        initBMI: "0",
+        finalWeight: '',
+        finalGender: '',
+        finalFeet: '',
+        finalInches: '',
+        finalBMI: '',
         isInEditMode: false,
-        buttonMode: false,
         buttonText: false,
-        apiError: ''
+        apiError: '',
+        userError: ''
     }
 
     handleChange = e => {
@@ -105,11 +109,36 @@ class Settings extends Component {
 
 
     changeEditMode = () => {
+        let token = window.localStorage.getItem('session-token');
+        const tokenHeader = { 'auth-token': token };
+        // Send to Server
+        axios.post('http://localhost:8080/editUser/physical', 
+        {
+            gender: this.state.initGender,
+            weight: this.state.initWeight,
+            heightFeet: this.state.initFeet,
+            heightInch: this.state.initInches
+        },
+        {
+            headers: tokenHeader
+        })
+        .then(response => {
+            console.log(response.data)
+            console.log(response.data.Success)
+            console.log(response.data.Error)
+            this.setState({
+                userError: response.data.Error
+            })
+        })
+        .catch(error => {
+            console.log(error.response)
+        })
+        
+        
         this.setState({
             isInEditMode: !this.state.isInEditMode
         })
-        console.log("This works");
-        console.log("Weight:" + this.state.weight)
+        
     }
 
     updateWeight = (e) => {
@@ -144,6 +173,11 @@ class Settings extends Component {
 
 
     renderDefaultView = () => {
+        let token = window.localStorage.getItem('session-token');
+        const tokenHeader = { 'auth-token': token };
+
+        axios.get()
+
         return <div className="biogrid-container1">
         <h3>Weight: {this.state.weight} pounds</h3>
         <h3>Gender: {this.state.gender}</h3>
@@ -154,6 +188,10 @@ class Settings extends Component {
     }
 
     renderEditView = () => {
+        console.log("Weight:" + this.state.initWeight)
+        console.log("Gender:" + this.state.initGender)
+        console.log("Feet:" + this.state.initFeet)
+        console.log("Inches:" + this.state.initInches)
         return <div class="biogrid-container1">
         <h3>Weight: 
         {
@@ -217,12 +255,6 @@ class Settings extends Component {
         })
     }
 
-    showEmailFields() {
-        this.setState({
-            showEmail: true
-        })
-    }
-npm 
     showPassFields() {
         this.setState({
             showPass: true
@@ -320,7 +352,7 @@ npm
                     </div>
                 </div>
 
-                    <div className = "inner-container"> 
+                    <div className = "setting-container"> 
                         <form id="my-settings">
                             <h1>Account Settings</h1>
                             <div className="name-box">
@@ -331,7 +363,9 @@ npm
                                     // If true show name field
                                     ?<div className="change-name">
                                         <input type="text" name="fullName" placeholder="Enter New Full Name" onChange={this.handleChange} required></input>
+                                        <br></br>
                                         <input type="text" name="confirmFull" placeholder="Confirm Full Name" onChange={this.handleChange} required></input>
+                                        <br></br>
                                         {/* {errors.confirmFull.length > 0 && (
                                             <span className="error">{errors.confirmFull}</span>
                                         )} */}
@@ -351,7 +385,9 @@ npm
                                     // If true show password fields
                                     ?<div className="change-pass">
                                         <input type="password" name="password" placeholder="Enter New Password" onChange={this.handleChange} required></input>
+                                        <br></br>
                                         <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={this.handleChange} required></input>
+                                        <br></br>
                                         <button type="button" class="save" onClick={()=>this.hidePassFields()}>Save Changes</button>
                                     </div>
                                     // Else hide password fields
