@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-
 }
 
 .App-logo {
@@ -71,8 +70,6 @@ html
     color:black;
 }
 
-/* Nav Bar */
-
 .logo
 {
     position: relative;
@@ -82,16 +79,20 @@ html
     float: center;
 }
 
+/* Nav Bar */
+
 .nav-bar
 {
-    position: relative;
+    position: fixed;
     background-color: #333;
     overflow: hidden;
-    height: 44px;
+    width: 100%;
+    top: 0;
 }
 
 .nav-bar a {
     float: left;
+    display: block;
     color: #f2f2f2;
     text-align: center;
     padding:10px;
@@ -104,6 +105,11 @@ html
     background-color: rgba(23, 23, 23, 0.9);
 }
 
+.nav-right {
+    float: right;
+}
+
+/*
 .nav-bar a:active {
     background-color: #DA667B;
     color: white;
@@ -113,15 +119,50 @@ html
 {
    background-color: #DA667B;
 }
+*/
 
-
-/* Nav Bar Bottom Bar */
-.highlight-bar
-{
-    width:100%;
-    background-color:#DA667B;
-    height:3px;
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    overflow: hidden;
 }
+.footer a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding:10px;
+    text-decoration: none;
+    font-size: 16pt;
+}
+
+.footer a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding:10px;
+    text-decoration: none;
+    font-size: 16pt;
+}
+
+.footer a:hover {
+    color: #ffffff;
+    background-color: rgba(23, 23, 23, 0.9);
+}
+
+.fooder-right {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    padding-right: 15px;
+    font-size: 16pt;
+}
+
 
 /* Main Page */
 .mainBox {
@@ -132,11 +173,9 @@ html
 }
 
 .mainText {
-
     padding: 20px;
     text-align: center;
     margin-left: 50px;
-
     margin: 0 auto;
 }
 
@@ -336,14 +375,6 @@ input.error {
     margin-top: 00px;
     box-sizing: border-box;
     padding: 0;
-}
-
-
-
-
-
-.nav-right {
-    float: right;
 }
 
 .inner-container {

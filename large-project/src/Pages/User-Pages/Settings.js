@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import logo from './../../Resources/spoonfork_only.png';
 import axios from 'axios';
 
 var pass = ""
@@ -8,7 +9,6 @@ var newName = ""
 var confirmName =""
 
 const passRegex = RegExp(/^(?=.*\d)(?=.*[!?<>@#$%^&*])(?=.*[a-zA-Z]).{8,}$/);
-
 
 class Settings extends Component {
 
@@ -303,16 +303,22 @@ npm
         <div className="page">
             <div className="box">
                 <div className="nav-bar">
-                    <Link to="/Overview" >Overview</Link>
-                    <Link to="/Dictionary">Food Dictionary</Link>
-                    <Link to="/Daily">Daily Intake</Link>
+                    <img src={logo} className="logo"/>
+                    <a href="#Dictionary">
+                        <Link to="/Dictionary">Food Dictionary</Link>
+                    </a>
+                    <a href="#Daily">
+                        <Link to="/Daily">Daily Intake</Link>
+                    </a>
                     <div className="nav-right">
-                        <Link to="/Settings" className="active">Settings</Link>
-                        <Link to="/Home">Log Out</Link>
+                        <a href="#Settings">
+                            <Link to="/Settings"className="active">Settings</Link>
+                        </a>
+                        <a href="#Home">
+                            <Link to="/Home">Log Out</Link>
+                        </a>
                     </div>
-
                 </div>
-                <div className="highlight-bar"></div>
 
                     <div className = "inner-container"> 
                         <form id="my-settings">
@@ -368,6 +374,21 @@ npm
                     }
                 </div>
                 <button type="button" class="changeStats" onClick={this.changeEditMode}>Make Changes</button>      
+            </div>
+
+            <div class="footer">
+                <a href="#Home">
+                    <Link to="/Home">Home</Link>
+                </a>
+                <a href="#AboutUs">
+                    <Link to="/About">About Us</Link>
+                </a>
+                <a href="#ContactUs">
+                    <Link to="/Contact">Contact Us</Link>
+                </a>
+                <div className="fooder-right">
+                    <p>Nutrition Manager Deluxe TM</p>
+                </div>
             </div>
         </div>
         )

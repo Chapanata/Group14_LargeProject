@@ -22,7 +22,7 @@ class Overview extends Component {
                     <Link to="/Daily" >Daily Intake</Link>
                     <Link to="/Settings">Settings</Link>
                     <div className="nav-right">
-                        <Link to="/Settings">Settings</Link>
+                    <Link to="/Settings">Settings</Link>
                         <Link to="/Home">Log Out</Link>
                     </div>
 

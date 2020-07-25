@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import DataTable from 'react-data-table-component'
 import {CircularProgressbar, buildstyles} from 'react-circular-progressbar';
+import logo from './../../Resources/spoonfork_only.png';
 
 const percentage = 33;
 
@@ -68,15 +69,23 @@ class Daily extends Component {
         return(
         <div className="page">
                 <div className="nav-bar">
-
-                    <Link to="/Overview" >Overview</Link>
-                    <Link to="/Dictionary">Food Dictionary</Link>
-                    <Link to="/Daily" className="active">Daily Intake</Link>
+                    <img src={logo} className="logo"/>
+                    <a href="#Dictionary">
+                        <Link to="/Dictionary">Food Dictionary</Link>
+                    </a>
+                    <a href="#Daily">
+                        <Link to="/Daily"className="active">Daily Intake</Link>
+                    </a>
                     <div className="nav-right">
-                        <Link to="/Settings">Settings</Link>
-                        <Link to="/Home">Log Out</Link></div>
+                        <a href="#Settings">
+                            <Link to="/Settings">Settings</Link>
+                        </a>
+                        <a href="#Home">
+                            <Link to="/Home">Log Out</Link>
+                        </a>
                     </div>
-                <div className="highlight-bar"></div>
+                </div>
+
                     <div className="init-container">
                         <div className="square-container1"></div>
 
@@ -148,7 +157,20 @@ class Daily extends Component {
                             </div>
                         </div>     
                     </div>
-                       
+            <div class="footer">
+                <a href="#Home">
+                    <Link to="/Home">Home</Link>
+                </a>
+                <a href="#AboutUs">
+                    <Link to="/About">About Us</Link>
+                </a>
+                <a href="#ContactUs">
+                    <Link to="/Contact">Contact Us</Link>
+                </a>
+                <div className="fooder-right">
+                    <p>Nutrition Manager Deluxe TM</p>
+                </div>
+            </div>
                     
         </div>
         )
