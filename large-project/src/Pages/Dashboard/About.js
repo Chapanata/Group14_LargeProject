@@ -8,18 +8,14 @@ class About extends Component {
     render() {
         return(
             <div className="in-container">
-                <div className="nav-bar">
-                    <img src={logo} className="logo"/>
-
-                    <Link to="/Home">Welcome</Link>
-                    <Link to="/About" className="active">About Us</Link>
-                    <Link to="/Contact">Contact</Link>
-                    <div className="nav-right">
+                <div class="home-nav-bar">
+                    <a href="#Login">
                         <Link to="/Login">Login</Link>
+                    </a>
+                    <a href="#Register">
                         <Link to="/Register">Register</Link>
-                    </div>
+                    </a>
                 </div>
-                <div className="highlight-bar"></div>
                 <div className="mainBox">
 
                     <div className="mainText">

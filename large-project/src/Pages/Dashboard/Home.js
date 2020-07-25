@@ -13,19 +13,14 @@ class Home extends Component {
         return(
             <div className="HomePage">
                 <div className="in-container">
-                    <div className="nav-bar">
-                        <img src={logo} className="logo"/>
-
-                        <Link to="/Home" className="active" >Welcome</Link>
-                        <Link to="/About">About Us</Link>
-                        <Link to="/Contact">Contact</Link>
-                        <div className="nav-right">
+                    <div class="home-nav-bar">
+                        <a href="#Login">
                             <Link to="/Login">Login</Link>
+                        </a>
+                        <a href="#Register">
                             <Link to="/Register">Register</Link>
-                        </div>
+                        </a>
                     </div>
-                    <div className="highlight-bar"></div>
-
                     <div className="mainBox">
                             <div className="mainText">
                                 <h1>Welcome</h1>
@@ -57,6 +52,21 @@ class Home extends Component {
                                 <Link to="/Forgot">Forgot Password</Link>
                                 <br></br>
                                 <Link to="/resetPassword">Reset Password</Link>
+
+                                <br></br>
+                                <br></br>
+                                <br></br>
+
+                                <button type="submit" className="enter-select-button">
+                                    <a href="#Register">
+                                        <Link to="/Register"className="active">Create an account!</Link>
+                                    </a>
+                                </button>
+                                <label>If you already have an account with us, click here to
+                                    <a href="#Login">
+                                        <Link to="/Login"className="active"> login</Link>
+                                    </a>
+                                </label>
                             </div>
                     </div>
                 </div>   
