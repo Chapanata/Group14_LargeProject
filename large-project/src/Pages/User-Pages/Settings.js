@@ -325,38 +325,12 @@ npm
                             <h1>Account Settings</h1>
                             <div className="name-box">
                                 <h2>Change Name:</h2>
-                                <button type="button" className="name" onClick={()=>this.showNameFields()}>Change</button>
-                                {
-                                    this.state.showName
-                                    // If true show name field
-                                    ?<div className="change-name">
-                                        <input type="text" name="fullName" placeholder="Enter New Full Name" onChange={this.handleChange} required></input>
-                                        <input type="text" name="confirmFull" placeholder="Confirm Full Name" onChange={this.handleChange} required></input>
-                                        {/* {errors.confirmFull.length > 0 && (
-                                            <span className="error">{errors.confirmFull}</span>
-                                        )} */}
-                                        <button type="button" class="save" onClick={()=>this.hideNameFields()}>Save Changes</button>
-                                    </div>
-                                    // Else hide name field
-                                    :null
-                                }
                                 
                             </div>
 
                             <div className="pass-box">
                                 <h2>Change Password:</h2>
-                                <button type="button" class="name" onClick={()=>this.showPassFields()}>Change</button>
-                                {
-                                    this.state.showPass
-                                    // If true show password fields
-                                    ?<div className="change-pass">
-                                        <input type="password" name="password" placeholder="Enter New Password" onChange={this.handleChange} required></input>
-                                        <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={this.handleChange} required></input>
-                                        <button type="button" class="save" onClick={()=>this.hidePassFields()}>Save Changes</button>
-                                    </div>
-                                    // Else hide password fields
-                                    :null
-                                }
+
                             </div>
                         </form>
                     </div>  
@@ -366,14 +340,9 @@ npm
             <h2>Your Statistics</h2>
                 {/* Will Contain Render Edits */}
                 <div class="biogrid-container1">
-                    {
-                        this.state.isInEditMode 
-                        ? this.renderEditView()
-                        : this.renderDefaultView()
 
-                    }
                 </div>
-                <button type="button" class="changeStats" onClick={this.changeEditMode}>Make Changes</button>      
+                    
             </div>
 
             <div class="footer">
