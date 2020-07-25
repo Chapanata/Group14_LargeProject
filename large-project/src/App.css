@@ -258,7 +258,7 @@ input.error {
 .page
 {
     background-color:hsla(0,0%,100%,.8);
-    height: 120vh;
+    height: 120vmax;
 }
 
 /* Backend Pages */
@@ -647,19 +647,26 @@ stroke: transparent;
     display: block;
     float: left;
     flex-direction: column;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    padding-right: 10px;
 }
 
 .search-bar input{
-    border-radius: 3px;
-    border: 1px solid #373738;
     font-size: 30px;
     color: #747474;
-    background: rgba(15, 15, 15, 0.01);
     font-weight: 600px;
-    padding-left: 10px;
-    width: 80%;
+    padding-left: 20px;
+    width: 1000px;
+
+    float: left;
+    height: 100%;
+    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid #da667b;
+    box-sizing: border-box;
+    text-align: left;
 }
 
 .enter-food-button {
@@ -670,7 +677,6 @@ stroke: transparent;
     font-family: Oxygen, sans-serif;
     color: white;
     background-color: #DA667B;
-    margin-top: 10px;
     transition: background-color 0.3s ease-out;
     cursor: pointer;
     height: 40px;
@@ -680,112 +686,27 @@ stroke: transparent;
 }
 
 .results-box {
-    height: 80%;
+    height: 100%;
     width: 100%;
     box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
     border-radius: 10px;
     background-color: white;
     border: 3px solid #da667b;
-    margin-top: 30px;
+    margin-top: 10px;
     box-sizing: border-box;
-    padding: 0;
     text-align: left;
 }
 
 .food-container1 {
-    
-
-    float: left;
-    height: 100%;
-    width: 60%;
-    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
-    border-radius: 10px;
-    background-color: white;
-    border: 3px solid #da667b;
-    margin-top: 30px;
-    box-sizing: border-box;
-    padding: 0;
-    text-align: left;
+    float: top;
+    height: 20%;
+    width: 100%;
 }
 
 .food-container2 {
-    float: right;
-    height: 20%;
-    width: 20%;
-    margin-top: 30px;
-}
-
-.food-container3 {
     float: bottom;
     height: 100%;
     width: 100%;
     margin-top: 30px;
     padding-top: 50px;
-}
-
-
-.square-container1{
-    float: left;
-    height: 100%;
-    width: 60%;
-    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
-    border-radius: 10px;
-    background-color: white;
-    border: 3px solid #da667b;
-    margin-top: 30px;
-    box-sizing: border-box;
-    padding: 0;
-    text-align: left;
-}
-
-.square-container2{
-    float: right;
-    width: 40%;
-    object-fit: fill;
-    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
-    border-radius: 10px;
-    background-color: white;
-    border: 3px solid #da667b;
-    margin-top: 30px;
-    box-sizing: border-box;
-    text-align: center;
-    padding: 0;
-}
-
-.grid-container1 {
-    display: grid;
-    margin-left: auto;
-    margin-right: auto;
-    grid-template-columns: 25% 25% 25% 25%;
-    padding: 10px;
-    justify-content: space-evenly;
-
-}
-
-.grid-container2 {
-    display: grid;
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-    grid-template-columns: 33% 33% 33%;
-    padding: 10px;
-    justify-content: space-evenly;
-}
-
-.grid-item {
-    font-size: 40%;
-    text-align: center;
-
-}
-
-.square-container3{
-    float: right;
-    width: 40%;
-    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
-    border-radius: 10px;
-    background-color: white;
-    border: 3px solid #da667b;
-    margin-top: 00px;
-    box-sizing: border-box;
-    padding: 0;
 }
