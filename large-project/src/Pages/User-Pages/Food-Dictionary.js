@@ -297,15 +297,23 @@ class Dictionary extends Component {
                                     </select>
                                         <button type="submit" className="enter-select-button">Select</button>
                                     <br></br>
-                                    <br></br>
-                                    <h1>Food Item: {this.state.foodItem}</h1>
-                                    <h1>Brand Owner: {this.state.brand}</h1>
-                                    <h1>Description : {this.state.descript}</h1>
-                                    <h1>Ingredients: {this.state.ingred}</h1>
+                                    <h2>Food Item: 
+                                        <label for="food"> {this.state.foodItem}</label>
+                                    </h2>
+                                    <h2>Brand Owner: 
+                                        <label for="food"> {this.state.brand}</label>
+                                    </h2>
+                                    <h2>Description: 
+                                        <label for="food"> {this.state.descript}</label>
+                                    </h2>
+                                    <h2>Ingredients:
+                                        <label for="food"> {this.state.ingred}</label>
+                                    </h2>
                                     <br></br>
 
-                                    <table className="table2">
+                                    <table className="table1">
                                         <h2>Nutritional Facts about {this.state.foodItem}</h2>
+
                                         <tr>
                                             <th> </th>
                                             <th>Amount</th>
@@ -370,7 +378,10 @@ class Dictionary extends Component {
                                             <td>Vitamin D</td>
                                             <td>{this.state.vitD}</td>
                                         </tr>
+                                        <br></br>
                                     </table>
+                                    <br></br>
+                                    <br></br>
                             </div>
                         </div>
                     </form>
