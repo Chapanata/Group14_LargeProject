@@ -255,15 +255,21 @@ class Dictionary extends Component {
             <div className="page">
                 <div className="nav-bar">
                     <img src={logo} className="logo"/>
-                    <Link to="/Dictionary"className="active">Food Dictionary</Link>
-                    <Link to="/Daily" >Daily Intake</Link>
+                    <a href="#Dictionary">
+                        <Link to="/Dictionary"className="active">Food Dictionary</Link>
+                    </a>
+                    <a href="#Daily">
+                        <Link to="/Daily">Daily Intake</Link>
+                    </a>
                     <div className="nav-right">
-                        <Link to="/Settings">Settings</Link>
-                        <Link to="/Home">Log Out</Link>
+                        <a href="#Settings">
+                            <Link to="/Settings">Settings</Link>
+                        </a>
+                        <a href="#Home">
+                            <Link to="/Home">Log Out</Link>
+                        </a>
                     </div>
                 </div>
-            
-                <div className="highlight-bar"></div>
 
                 <div className="init-food-container">
                     <form onSubmit={this.handleSearchSubmit} noValidate>
@@ -274,7 +280,7 @@ class Dictionary extends Component {
                                         name="food"
                                         value={this.state.foodquery}
                                         onChange={ this.handleChange }
-                                        placeholder="Enter what food or nutrient you would like to know more about..."
+                                        placeholder="Search for information about food items!"
                                     />
                                     <button type="submit" className="enter-food-button">Search</button>                         
                                 </div>                               
@@ -296,7 +302,7 @@ class Dictionary extends Component {
                                 <h1>Food Item: {this.state.foodItem} </h1>
                                 <h1>Brand Owner: {this.state.brand}</h1>
                                 <h1>Description : {this.state.descript}</h1>
-                                <h1>Ingrediants: {this.state.ingred}</h1>
+                                <h1>Ingredients: {this.state.ingred}</h1>
                                 <br></br>
                                 <br></br>
                                 <h1>Energy: {this.state.ene} kcal</h1>
@@ -319,8 +325,24 @@ class Dictionary extends Component {
                             </div>
                         </div>
                     </form>
-
                 </div>
+
+                <div class="footer">
+                    <a href="#Home">
+                        <Link to="/Home">Home</Link>
+                    </a>
+                    <a href="#AboutUs">
+                        <Link to="/About">About Us</Link>
+                    </a>
+                    <a href="#ContactUs">
+                        <Link to="/Contact">Contact Us</Link>
+                    </a>
+                    <div className="fooder-right">
+                        <p>Nutrition Manager Deluxe TM</p>
+                    </div>
+                </div>
+
+
 
             </div>
         )
