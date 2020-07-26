@@ -151,7 +151,6 @@ router.route('/confirmCode/:email/:confirmCode')
             }
             else
             {
-
                 // Set user's account to active
                 User.updateOne( 
                     { '_id': dbUser.id }, 

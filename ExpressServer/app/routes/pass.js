@@ -168,7 +168,7 @@ router.route('/resetPassword/:email/:confirmCode')
                         if (err)
                             res.send(err);
                 });
-
+                res.header('Authorization', auth);
                 res.redirect('https://nutrition-manager-deluxe.herokuapp.com/');
                 return;
             }
