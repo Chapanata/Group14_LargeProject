@@ -106,28 +106,41 @@ router.route('/forgotPassword')
   //-----------------------------//
  //     reset password API      //
 //-----------------------------//
-router.route('/resetPassword/:email/:confirmCode')
+router.route('/resetPassword')
 
     // Send a password reset email 
-    // (accessed at POST http://localhost:8080/resetPassword/email/confirmCode)
+    // (accessed at POST http://localhost:8080/resetPassword?email=email&confirmCode=confirmCode)
     .post(function(req, res)
     {
         // Make sure the parameters aren't empty
-        if (req.params.email == null || req.params.confirmCode == null || req.body.password == null)
+        if (req.query.email == null)
         {
+            console.log('email missing');
+            res.json({Error: 'Missing Parameters'});
+            return;
+        }
+        else if (req.query.confirmCode == null)
+        {
+            console.log('confirmCode missing');
+            res.json({Error: 'Missing Parameters'});
+            return;
+        }
+        else if (req.body.password == null)
+        {
+            console.log('password missing');
             res.json({Error: 'Missing Parameters'});
             return;
         }
 
         // Make sure a valid email is entered
-        const {error} = confirmValidation(req.params);
+        const {error} = confirmValidation(req.query);
         if (error)
         {
             res.json({Error: error.details[0].message});
             return;
         }
 
-        User.findOne( { 'email': req.params.email}, async function(err, dbUser)
+        User.findOne( { 'email': req.query.email}, async function(err, dbUser)
         {
             // Check if the email exists in the system
             if (!dbUser)
@@ -146,7 +159,7 @@ router.route('/resetPassword/:email/:confirmCode')
             }
 
             // Check that the code matches the user's code
-            if (req.params.confirmCode != dbUser.confirmCode)
+            if (req.query.confirmCode != dbUser.confirmCode)
             {
                 console.log("Code does not match");
                 res.json({ Success: "false" });

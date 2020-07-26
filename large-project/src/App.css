@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-
 }
 
 .App-logo {
@@ -71,27 +70,30 @@ html
     color:black;
 }
 
-/* Nav Bar */
-
 .logo
 {
-    display: inline-block;
-    position:relative;
-    width:35px;
-    padding:5px;
-    float:left;
+    position: relative;
+    width: 50px;
+    padding: 5px;
+    padding-right: 80px;
+    float: center;
 }
+
+/* Nav Bar */
 
 .nav-bar
 {
-    position: relative;
+    position: fixed;
     background-color: #333;
     overflow: hidden;
-    height:44px;
+    width: 100%;
+    top: 0;
+    z-index: 9999;
 }
 
 .nav-bar a {
     float: left;
+    display: block;
     color: #f2f2f2;
     text-align: center;
     padding:10px;
@@ -104,24 +106,89 @@ html
     background-color: rgba(23, 23, 23, 0.9);
 }
 
-.nav-bar a:active {
+.nav-right {
+    float: right;
+}
+
+.home-nav-bar {
+    position: fixed;
+    background-color: #333;
+    overflow: hidden;
+    width: 210px;
+    top: 0;
+    z-index: 9999;
+    right: 0;
+}
+.home-nav-bar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 16pt;
+}
+
+.home-nav-bar a:hover {
+    color: #ffffff;
+    background-color: rgba(23, 23, 23, 0.9);
+}
+
+
+.nav-bar a:active, .footer a:active {
     background-color: #DA667B;
     color: white;
 
 }
-.nav-bar .active:hover, .active
+.nav-bar .active:hover, .active, .nav-bar .active a:hover, .footer .active:hover, .footer .active a:hover
 {
    background-color: #DA667B;
 }
 
 
-/* Nav Bar Bottom Bar */
-.highlight-bar
-{
-    width:100%;
-    background-color:#DA667B;
-    height:3px;
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    overflow: hidden;
 }
+.footer a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding:10px;
+    text-decoration: none;
+    font-size: 16pt;
+}
+
+.footer a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding:10px;
+    text-decoration: none;
+    font-size: 16pt;
+    z-index: 9999;
+}
+
+.footer a:hover {
+    color: #ffffff;
+    background-color: rgba(23, 23, 23, 0.9);
+}
+
+.fooder-right {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    padding-right: 15px;
+    font-size: 16pt;
+}
+
 
 /* Main Page */
 .mainBox {
@@ -132,11 +199,9 @@ html
 }
 
 .mainText {
-
     padding: 20px;
     text-align: center;
     margin-left: 50px;
-
     margin: 0 auto;
 }
 
@@ -255,15 +320,14 @@ input.error {
 {
     padding-top:10px;
 }
+
 .page
 {
     background-color:hsla(0,0%,100%,.8);
-    height: 120vh;
+    height: 100vmax;
 }
 
 /* Backend Pages */
-
-
 
 .init-container {
     position: absolute;
@@ -286,6 +350,7 @@ input.error {
     box-sizing: border-box;
     padding: 0;
     text-align: left;
+    padding-left:10px;
 }
 
 .square-container2{
@@ -340,14 +405,6 @@ input.error {
     padding: 0;
 }
 
-
-
-
-
-.nav-right {
-    float: right;
-}
-
 .inner-container {
     float:left;
     background-color: white;
@@ -365,6 +422,16 @@ input.error {
 }
 
 /* Settings Styling */
+
+.setting-container {
+    float:left;
+    background-color: white;
+    border: 3px solid #da667b;
+    height: 60vh;
+    width: 70%;
+    border-radius: 10px;
+    margin-top: 69px;
+}
 
 .name-box{
     display: inline-block;
@@ -451,8 +518,13 @@ input.error {
     width: 80%;
 }
 
+.name-box input {
+    margin-bottom: 15px;
+    width: 80%;
+}
 .pass-box input {
     margin-bottom: 15px;
+    width: 80%;
 }
 
 .user-stats {
@@ -465,9 +537,24 @@ input.error {
     border: 3px solid #da667b;
     box-sizing: border-box;
     text-align: center;
-    
+    margin-top: 69px;
 }
 
+.changeStats-hide {
+    display: none;
+    border: 0;
+    font-size: 17px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 30px;
+    width: 80%;
+    margin-top: 35px;
+}
 
 /* Overview Styling */
 .bio-container1{
@@ -637,7 +724,7 @@ stroke: transparent;
 
 /*Food-Dictionary Page*/
 .init-food-container {
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -646,21 +733,37 @@ stroke: transparent;
 }
 
 .search-bar {
-    display: block;
+    position: relative;
+    float: left;
     flex-direction: column;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+    width: 90%;
 }
 
 .search-bar input{
-    border-radius: 3px;
-    border: 1px solid #373738;
     font-size: 30px;
     color: #747474;
-    background: rgba(15, 15, 15, 0.01);
     font-weight: 600px;
-    padding-left: 5px;
-    width: 80%;
+    padding-left: 25px;
+    width: 100%;
+
+    float: left;
+    height: 100%;
+    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid #da667b;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.search-button {
+    overflow: hidden;
+    float: right;
+    padding-bottom: 10px;
+    width: 9%;
 }
 
 .enter-food-button {
@@ -671,24 +774,199 @@ stroke: transparent;
     font-family: Oxygen, sans-serif;
     color: white;
     background-color: #DA667B;
-    margin-top: 10px;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+}
+.input-food-button {
+    padding: 2px 30px;
+    border: 0;
+    font-size: 16px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
     transition: background-color 0.3s ease-out;
     cursor: pointer;
     height: 40px;
 
-    margin: 0 auto;
     text-align: center;
 }
 
-.food-container2 {
-    height: 80%;
+.results-box {
+    height: 100%;
     width: 100%;
     box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
     border-radius: 10px;
     background-color: white;
     border: 3px solid #da667b;
-    margin-top: 30px;
+    margin-top: 10px;
     box-sizing: border-box;
-    padding: 0;
     text-align: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 10px;
+}
+
+.enter-select-button {
+    padding: 2px 30px;
+    border: 0;
+    font-size: 16px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 40px;
+    text-align: center;
+    margin-left: 10px;
+}
+.enter-select-button:hover,.enter-food-button:hover,.input-food-button:hover
+{
+    background-color:#d55169;
+}
+
+.food-container1 {
+    float: top;
+    height: 20%;
+    width: 100%;
+}
+
+.food-container2 {
+    float: bottom;
+    height: 100%;
+    width: 100%;
+    margin-top: 10px;
+    padding-top: 50px;
+}
+
+#selectDropdown {
+    width: 50%;
+    font-size: 20pt;
+}
+
+label {
+    font-size: 20pt;
+    padding-right: 10px;
+}
+
+
+.table1 {
+    border: 1px solid black;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 15px;
+    text-align: left;
+}
+
+th, td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+
+
+.intake_input
+{
+    padding:5px;
+    width:30%;
+    margin-bottom:5px;
+}
+
+#list_items
+{
+    overflow:scroll;
+    padding:5px;
+    border:1px solid #f2f2f2;
+    height:205px;
+}
+.food_item
+{
+    padding:10px;
+    background-color:#e8e8e8;
+    color:black;
+    margin-bottom:8px;
+    border-radius: 5px;
+    display:inline-block;
+    margin:5px;
+
+}
+.brand_title
+{
+    color:#da667b;
+}
+.food_item:hover
+{
+     background-color:#d8d8d8;
+    cursor:pointer;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.refSheetbtn
+{
+    color:#da667b;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-top:-4px;
+}
+.refSheetbtn:hover
+{
+    color:#d55169;
+    cursor: pointer;
+}
+
+.addActbtn
+{
+    color:white;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-top:-4px;
+    background-color: #da667b;
+    border-radius: 8px;
+}
+.addActbtn:hover
+{
+     background-color:#d55169;
+    cursor: pointer;
 }

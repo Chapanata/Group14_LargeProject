@@ -8,18 +8,14 @@ class About extends Component {
     render() {
         return(
             <div className="in-container">
-                <div className="nav-bar">
-                    <img src={logo} className="logo"/>
-
-                    <Link to="/Home">Welcome</Link>
-                    <Link to="/About" className="active">About Us</Link>
-                    <Link to="/Contact">Contact</Link>
-                    <div className="nav-right">
+                <div class="home-nav-bar">
+                    <a href="#Login">
                         <Link to="/Login">Login</Link>
+                    </a>
+                    <a href="#Register">
                         <Link to="/Register">Register</Link>
-                    </div>
+                    </a>
                 </div>
-                <div className="highlight-bar"></div>
                 <div className="mainBox">
 
                     <div className="mainText">
@@ -39,7 +35,21 @@ class About extends Component {
                             </p>
                     </div>
                  </div>
-                
+
+                <div class="footer">
+                    <a href="#Home">
+                        <Link to="/Home">Home</Link>
+                    </a>
+                    <a href="#AboutUs" className="active">
+                        <Link to="/About">About Us</Link>
+                    </a>
+                    <a href="#ContactUs">
+                        <Link to="/Contact">Contact Us</Link>
+                    </a>
+                    <div className="fooder-right">
+                        <p>Nutrition Manager Deluxe TM</p>
+                    </div>
+                </div>
                  
             </div>
         );

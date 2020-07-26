@@ -97,9 +97,12 @@ class Login extends Component {
           this.setState({
             apiError: response.data.Error
           })
-          if(response.data.UserID || response.data.SessionToken || response.data.Name  !== undefined) {
+          if(response.data.UserID != undefined && response.data.SessionToken != undefined && response.data.Name  != undefined)
+          {
             console.log("YES IT WORKED")
             window.location = "../Daily"
+
+            window.localStorage.setItem('session-token', response.data.SessionToken);
 
           }
           else {

@@ -22,7 +22,7 @@ const formValid = ({ errors, ...rest }) => {
 class Forgot extends Component {
     constructor(props) {
       super(props);
-      this.state = { 
+      this.state = {
           email: null,
           errors: {
             email: ""
@@ -31,7 +31,7 @@ class Forgot extends Component {
     }
 
     state = {
-  
+
       apiError: '',
       apiSuccess: '',
       successMessage: ''
@@ -71,28 +71,28 @@ class Forgot extends Component {
                 console.log("Failed Request")
             }
         })
-        
+
         .catch(error => {
             console.log(error.response)
         })
       }
 
-      
+
       else {
         console.error('FORM INVALID');
       }
     }
-    
+
     handleChange = e => {
       e.preventDefault();
       const { name, value } = e.target;
       let errors = this.state.errors;
 
-      
+
       switch (name) {
 
         case 'email':
-          errors.email = emailRegex.test(value)  
+          errors.email = emailRegex.test(value)
           ? ""
           : "Invalid E-mail Address";
         break;
@@ -104,9 +104,9 @@ class Forgot extends Component {
 
       this.setState({errors, [name]: value}, () => console.log(this.state));
     };
-    
 
-    
+
+
 
     render() {
       const { errors } = this.state;
@@ -115,25 +115,25 @@ class Forgot extends Component {
 
           <div className="root-container">
             <div className="box-container">
-      
+
               <img src={logo} className="modal_logo" alt="logo"/>
 
               <div className="title">
-                    Forgot Password  
+                    Forgot Password
               </div>
-              
+
               {/* <h1>The request returned is - {this.state.resData}</h1> */}
               <div className="box">
-              <p>Forgot your Password? Enter your e-mail so we can help reset your password!</p> 
+              <p>Forgot your Password? Enter your e-mail so we can help reset your password!</p>
               <form onSubmit={this.handleSubmit} noValidate>
                 <div className="input-group">
                   <label className="some-label">E-Mail Address:</label>
-                  <input 
-                    type="email" 
-                    name="email" 
-                    noValidate 
-                    className={ errors.email.length > 0 ? "error" : null}  
-                    placeholder="E-Mail Address" 
+                  <input
+                    type="email"
+                    name="email"
+                    noValidate
+                    className={ errors.email.length > 0 ? "error" : null}
+                    placeholder="E-Mail Address"
                     onChange={this.handleChange}
                   />
 
@@ -146,26 +146,26 @@ class Forgot extends Component {
 
                 {this.state.apiError && (
                       <span className="error">{this.state.apiError}<br></br><br></br></span>
-                    )} 
+                    )}
 
                 {this.state.apiSuccess && (
                       <span className="success">{this.state.successMessage}<br></br><br></br></span>
                 )}
-                     
+
                 <button type="submit" className="some-button" >SUBMIT</button>
-              
+
 
                 <div className="backToLog"><Link to="/login">Already have an Account?</Link></div>
                 <div className="backToLog"><Link to="/register">Don't have an Account?</Link></div>
                 <div className="backToLog"><Link to="/home">Go back home?</Link></div>
                 </form>
-              </div>      
+              </div>
             </div>
           </div>
 
       );
     }
 }
-  
+
 
 export default Forgot;
