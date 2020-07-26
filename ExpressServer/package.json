@@ -4,6 +4,7 @@
   "main": "app/server.js",
   "scripts": {
     "start": "node ./app/server.js",
+    "nodemon": "nodemon ./app/server.js",
     "test": "mocha"
   },
   "author": "",

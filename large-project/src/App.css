@@ -134,17 +134,17 @@ html
     background-color: rgba(23, 23, 23, 0.9);
 }
 
-/*
-.nav-bar a:active {
+
+.nav-bar a:active, .footer a:active {
     background-color: #DA667B;
     color: white;
 
 }
-.nav-bar .active:hover, .active
+.nav-bar .active:hover, .active, .nav-bar .active a:hover, .footer .active:hover, .footer .active a:hover
 {
    background-color: #DA667B;
 }
-*/
+
 
 /* Footer */
 .footer {
@@ -402,6 +402,7 @@ input.error {
     box-sizing: border-box;
     padding: 0;
     text-align: left;
+    padding-left:10px;
 }
 
 .square-container2{
@@ -831,6 +832,20 @@ stroke: transparent;
     width: 100%;
     text-align: center;
 }
+.input-food-button {
+    padding: 2px 30px;
+    border: 0;
+    font-size: 16px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 40px;
+
+    text-align: center;
+}
 
 .results-box {
     height: 100%;
@@ -860,6 +875,10 @@ stroke: transparent;
     height: 40px;
     text-align: center;
     margin-left: 10px;
+}
+.enter-select-button:hover,.enter-food-button:hover,.input-food-button:hover
+{
+    background-color:#d55169;
 }
 
 .food-container1 {
@@ -900,3 +919,106 @@ th, td {
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
+
+
+
+.intake_input
+{
+    padding:5px;
+    width:30%;
+    margin-bottom:5px;
+}
+
+#list_items
+{
+    overflow:scroll;
+    padding:5px;
+    border:1px solid #f2f2f2;
+    height:205px;
+}
+.food_item
+{
+    padding:10px;
+    background-color:#e8e8e8;
+    color:black;
+    margin-bottom:8px;
+    border-radius: 5px;
+    display:inline-block;
+    margin:5px;
+
+}
+.brand_title
+{
+    color:#da667b;
+}
+.food_item:hover
+{
+     background-color:#d8d8d8;
+    cursor:pointer;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.refSheetbtn
+{
+    color:#da667b;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-top:-4px;
+}
+.refSheetbtn:hover
+{
+    color:#d55169;
+    cursor: pointer;
+}
+
+.addActbtn
+{
+    color:white;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-top:-4px;
+    background-color: #da667b;
+    border-radius: 8px;
+}
+.addActbtn:hover
+{
+     background-color:#d55169;
+    cursor: pointer;
+}

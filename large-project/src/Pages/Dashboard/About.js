@@ -40,8 +40,8 @@ class About extends Component {
                     <a href="#Home">
                         <Link to="/Home">Home</Link>
                     </a>
-                    <a href="#AboutUs">
-                        <Link to="/About"className="active">About Us</Link>
+                    <a href="#AboutUs" className="active">
+                        <Link to="/About">About Us</Link>
                     </a>
                     <a href="#ContactUs">
                         <Link to="/Contact">Contact Us</Link>

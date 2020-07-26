@@ -66,6 +66,7 @@ const addFoodValidation = data =>
 {
     const schema = Joi.object({
         foodId: Joi.number().required(),
+        name: Joi.string().required(),
         date: Joi.date().format('MM/DD/YYYY hh:mm:ss').required(),
         quantity: Joi.number().required(),
         energy: Joi.number().required(),
