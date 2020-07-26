@@ -7,6 +7,7 @@ var pass = ""
 var confirm = ""
 var newName = ""
 var confirmName =""
+var loaded = false
 
 const passRegex = RegExp(/^(?=.*\d)(?=.*[!?<>@#$%^&*])(?=.*[a-zA-Z]).{8,}$/);
 
@@ -43,9 +44,7 @@ class Settings extends Component {
         finalInches: '',
         finalBMI: '',
         isInEditMode: false,
-        buttonText: false,
-        apiError: '',
-        userError: ''
+        loaded: true,
     }
 
     handleChange = e => {
@@ -112,7 +111,11 @@ class Settings extends Component {
         let token = window.localStorage.getItem('session-token');
         const tokenHeader = { 'auth-token': token };
         // Send to Server
+<<<<<<< HEAD
         axios.post('http://localhost:8080/editUser/physical',
+=======
+        axios.post('https://nutrition-heroku.herokuapp.com//editUser/physical',
+>>>>>>> origin/master
         {
             gender: this.state.initGender,
             weight: this.state.initWeight,
@@ -123,9 +126,6 @@ class Settings extends Component {
             headers: tokenHeader
         })
         .then(response => {
-            console.log(response.data)
-            console.log(response.data.Success)
-            console.log(response.data.Error)
             this.setState({
                 userError: response.data.Error
             })
@@ -133,8 +133,14 @@ class Settings extends Component {
         .catch(error => {
             console.log(error.response)
         })
+<<<<<<< HEAD
 
 
+=======
+
+        loaded = false;
+
+>>>>>>> origin/master
         this.setState({
             isInEditMode: !this.state.isInEditMode
         })
@@ -175,14 +181,31 @@ class Settings extends Component {
     renderDefaultView = () => {
         let token = window.localStorage.getItem('session-token');
         const tokenHeader = { 'auth-token': token };
-
-        // axios.get()
+        if (!loaded) {
+        axios.get('https://nutrition-heroku.herokuapp.com//getBio', {
+            headers: tokenHeader
+        })
+        .then(response => {
+            console.log(response.data)
+            this.setState({
+                finalWeight: response.data.weight,
+                finalGender: response.data.gender,
+                finalFeet: response.data.heightFeet,
+                finalInches: response.data.heightInch,
+                finalBMI: response.data.bmi
+            })
+        })
+        .catch(error => {
+            console.log(error.response)
+        })
+        loaded = true;
+    }
 
         return <div className="biogrid-container1">
-        <h3>Weight: {this.state.weight} pounds</h3>
-        <h3>Gender: {this.state.gender}</h3>
-        <h3>Height: {this.state.feet} feet {this.state.inches} inches</h3>
-        <h3>BMI: {this.state.BMI}</h3>
+        <h3>Weight: {this.state.finalWeight} pounds</h3>
+        <h3>Gender: {this.state.finalGender}</h3>
+        <h3>Height: {this.state.finalFeet} feet {this.state.finalInches} inches</h3>
+        <h3>BMI: {this.state.finalBMI}</h3>
         </div>
         
     }
@@ -269,7 +292,11 @@ class Settings extends Component {
 
         // Send Post to Send Name Data
         // http://localhost:8080/editUser/name
+<<<<<<< HEAD
         axios.post('http://localhost:8080/editUser/name',
+=======
+        axios.post('https://nutrition-heroku.herokuapp.com//editUser/name',
+>>>>>>> origin/master
         {
             name: this.state.fullName,
             nameConfirm: this.state.confirmFull
@@ -303,7 +330,11 @@ class Settings extends Component {
 
         // Send Post to Send Password Data
         // http://localhost:8080/editUser/password
+<<<<<<< HEAD
         axios.post('http://localhost:8080/editUser/password',
+=======
+        axios.post('https://nutrition-heroku.herokuapp.com//editUser/password',
+>>>>>>> origin/master
         {
             password: this.state.password,
             passwordConfirm: this.state.confirmPassword
