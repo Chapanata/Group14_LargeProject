@@ -113,10 +113,6 @@ class Settings extends Component {
         // Send to Server
 
         axios.post('https://nutrition-heroku.herokuapp.com//editUser/physical',
-<<<<<<< HEAD
-=======
-
->>>>>>> 7d4295664df54294bbd6479c0295f0d22a2892ab
         {
             gender: this.state.initGender,
             weight: this.state.initWeight,
@@ -290,10 +286,6 @@ class Settings extends Component {
         // http://localhost:8080/editUser/name
 
         axios.post('https://nutrition-heroku.herokuapp.com//editUser/name',
-<<<<<<< HEAD
-=======
-
->>>>>>> 7d4295664df54294bbd6479c0295f0d22a2892ab
         {
             name: this.state.fullName,
             nameConfirm: this.state.confirmFull
@@ -329,10 +321,6 @@ class Settings extends Component {
         // http://localhost:8080/editUser/password
 
         axios.post('https://nutrition-heroku.herokuapp.com//editUser/password',
-<<<<<<< HEAD
-=======
-
->>>>>>> 7d4295664df54294bbd6479c0295f0d22a2892ab
         {
             password: this.state.password,
             passwordConfirm: this.state.confirmPassword
