@@ -15,9 +15,7 @@ router.route('/getBio')
     // accessed at GET http://localhost:8080/getBio
     .get(verify, function(req, res)
     {
-        userID = req.user._id;
-
-        User.findOne( { '_id': userID }, function(err, dbUser)
+        User.findOne( { '_id': req.user._id }, function(err, dbUser)
         {
             if (dbUser == null)
             {
@@ -25,8 +23,6 @@ router.route('/getBio')
                 res.json({ Error: 'Internal Error. Log In Again.' });
                 return;
             }
-
-            console.log("weight = " + dbUser.weight);
 
             // If any of the fields are null in the db, we want to make
             // sure that the json returns a variable with a null value.
