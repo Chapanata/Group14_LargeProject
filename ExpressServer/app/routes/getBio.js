@@ -30,11 +30,11 @@ router.route('/getBio')
             var weight = dbUser.weight;
             if (dbUser.weight == null)
                 var weight = null;
-            
+
             var gender = dbUser.gender;
             if (dbUser.gender == null)
                 var gender = null;
-            
+
             var heightFeet = dbUser.heightFeet;
             if (dbUser.heightFeet == null)
                 var heightFeet = null;
@@ -53,8 +53,8 @@ router.route('/getBio')
                     gender: gender,
                     heightFeet: heightFeet,
                     heightInch: heightInch,
-                    bmi: bmi                
-                }); 
+                    bmi: bmi
+                });
         });
     });
 

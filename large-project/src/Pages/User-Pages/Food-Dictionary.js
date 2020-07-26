@@ -4,7 +4,7 @@ import logo from './../../Resources/spoonfork_only.png';
 import axios from 'axios';
 
 class Dictionary extends Component {
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -31,7 +31,7 @@ class Dictionary extends Component {
             vitB: 'N/A',
             vitC: 'N/A',
             vitD: 'N/A',
-        } 
+        }
     }
 
     handleSearchSubmit = e => {
@@ -58,15 +58,15 @@ class Dictionary extends Component {
             vitC: 'N/A',
             vitD: 'N/A',
         })
-  
-        axios.post('https://api.nal.usda.gov/fdc/v1/foods/search?api_key=Uh00f59beCTOVOkHQvLjpO98kW6OL8aua0eiTqol&query=' 
+
+        axios.post('https://api.nal.usda.gov/fdc/v1/foods/search?api_key=Uh00f59beCTOVOkHQvLjpO98kW6OL8aua0eiTqol&query='
         + [this.state.foodquery], {
-            query: this.state.foodquery, 
+            query: this.state.foodquery,
             apikey: null,
         })
         .then(response => {
             console.log(response.data)
-        
+
             this.setState({
                 returnedname: response.data.foods[0].description,
                 jsonResponse: response.data,
@@ -82,13 +82,17 @@ class Dictionary extends Component {
             for (var i = 0; i < response.data.foods.length; i++) {
 
                 var option = document.createElement("option");
-                
                 option.text = response.data.foods[i].description;
+                if (response.data.foods[i].dataType == "Branded")
+                {
+                    option.text = "[" + response.data.foods[i].brandOwner + "] " + response.data.foods[i].description;
+                }
+
                 option.value = response.data.foods[i].fdcId;
-                
+
                 selectDropdown.appendChild(option);
             }
-        })        
+        })
     }
 
     handleSelectSubmit = e => {
@@ -161,7 +165,7 @@ class Dictionary extends Component {
             {
                 this.setState({tfat: json.foods[foodNumber].foodNutrients[j].value})
             }
-            
+
             // Saturates
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '1258')
             {
@@ -245,7 +249,7 @@ class Dictionary extends Component {
     handleChange = e => {
         e.preventDefault();
         this.setState ({foodquery: e.target.value});
-    }  
+    }
 
     render() {
 
@@ -253,10 +257,10 @@ class Dictionary extends Component {
             <div className="page">
                 <div className="nav-bar">
                     <img src={logo} className="logo"/>
-                    <a href="#Dictionary">
-                        <Link to="/Dictionary"className="active">Food Dictionary</Link>
+                    <a href="#Dictionary" className="active">
+                        <Link to="/Dictionary">Food Dictionary</Link>
                     </a>
-                    <a href="#Daily">
+                    <a href="#Daily" >
                         <Link to="/Daily">Daily Intake</Link>
                     </a>
                     <div className="nav-right">
@@ -273,17 +277,17 @@ class Dictionary extends Component {
                     <form onSubmit={this.handleSearchSubmit} noValidate>
                         <div className="food-container1">
                                 <div className="search-bar">
-                                    <input 
+                                    <input
                                         type="food"
                                         name="food"
                                         value={this.state.foodquery}
                                         onChange={ this.handleChange }
                                         placeholder="Search for information about any food items!"
-                                    />                        
+                                    />
                                 </div>
                                 <div className="search-button">
-                                    <button type="submit" className="enter-food-button">Search</button> 
-                                </div>                             
+                                    <button type="submit" className="enter-food-button">Search</button>
+                                </div>
                         </div>
                     </form>
 
@@ -293,17 +297,17 @@ class Dictionary extends Component {
                                     <h1>Searched: {this.state.foodquery}</h1>
                                     <label for="food">Related Options:</label>
                                     <select name="selectDropdown" id="selectDropdown">
-                                        <option value="initial">---</option>  
+                                        <option value="initial">---</option>
                                     </select>
                                         <button type="submit" className="enter-select-button">Select</button>
                                     <br></br>
-                                    <h2>Food Item: 
+                                    <h2>Food Item:
                                         <label for="food"> {this.state.foodItem}</label>
                                     </h2>
-                                    <h2>Brand Owner: 
+                                    <h2>Brand Owner:
                                         <label for="food"> {this.state.brand}</label>
                                     </h2>
-                                    <h2>Description: 
+                                    <h2>Description:
                                         <label for="food"> {this.state.descript}</label>
                                     </h2>
                                     <h2>Ingredients:
@@ -405,6 +409,6 @@ class Dictionary extends Component {
             </div>
         )
     }
-} 
+}
 
 export default Dictionary;

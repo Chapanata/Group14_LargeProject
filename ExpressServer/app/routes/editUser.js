@@ -47,7 +47,7 @@ router.route('/editUser/name')
                 console.log(err);
             });
 
-              res.json({ Success: 'true' }); 
+              res.json({ Success: 'true' });
         });
       });
 
@@ -55,7 +55,7 @@ router.route('/editUser/name')
  //     edit password API       //
 //-----------------------------//
 router.route('/editUser/password')
-    // edit a user's password 
+    // edit a user's password
     // (accessed at POST http://localhost:8080/editUser/password)
     .post(verify, async function(req, res)
     {
@@ -94,7 +94,7 @@ router.route('/editUser/password')
                 console.log(err);
             });
 
-            res.json({ Success: 'true' }); 
+            res.json({ Success: 'true' });
         });
       });
 
@@ -113,7 +113,7 @@ router.route('/editUser/physical')
         const heightInch = parseInt(req.body.heightInch, 10);
 
         // Check if the parameters are filled
-        if (gender == null || weight == null || 
+        if (gender == null || weight == null ||
             heightFeet == null || heightInch == null)
         {
             res.json({ Error: 'Missing Parameters' });
@@ -134,16 +134,16 @@ router.route('/editUser/physical')
         const userID = jwt.decode(req.header('auth-token'))._id;
 
         // Add the information to the user in the database
-        User.updateOne( 
-            { '_id': userID }, 
-            { $set: 
-                { 
+        User.updateOne(
+            { '_id': userID },
+            { $set:
+                {
                     gender: gender,
                     weight: weight,
                     heightFeet: heightFeet,
                     heightInch: heightInch,
                     bmi: bmi
-                 } 
+                 }
             },
             function(err, res)
             {
