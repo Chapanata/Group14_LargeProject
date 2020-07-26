@@ -57,8 +57,8 @@ class Contact extends Component {
                     <a href="#AboutUs">
                         <Link to="/About">About Us</Link>
                     </a>
-                    <a href="#ContactUs">
-                        <Link to="/Contact"className="active">Contact Us</Link>
+                    <a href="#ContactUs" className="active">
+                        <Link to="/Contact">Contact Us</Link>
                     </a>
                     <div className="fooder-right">
                         <p>Nutrition Manager Deluxe&trade;</p>

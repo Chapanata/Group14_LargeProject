@@ -7,6 +7,7 @@ var pass = ""
 var confirm = ""
 var newName = ""
 var confirmName =""
+var loaded = false
 
 const passRegex = RegExp(/^(?=.*\d)(?=.*[!?<>@#$%^&*])(?=.*[a-zA-Z]).{8,}$/);
 
@@ -24,8 +25,8 @@ class Settings extends Component {
             confirmPassword: null,
             errors: {
                 fullName:"",
-                confirmFull:"", 
-                password:"", 
+                confirmFull:"",
+                password:"",
                 confirmPassword:"",
             }
         }
@@ -43,29 +44,27 @@ class Settings extends Component {
         finalInches: '',
         finalBMI: '',
         isInEditMode: false,
-        buttonText: false,
-        apiError: '',
-        userError: ''
+        loaded: true,
     }
 
     handleChange = e => {
 
-      
+
 
         e.preventDefault();
         const { name, value } = e.target;
         let errors = this.state.errors;
-  
-        
+
+
         switch (name) {
-      
+
           case 'fullName':
             newName = value;
-            errors.fullName = value.length < 1 
+            errors.fullName = value.length < 1
             ? "Cannot be empty"
             : "";
           break;
-  
+
           case 'confirmName':
               confirmName = value;
             if(name === confirmName) {
@@ -75,35 +74,35 @@ class Settings extends Component {
                 errors.confirmFull = ""
             }
           break;
-  
+
           case 'password':
             pass = value;
             if (passRegex.test(value) != true) {
               errors.password = "Minimum 6 characters required with at least 1 number, 1 letter, and 1 special character";
             }
-            
+
             else {
               errors.password ="";
             }
-        
+
           break;
-  
+
           case 'confirmPassword':
             confirm = value;
             if (confirm !== pass){
               errors.confirmPassword = "Passwords do not match";
             }
-  
+
             else {
               errors.confirmPassword = "";
             }
-  
+
           break;
-  
+
           default:
             break;
         }
-  
+
         this.setState({errors, [name]: value}, () => console.log(this.state));
       };
 
@@ -112,7 +111,9 @@ class Settings extends Component {
         let token = window.localStorage.getItem('session-token');
         const tokenHeader = { 'auth-token': token };
         // Send to Server
-        axios.post('https://nutrition-heroku.herokuapp.com/editUser/physical', 
+
+        axios.post('https://nutrition-heroku.herokuapp.com//editUser/physical',
+
         {
             gender: this.state.initGender,
             weight: this.state.initWeight,
@@ -123,9 +124,6 @@ class Settings extends Component {
             headers: tokenHeader
         })
         .then(response => {
-            console.log(response.data)
-            console.log(response.data.Success)
-            console.log(response.data.Error)
             this.setState({
                 userError: response.data.Error
             })
@@ -133,41 +131,42 @@ class Settings extends Component {
         .catch(error => {
             console.log(error.response)
         })
-        
-        
+
+        loaded = false;
+
         this.setState({
             isInEditMode: !this.state.isInEditMode
         })
-        
+
     }
 
     updateWeight = (e) => {
         this.setState({
-            initWeight: e.target.value, 
+            initWeight: e.target.value,
         })  
     }
 
     updateGender = (e) => { 
         this.setState({
-            initGender: e.target.value,     
+            initGender: e.target.value,
         })  
     }
 
     updateFeet = (e) => { 
         this.setState({
-            initFeet: e.target.value,     
+            initFeet: e.target.value,
         })  
     }
 
     updateInches = (e) => { 
         this.setState({
-            initInches: e.target.value,     
+            initInches: e.target.value,
         })  
     }
 
     updateBMI = (e) => { 
         this.setState({
-            initBMI: e.target.value,     
+            initBMI: e.target.value,
         })  
     }
 
@@ -175,14 +174,31 @@ class Settings extends Component {
     renderDefaultView = () => {
         let token = window.localStorage.getItem('session-token');
         const tokenHeader = { 'auth-token': token };
-
-        axios.get()
+        if (!loaded) {
+        axios.get('https://nutrition-heroku.herokuapp.com//getBio', {
+            headers: tokenHeader
+        })
+        .then(response => {
+            console.log(response.data)
+            this.setState({
+                finalWeight: response.data.weight,
+                finalGender: response.data.gender,
+                finalFeet: response.data.heightFeet,
+                finalInches: response.data.heightInch,
+                finalBMI: response.data.bmi
+            })
+        })
+        .catch(error => {
+            console.log(error.response)
+        })
+        loaded = true;
+    }
 
         return <div className="biogrid-container1">
-        <h3>Weight: {this.state.weight} pounds</h3>
-        <h3>Gender: {this.state.gender}</h3>
-        <h3>Height: {this.state.feet} feet {this.state.inches} inches</h3>
-        <h3>BMI: {this.state.BMI}</h3>
+        <h3>Weight: {this.state.finalWeight} pounds</h3>
+        <h3>Gender: {this.state.finalGender}</h3>
+        <h3>Height: {this.state.finalFeet} feet {this.state.finalInches} inches</h3>
+        <h3>BMI: {this.state.finalBMI}</h3>
         </div>
         
     }
@@ -269,7 +285,9 @@ class Settings extends Component {
 
         // Send Post to Send Name Data
         // http://localhost:8080/editUser/name
-        axios.post('https://nutrition-heroku.herokuapp.com/editUser/name', 
+
+        axios.post('https://nutrition-heroku.herokuapp.com//editUser/name',
+
         {
             name: this.state.fullName,
             nameConfirm: this.state.confirmFull
@@ -300,10 +318,12 @@ class Settings extends Component {
         // Grab the token from localStorage and store it in a header object.
         let token = window.localStorage.getItem('session-token');
         const tokenHeader = { 'auth-token': token };
-        
+
         // Send Post to Send Password Data
         // http://localhost:8080/editUser/password
-        axios.post('https://nutrition-heroku.herokuapp.com/editUser/password', 
+
+        axios.post('https://nutrition-heroku.herokuapp.com//editUser/password',
+
         {
             password: this.state.password,
             passwordConfirm: this.state.confirmPassword
@@ -350,8 +370,8 @@ class Settings extends Component {
                         <Link to="/Daily">Daily Intake</Link>
                     </a>
                     <div className="nav-right">
-                        <a href="#Settings">
-                            <Link to="/Settings"className="active">Settings</Link>
+                        <a href="#Settings" className="active">
+                            <Link to="/Settings">Settings</Link>
                         </a>
                         <a href="#Home" onclick="logout()">
                             <Link to="/Home">Log Out</Link>
@@ -360,7 +380,7 @@ class Settings extends Component {
                     </div>
                 </div>
 
-                    <div className = "setting-container"> 
+                    <div className = "setting-container">
                         <form id="my-settings">
                             <h1>Account Settings</h1>
                             <div className="name-box">
@@ -403,7 +423,7 @@ class Settings extends Component {
                                 }
                             </div>
                         </form>
-                    </div>  
+                    </div>
             </div>
 
             <div className="user-stats">

@@ -32,6 +32,7 @@ router.route('/addFood')
         
         // Instantiate the new user
         var consumed = new Consumed();
+        consumed.name = req.body.name;
         consumed.foodId = req.body.foodId;
         consumed.date = req.body.date;
         consumed.quantity = req.body.quantity;
@@ -231,7 +232,7 @@ router.route('/getDeficiencies')
                 return;
             }
 
-            
+
             // Filter consumed array to only include from right now to dayCount provided
             dateCheck = new Date(req.body.date);
             dateCheck.setHours(0,0,0,0);
