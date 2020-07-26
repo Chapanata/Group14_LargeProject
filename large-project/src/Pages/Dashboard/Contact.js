@@ -61,7 +61,7 @@ class Contact extends Component {
                         <Link to="/Contact">Contact Us</Link>
                     </a>
                     <div className="fooder-right">
-                        <p>Nutrition Manager Deluxe TM</p>
+                        <p>Nutrition Manager Deluxe&trade;</p>
                     </div>
                 </div>
             </div>
