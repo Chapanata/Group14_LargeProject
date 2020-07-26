@@ -26,16 +26,28 @@ router.route('/getBio')
                 return;
             }
 
+            console.log("weight = " + dbUser.weight);
+
             // If any of the fields are null in the db, we want to make
             // sure that the json returns a variable with a null value.
+            // Otherwise, return the actual value from the database.
+            var weight = dbUser.weight;
             if (dbUser.weight == null)
                 var weight = null;
+            
+            var gender = dbUser.gender;
             if (dbUser.gender == null)
                 var gender = null;
+            
+            var heightFeet = dbUser.heightFeet;
             if (dbUser.heightFeet == null)
                 var heightFeet = null;
+
+            var heightInch = dbUser.heightInch;
             if (dbUser.heightInch == null)
                 var heightInch = null;
+
+            var bmi = dbUser.bmi;
             if (dbUser.bmi == null)
                 var bmi = null;
 
@@ -46,8 +58,7 @@ router.route('/getBio')
                     heightFeet: heightFeet,
                     heightInch: heightInch,
                     bmi: bmi                
-                }
-                    ); 
+                }); 
         });
     });
 
