@@ -75,6 +75,11 @@ class Home extends Component {
                             </h2>
                         </div>
                     </div>
+<<<<<<< HEAD
+                </div>
+
+=======
+>>>>>>> 7d4295664df54294bbd6479c0295f0d22a2892ab
 
                 <div class="footer">
                     <a href="#Home" className="active">
