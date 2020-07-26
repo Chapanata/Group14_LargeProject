@@ -111,9 +111,6 @@ class Settings extends Component {
         let token = window.localStorage.getItem('session-token');
         const tokenHeader = { 'auth-token': token };
         // Send to Server
-
-        axios.post('http://localhost:8080/editUser/physical',
-
         axios.post('https://nutrition-heroku.herokuapp.com//editUser/physical',
         {
             gender: this.state.initGender,
@@ -132,14 +129,9 @@ class Settings extends Component {
         .catch(error => {
             console.log(error.response)
         })
-<<<<<<< HEAD
-
-
-=======
 
         loaded = false;
 
->>>>>>> origin/master
         this.setState({
             isInEditMode: !this.state.isInEditMode
         })
@@ -291,11 +283,7 @@ class Settings extends Component {
 
         // Send Post to Send Name Data
         // http://localhost:8080/editUser/name
-
-        axios.post('http://localhost:8080/editUser/name',
-
         axios.post('https://nutrition-heroku.herokuapp.com//editUser/name',
-
         {
             name: this.state.fullName,
             nameConfirm: this.state.confirmFull
@@ -329,7 +317,6 @@ class Settings extends Component {
 
         // Send Post to Send Password Data
         // http://localhost:8080/editUser/password
-        axios.post('http://localhost:8080/editUser/password',
         axios.post('https://nutrition-heroku.herokuapp.com//editUser/password',
         {
             password: this.state.password,
@@ -370,8 +357,8 @@ class Settings extends Component {
                         <Link to="/Daily">Daily Intake</Link>
                     </a>
                     <div className="nav-right">
-                        <a href="#Settings">
-                            <Link to="/Settings"className="active">Settings</Link>
+                        <a href="#Settings" className="active">
+                            <Link to="/Settings">Settings</Link>
                         </a>
                         <a href="#Home">
                             <Link to="/Home">Log Out</Link>
