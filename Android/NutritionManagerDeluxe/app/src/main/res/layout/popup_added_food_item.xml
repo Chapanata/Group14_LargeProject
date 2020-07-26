@@ -116,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Enter the amount of items to add:"
+                android:text="Quantity"
                 android:textColor="@color/black" />
 
             <LinearLayout
@@ -125,13 +125,6 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/image_btn_subtract"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/ic_remove"
-                    android:tint="@color/colorAccent" />
 
                 <TextView
                     android:id="@+id/txt_num_items"
@@ -143,21 +136,15 @@
                     android:textColor="@color/black"
                     android:textSize="30dp" />
 
-                <ImageButton
-                    android:id="@+id/image_button_add"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/ic_add"
-                    android:tint="@color/colorAccent" />
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_add_food"
+                android:id="@+id/btn_delete_food"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:background="@color/colorAccent"
-                android:text="Add" />
+                android:text="Delete" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
