@@ -176,7 +176,7 @@ class Settings extends Component {
         let token = window.localStorage.getItem('session-token');
         const tokenHeader = { 'auth-token': token };
 
-        axios.get()
+        // axios.get()
 
         return <div className="biogrid-container1">
         <h3>Weight: {this.state.weight} pounds</h3>
