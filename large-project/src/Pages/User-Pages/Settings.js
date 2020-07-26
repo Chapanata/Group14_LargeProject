@@ -111,11 +111,10 @@ class Settings extends Component {
         let token = window.localStorage.getItem('session-token');
         const tokenHeader = { 'auth-token': token };
         // Send to Server
-<<<<<<< HEAD
+
         axios.post('http://localhost:8080/editUser/physical',
-=======
+
         axios.post('https://nutrition-heroku.herokuapp.com//editUser/physical',
->>>>>>> origin/master
         {
             gender: this.state.initGender,
             weight: this.state.initWeight,
@@ -292,11 +291,11 @@ class Settings extends Component {
 
         // Send Post to Send Name Data
         // http://localhost:8080/editUser/name
-<<<<<<< HEAD
+
         axios.post('http://localhost:8080/editUser/name',
-=======
+
         axios.post('https://nutrition-heroku.herokuapp.com//editUser/name',
->>>>>>> origin/master
+
         {
             name: this.state.fullName,
             nameConfirm: this.state.confirmFull
@@ -330,11 +329,8 @@ class Settings extends Component {
 
         // Send Post to Send Password Data
         // http://localhost:8080/editUser/password
-<<<<<<< HEAD
         axios.post('http://localhost:8080/editUser/password',
-=======
         axios.post('https://nutrition-heroku.herokuapp.com//editUser/password',
->>>>>>> origin/master
         {
             password: this.state.password,
             passwordConfirm: this.state.confirmPassword
