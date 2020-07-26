@@ -7,6 +7,7 @@ var pass = ""
 var confirm = ""
 var newName = ""
 var confirmName =""
+var loaded = false
 
 const passRegex = RegExp(/^(?=.*\d)(?=.*[!?<>@#$%^&*])(?=.*[a-zA-Z]).{8,}$/);
 
@@ -43,9 +44,7 @@ class Settings extends Component {
         finalInches: '',
         finalBMI: '',
         isInEditMode: false,
-        buttonText: false,
-        apiError: '',
-        userError: ''
+        loaded: true,
     }
 
     handleChange = e => {
@@ -123,9 +122,6 @@ class Settings extends Component {
             headers: tokenHeader
         })
         .then(response => {
-            console.log(response.data)
-            console.log(response.data.Success)
-            console.log(response.data.Error)
             this.setState({
                 userError: response.data.Error
             })
@@ -134,6 +130,7 @@ class Settings extends Component {
             console.log(error.response)
         })
         
+        loaded = false;
         
         this.setState({
             isInEditMode: !this.state.isInEditMode
@@ -175,7 +172,7 @@ class Settings extends Component {
     renderDefaultView = () => {
         let token = window.localStorage.getItem('session-token');
         const tokenHeader = { 'auth-token': token };
-
+        if (!loaded) {
         axios.get('https://nutrition-heroku.herokuapp.com//getBio', {
             headers: tokenHeader
         })
@@ -192,6 +189,8 @@ class Settings extends Component {
         .catch(error => {
             console.log(error.response)
         })
+        loaded = true;
+    }
 
         return <div className="biogrid-container1">
         <h3>Weight: {this.state.finalWeight} pounds</h3>
