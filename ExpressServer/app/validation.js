@@ -1,6 +1,8 @@
 // validation.js
 
-const Joi = require('@hapi/joi');
+const JoiBase = require('@hapi/joi');
+const JoiDate = require("@hapi/joi-date");
+const Joi = JoiBase.extend(JoiDate); // extend Joi with Joi Date
 
   //-----------------------------//
  //      User Validation        //
@@ -64,6 +66,7 @@ const addFoodValidation = data =>
 {
     const schema = Joi.object({
         foodId: Joi.number().required(),
+        date: Joi.date().format('MM/DD/YYYY hh:mm:ss').required(),
         quantity: Joi.number().required(),
         energy: Joi.number().required(),
         totalFat: Joi.number().required(),
@@ -81,7 +84,17 @@ const addFoodValidation = data =>
 const getFoodsValidation = data =>
 {
     const schema = Joi.object({
-        dayCount: Joi.number().required()
+        date: Joi.date().format('MM/DD/YYYY').required()
+    });
+
+    return schema.validate(data);
+}
+
+// Get Deficiencies validation
+const getDeficienciesValidation = data =>
+{
+    const schema = Joi.object({
+        date: Joi.date().format('MM/DD/YYYY').required()
     });
 
     return schema.validate(data);
@@ -99,4 +112,5 @@ const removeFoodValidation = data =>
 
 module.exports.addFoodValidation = addFoodValidation;
 module.exports.getFoodsValidation = getFoodsValidation;
+module.exports.getDeficienciesValidation = getDeficienciesValidation;
 module.exports.removeFoodValidation = removeFoodValidation;

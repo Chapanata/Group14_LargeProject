@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import logo from './../../Resources/spoonfork_only.png';
+import axios from 'axios';
 
+var pass = ""
+var confirm = ""
+var newName = ""
+var confirmName =""
+
+const passRegex = RegExp(/^(?=.*\d)(?=.*[!?<>@#$%^&*])(?=.*[a-zA-Z]).{8,}$/);
 
 class Settings extends Component {
 
@@ -9,61 +17,167 @@ class Settings extends Component {
         this.state = {
             showName: false,
             showEmail: false,
-            showPass: false
+            showPass: false,
+            fullName: null,
+            confirmFull: null,
+            password: null,
+            confirmPassword: null,
+            errors: {
+                fullName:"",
+                confirmFull:"",
+                password:"",
+                confirmPassword:"",
+            }
         }
     }
     
     state = {
-        weight: "0",
-        gender: "Choose Gender",
-        feet: "0",
-        inches: "0",
-        buttonText: "0",
-        BMI: "0",
+        initWeight: "0",
+        initGender: "Choose Gender",
+        initFeet: "0",
+        initInches: "0",
+        initbuttonText: "0",
+        finalWeight: '',
+        finalGender: '',
+        finalFeet: '',
+        finalInches: '',
+        finalBMI: '',
         isInEditMode: false,
-        buttonMode: false,
         buttonText: false,
-        
+        apiError: '',
+        userError: ''
     }
+
+    handleChange = e => {
+
+
+
+        e.preventDefault();
+        const { name, value } = e.target;
+        let errors = this.state.errors;
+
+
+        switch (name) {
+
+          case 'fullName':
+            newName = value;
+            errors.fullName = value.length < 1
+            ? "Cannot be empty"
+            : "";
+          break;
+
+          case 'confirmName':
+              confirmName = value;
+            if(name === confirmName) {
+                errors.confirmFull = "Names do not match"
+            }
+            else {
+                errors.confirmFull = ""
+            }
+          break;
+
+          case 'password':
+            pass = value;
+            if (passRegex.test(value) != true) {
+              errors.password = "Minimum 6 characters required with at least 1 number, 1 letter, and 1 special character";
+            }
+
+            else {
+              errors.password ="";
+            }
+
+          break;
+
+          case 'confirmPassword':
+            confirm = value;
+            if (confirm !== pass){
+              errors.confirmPassword = "Passwords do not match";
+            }
+
+            else {
+              errors.confirmPassword = "";
+            }
+
+          break;
+
+          default:
+            break;
+        }
+
+        this.setState({errors, [name]: value}, () => console.log(this.state));
+      };
+
+
     changeEditMode = () => {
+        let token = window.localStorage.getItem('session-token');
+        const tokenHeader = { 'auth-token': token };
+        // Send to Server
+        axios.post('http://localhost:8080/editUser/physical',
+        {
+            gender: this.state.initGender,
+            weight: this.state.initWeight,
+            heightFeet: this.state.initFeet,
+            heightInch: this.state.initInches
+        },
+        {
+            headers: tokenHeader
+        })
+        .then(response => {
+            console.log(response.data)
+            console.log(response.data.Success)
+            console.log(response.data.Error)
+            this.setState({
+                userError: response.data.Error
+            })
+        })
+        .catch(error => {
+            console.log(error.response)
+        })
+
+
         this.setState({
             isInEditMode: !this.state.isInEditMode
         })
-        console.log("This works");
-        console.log("Weight:" + this.state.weight)
+
     }
 
     updateWeight = (e) => {
         this.setState({
-            weight: e.target.value, 
+            initWeight: e.target.value,
         })  
     }
 
     updateGender = (e) => { 
         this.setState({
-            gender: e.target.value,     
+            initGender: e.target.value,
         })  
     }
 
     updateFeet = (e) => { 
         this.setState({
-            feet: e.target.value,     
+            initFeet: e.target.value,
         })  
     }
 
     updateInches = (e) => { 
         this.setState({
-            inches: e.target.value,     
+            initInches: e.target.value,
         })  
     }
 
     updateBMI = (e) => { 
         this.setState({
-            BMI: e.target.value,     
+            initBMI: e.target.value,
         })  
     }
 
+
     renderDefaultView = () => {
+        let token = window.localStorage.getItem('session-token');
+        const tokenHeader = { 'auth-token': token };
+
+        // axios.get()
+
         return <div className="biogrid-container1">
         <h3>Weight: {this.state.weight} pounds</h3>
         <h3>Gender: {this.state.gender}</h3>
@@ -74,6 +188,10 @@ class Settings extends Component {
     }
 
     renderEditView = () => {
+        console.log("Weight:" + this.state.initWeight)
+        console.log("Gender:" + this.state.initGender)
+        console.log("Feet:" + this.state.initFeet)
+        console.log("Inches:" + this.state.initInches)
         return <div class="biogrid-container1">
         <h3>Weight: 
         {
@@ -97,7 +215,7 @@ class Settings extends Component {
                 </select>
             
             : <div>
-                {this.state.gender}
+                {this.state.initGender}
             </div>
         }
 
@@ -110,7 +228,7 @@ class Settings extends Component {
                 <input className="bio-inputs" type="text" onChange={this.updateFeet}/>
             
             : <div className="feet">
-                {this.state.feet};
+                {this.state.initFeet};
             </div>
                 
         }
@@ -121,25 +239,11 @@ class Settings extends Component {
                 <input className="bio-inputs" type="text" onChange={this.updateInches}/>
             
             : <div className="inches">
-                {this.state.inches};
+                {this.state.initInches};
             </div>
                 
         }
         Inches
-        </h3>
-
-        <h3>BMI: 
-        {
-            this.state.isInEditMode 
-            ? 
-                <input className="bio-inputs" type="text" onChange={this.updateBMI} />
-              
-              
-            : <div>
-                {this.state.BMI}
-              </div>
-
-        } 
         </h3>
         <button type="button" class="saveStats" onClick={this.changeEditMode}>Save Changes</button>
         </div>
@@ -151,85 +255,126 @@ class Settings extends Component {
         })
     }
 
-    showEmailFields() {
-        this.setState({
-            showEmail: true
-        })
-    }
-
     showPassFields() {
         this.setState({
             showPass: true
         })
     }
 
+    // Save Name Changes
     hideNameFields() {
+        // Grab the token from localStorage and store it in a header object.
+        let token = window.localStorage.getItem('session-token');
+        const tokenHeader = { 'auth-token': token };
+
+        // Send Post to Send Name Data
+        // http://localhost:8080/editUser/name
+        axios.post('http://localhost:8080/editUser/name',
+        {
+            name: this.state.fullName,
+            nameConfirm: this.state.confirmFull
+        },
+        {
+            // Send the token to the header when calling the API
+            headers: tokenHeader
+        })
+        .then(response => {
+            console.log(response.data)
+            console.log(response.data.Success)
+            console.log(response.data.Error)
+            this.setState({
+                apiError: response.data.Error
+            })
+        })
+        .catch(error => {
+            console.log(error.response)
+        })
+
         this.setState({
             showName: false
         })
     }
 
-    hideEmailFields() {
-        this.setState({
-            showEmail: false
-        })
-    }
-
+    // Save Pass Changes
     hidePassFields() {
+        // Grab the token from localStorage and store it in a header object.
+        let token = window.localStorage.getItem('session-token');
+        const tokenHeader = { 'auth-token': token };
+
+        // Send Post to Send Password Data
+        // http://localhost:8080/editUser/password
+        axios.post('http://localhost:8080/editUser/password',
+        {
+            password: this.state.password,
+            passwordConfirm: this.state.confirmPassword
+        },
+        {
+            // Send the token to the header when calling the API
+            headers: tokenHeader
+        })
+        .then(response => {
+            console.log(response.data)
+            console.log(response.data.Success)
+            console.log(response.data.Error)
+            this.setState({
+                apiError: response.data.Error
+            })
+        })
+        .catch(error => {
+            console.log(error.response)
+        })
+
         this.setState({
             showPass: false
         })
     }
 
     render() {
+        const { errors } = this.state;
         return(
         <div className="page">
             <div className="box">
                 <div className="nav-bar">
-
-                    <Link to="/Overview" >Overview</Link>
-                    <Link to="#">Food</Link>
-                    <Link to="/Daily">Daily Intake</Link>
-                    <Link to="/Settings" className="active">Settings</Link>
-                    <div className="nav-right"><Link to="/Home">Log Out</Link></div>
-
+                    <img src={logo} className="logo"/>
+                    <a href="#Dictionary">
+                        <Link to="/Dictionary">Food Dictionary</Link>
+                    </a>
+                    <a href="#Daily">
+                        <Link to="/Daily">Daily Intake</Link>
+                    </a>
+                    <div className="nav-right">
+                        <a href="#Settings">
+                            <Link to="/Settings"className="active">Settings</Link>
+                        </a>
+                        <a href="#Home">
+                            <Link to="/Home">Log Out</Link>
+                        </a>
+                    </div>
                 </div>
-                <div className="highlight-bar"></div>
 
-                    <div className = "inner-container"> 
+                    <div className = "setting-container">
                         <form id="my-settings">
                             <h1>Account Settings</h1>
                             <div className="name-box">
                                 <h2>Change Name:</h2>
-                                <button type="button" class="name" onClick={()=>this.showNameFields()}>Change</button>
+                                <button type="button" className="name" onClick={()=>this.showNameFields()}>Change</button>
                                 {
                                     this.state.showName
                                     // If true show name field
                                     ?<div className="change-name">
-                                        <input type="text" name="full-name" placeholder="Enter New Full Name" required></input>
-                                        <input type="text" name="full-name" placeholder="Confirm Full Name" required></input>
+                                        <input type="text" name="fullName" placeholder="Enter New Full Name" onChange={this.handleChange} required></input>
+                                        <br></br>
+                                        <input type="text" name="confirmFull" placeholder="Confirm Full Name" onChange={this.handleChange} required></input>
+                                        <br></br>
+                                        {/* {errors.confirmFull.length > 0 && (
+                                            <span className="error">{errors.confirmFull}</span>
+                                        )} */}
                                         <button type="button" class="save" onClick={()=>this.hideNameFields()}>Save Changes</button>
                                     </div>
                                     // Else hide name field
                                     :null
                                 }
                                 
-                            </div>
-
-                            <div className="email-box">
-                                <h2>Change E-Mail Address:</h2>
-                                <button type="button" class="name" onClick={()=>this.showEmailFields()}>Change</button>
-                                {
-                                    this.state.showEmail
-                                    // If true show email fields
-                                    ?<div className="change-email">
-                                        <input type="email" name="email" placeholder="Enter New E-Mail Address" required></input>
-                                        <input type="email" name="email" placeholder="Confirm E-Mail Address" required></input>
-                                        <button type="button" class="save" onClick={()=>this.hideEmailFields()}>Save Changes</button>
-                                    </div>
-                                    // Else hide email fields
-                                    :null
-                                }
                             </div>
 
                             <div className="pass-box">
@@ -239,8 +384,10 @@ class Settings extends Component {
                                     this.state.showPass
                                     // If true show password fields
                                     ?<div className="change-pass">
-                                        <input type="password" name="password" placeholder="Enter New Password" required></input>
-                                        <input type="password" name="password" placeholder="Confirm Password" required></input>
+                                        <input type="password" name="password" placeholder="Enter New Password" onChange={this.handleChange} required></input>
+                                        <br></br>
+                                        <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={this.handleChange} required></input>
+                                        <br></br>
                                         <button type="button" class="save" onClick={()=>this.hidePassFields()}>Save Changes</button>
                                     </div>
                                     // Else hide password fields
@@ -248,14 +395,11 @@ class Settings extends Component {
                                 }
                             </div>
                         </form>
-                    
-                        </div>  
-                       
-              
+                    </div>
             </div>
+
             <div className="user-stats">
             <h2>Your Statistics</h2>
-
                 {/* Will Contain Render Edits */}
                 <div class="biogrid-container1">
                     {
@@ -265,13 +409,30 @@ class Settings extends Component {
 
                     }
                 </div>
-
-                
                 <button type="button" class="changeStats" onClick={this.changeEditMode}>Make Changes</button>      
+            </div>
+
+            <div class="footer">
+                <a href="#Home">
+                    <Link to="/Home">Home</Link>
+                </a>
+                <a href="#AboutUs">
+                    <Link to="/About">About Us</Link>
+                </a>
+                <a href="#ContactUs">
+                    <Link to="/Contact">Contact Us</Link>
+                </a>
+                <div className="fooder-right">
+                    <p>Nutrition Manager Deluxe TM</p>
+                </div>
             </div>
         </div>
         )
     }
 }
 
+/*
+{" "}
+                                    {reactStringReplace(content, /(\d+)/g, (match, i) => ( <span key={i} style={{ color: 'red' }}>{match}</span>))}
+                                    {" "}!*/
 export default Settings;

@@ -18,10 +18,13 @@ class Overview extends Component {
                 <div className="nav-bar">
 
                     <Link to="/Overview" className="active">Overview</Link>
-                    <Link to="#">Food</Link>
+                    <Link to="/Dictionary">Food Dictionary</Link>
                     <Link to="/Daily" >Daily Intake</Link>
                     <Link to="/Settings">Settings</Link>
-                    <div className="nav-right"><Link to="/Home">Log Out</Link></div>
+                    <div className="nav-right">
+                    <Link to="/Settings">Settings</Link>
+                        <Link to="/Home">Log Out</Link>
+                    </div>
 
                 </div>
                 <div className="highlight-bar"></div>

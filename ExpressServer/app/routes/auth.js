@@ -160,7 +160,7 @@ router.route('/confirmCode/:email/:confirmCode')
                     {
                         if (err)
                             res.send(err);
-                });
+                    });
 
                 res.json({ Success: "true" });
                 return;
@@ -221,9 +221,14 @@ router.route('/login')
             }
 
             // Create a session token for the user
-            const token = jwt.sign({_id: dbUser._id}, process.env.TOKEN_SECRET);
+            const token = jwt.sign(
+                { _id: dbUser._id,
+                  name: dbUser.name },
+                 process.env.TOKEN_SECRET,
+                 { expiresIn: '3d' });
+
+            // Send the token to the header
             res.header('auth-token', token);
-            res.header('user-name', dbUser.name);
 
             // Assign the session token to the user
             User.updateOne( 

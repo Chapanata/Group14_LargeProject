@@ -1,7 +1,6 @@
 // verifyToken.js
 
 const jwt = require('jsonwebtoken');
-const router = require('./auth');
 
 module.exports = function(req, res, next)
 {

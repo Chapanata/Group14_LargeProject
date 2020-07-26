@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-
 }
 
 .App-logo {
@@ -71,27 +70,30 @@ html
     color:black;
 }
 
-/* Nav Bar */
-
 .logo
 {
-    display: inline-block;
-    position:relative;
-    width:35px;
-    padding:5px;
-    float:left;
+    position: relative;
+    width: 50px;
+    padding: 5px;
+    padding-right: 80px;
+    float: center;
 }
+
+/* Nav Bar */
 
 .nav-bar
 {
-    position: relative;
+    position: fixed;
     background-color: #333;
     overflow: hidden;
-    height:44px;
+    width: 100%;
+    top: 0;
+    z-index: 9999;
 }
 
 .nav-bar a {
     float: left;
+    display: block;
     color: #f2f2f2;
     text-align: center;
     padding:10px;
@@ -104,6 +106,35 @@ html
     background-color: rgba(23, 23, 23, 0.9);
 }
 
+.nav-right {
+    float: right;
+}
+
+.home-nav-bar {
+    position: fixed;
+    background-color: #333;
+    overflow: hidden;
+    width: 210px;
+    top: 0;
+    z-index: 9999;
+    right: 0;
+}
+.home-nav-bar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 16pt;
+}
+
+.home-nav-bar a:hover {
+    color: #ffffff;
+    background-color: rgba(23, 23, 23, 0.9);
+}
+
+/*
 .nav-bar a:active {
     background-color: #DA667B;
     color: white;
@@ -113,15 +144,51 @@ html
 {
    background-color: #DA667B;
 }
+*/
 
-
-/* Nav Bar Bottom Bar */
-.highlight-bar
-{
-    width:100%;
-    background-color:#DA667B;
-    height:3px;
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    overflow: hidden;
 }
+.footer a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding:10px;
+    text-decoration: none;
+    font-size: 16pt;
+}
+
+.footer a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding:10px;
+    text-decoration: none;
+    font-size: 16pt;
+    z-index: 9999;
+}
+
+.footer a:hover {
+    color: #ffffff;
+    background-color: rgba(23, 23, 23, 0.9);
+}
+
+.fooder-right {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    padding-right: 15px;
+    font-size: 16pt;
+}
+
 
 /* Main Page */
 .mainBox {
@@ -132,11 +199,9 @@ html
 }
 
 .mainText {
-
     padding: 20px;
     text-align: center;
     margin-left: 50px;
-
     margin: 0 auto;
 }
 
@@ -206,6 +271,11 @@ html
     color: red;
 
 }
+
+.success {
+    margin-top: 50x;
+    color: green;
+}
 .input-group {
     display: flex;
     flex-direction: column;
@@ -250,15 +320,14 @@ input.error {
 {
     padding-top:10px;
 }
+
 .page
 {
     background-color:hsla(0,0%,100%,.8);
-    height: 120vh;
+    height: 100vmax;
 }
 
 /* Backend Pages */
-
-
 
 .init-container {
     position: absolute;
@@ -336,14 +405,6 @@ input.error {
     padding: 0;
 }
 
-
-
-
-
-.nav-right {
-    float: right;
-}
-
 .inner-container {
     float:left;
     background-color: white;
@@ -361,6 +422,16 @@ input.error {
 }
 
 /* Settings Styling */
+
+.setting-container {
+    float:left;
+    background-color: white;
+    border: 3px solid #da667b;
+    height: 60vh;
+    width: 70%;
+    border-radius: 10px;
+    margin-top: 69px;
+}
 
 .name-box{
     display: inline-block;
@@ -447,8 +518,13 @@ input.error {
     width: 80%;
 }
 
+.name-box input {
+    margin-bottom: 15px;
+    width: 80%;
+}
 .pass-box input {
     margin-bottom: 15px;
+    width: 80%;
 }
 
 .user-stats {
@@ -461,9 +537,24 @@ input.error {
     border: 3px solid #da667b;
     box-sizing: border-box;
     text-align: center;
-    
+    margin-top: 69px;
 }
 
+.changeStats-hide {
+    display: none;
+    border: 0;
+    font-size: 17px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 30px;
+    width: 80%;
+    margin-top: 35px;
+}
 
 /* Overview Styling */
 .bio-container1{
@@ -571,64 +662,192 @@ input{
  */
 
  .CircularProgressbar {
-    /*
-     * This fixes an issue where the CircularProgressbar svg has
-     * 0 width inside a "display: flex" container, and thus not visible.
-     */
+/*
+    * This fixes an issue where the CircularProgressbar svg has
+    * 0 width inside a "display: flex" container, and thus not visible.
+    */
+width: 100%;
+/*
+    * This fixes a centering issue with CircularProgressbarWithChildren:
+    * https://github.com/kevinsqi/react-circular-progressbar/issues/94
+    */
+vertical-align: middle;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+stroke: #3e98c7;
+stroke-linecap: round;
+transition: stroke-dashoffset 0.5s ease 0s;
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+stroke: #d6d6d6;
+/* Used when trail is not full diameter, i.e. when props.circleRatio is set */
+stroke-linecap: round;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+fill: #3e98c7;
+font-size: 20px;
+dominant-baseline: middle;
+text-anchor: middle;
+}
+
+.CircularProgressbar .CircularProgressbar-background {
+fill: #d6d6d6;
+}
+
+/*
+* Sample background styles. Use these with e.g.:
+*
+*   <CircularProgressbar
+*     className="CircularProgressbar-inverted"
+*     background
+*     percentage={50}
+*   />
+*/
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-background {
+fill: #3e98c7;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-text {
+fill: #fff;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-path {
+stroke: #fff;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-trail {
+stroke: transparent;
+}
+
+/*Food-Dictionary Page*/
+.init-food-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+}
+
+.search-bar {
+    position: relative;
+    float: left;
+    flex-direction: column;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+    width: 90%;
+}
+
+.search-bar input{
+    font-size: 30px;
+    color: #747474;
+    font-weight: 600px;
+    padding-left: 25px;
     width: 100%;
-    /*
-     * This fixes a centering issue with CircularProgressbarWithChildren:
-     * https://github.com/kevinsqi/react-circular-progressbar/issues/94
-     */
-    vertical-align: middle;
-  }
 
-  .CircularProgressbar .CircularProgressbar-path {
-    stroke: #3e98c7;
-    stroke-linecap: round;
-    transition: stroke-dashoffset 0.5s ease 0s;
-  }
+    float: left;
+    height: 100%;
+    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid #da667b;
+    box-sizing: border-box;
+    text-align: left;
+}
 
-  .CircularProgressbar .CircularProgressbar-trail {
-    stroke: #d6d6d6;
-    /* Used when trail is not full diameter, i.e. when props.circleRatio is set */
-    stroke-linecap: round;
-  }
+.search-button {
+    overflow: hidden;
+    float: right;
+    padding-bottom: 10px;
+    width: 9%;
+}
 
-  .CircularProgressbar .CircularProgressbar-text {
-    fill: #3e98c7;
-    font-size: 20px;
-    dominant-baseline: middle;
-    text-anchor: middle;
-  }
+.enter-food-button {
+    padding: 2px 30px;
+    border: 0;
+    font-size: 16px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+}
 
-  .CircularProgressbar .CircularProgressbar-background {
-    fill: #d6d6d6;
-  }
+.results-box {
+    height: 100%;
+    width: 100%;
+    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid #da667b;
+    margin-top: 10px;
+    box-sizing: border-box;
+    text-align: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 10px;
+}
 
-  /*
-   * Sample background styles. Use these with e.g.:
-   *
-   *   <CircularProgressbar
-   *     className="CircularProgressbar-inverted"
-   *     background
-   *     percentage={50}
-   *   />
-   */
-  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-background {
-    fill: #3e98c7;
-  }
+.enter-select-button {
+    padding: 2px 30px;
+    border: 0;
+    font-size: 16px;
+    border-radius: 3px;
+    font-family: Oxygen, sans-serif;
+    color: white;
+    background-color: #DA667B;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+    height: 40px;
+    text-align: center;
+    margin-left: 10px;
+}
 
-  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-text {
-    fill: #fff;
-  }
+.food-container1 {
+    float: top;
+    height: 20%;
+    width: 100%;
+}
 
-  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-path {
-    stroke: #fff;
-  }
+.food-container2 {
+    float: bottom;
+    height: 100%;
+    width: 100%;
+    margin-top: 10px;
+    padding-top: 50px;
+}
 
-  .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-trail {
-    stroke: transparent;
+#selectDropdown {
+    width: 50%;
+    font-size: 20pt;
+}
+
+label {
+    font-size: 20pt;
+    padding-right: 10px;
+}
+
+
+.table1 {
+    border: 1px solid black;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 15px;
+    text-align: left;
+}
+
+th, td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
   }
 
 

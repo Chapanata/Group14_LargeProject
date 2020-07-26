@@ -97,9 +97,12 @@ class Login extends Component {
           this.setState({
             apiError: response.data.Error
           })
-          if(response.data.UserID || response.data.SessionToken || response.data.Name  !== undefined) {
+          if(response.data.UserID != undefined && response.data.SessionToken != undefined && response.data.Name  != undefined)
+          {
             console.log("YES IT WORKED")
             window.location = "../Daily"
+
+            window.localStorage.setItem('session-token', response.data.SessionToken);
 
           }
           else {
@@ -206,11 +209,14 @@ class Login extends Component {
                       <span className="error">{this.state.apiError}<br></br><br></br></span>
                     )} 
                      
+                <br></br>
+                <br></br>
+                <br></br>
                 <button type="submit" className="some-button" >LOGIN</button>
               
 
                 <div className="backToLog"><Link to="/register">Don't have an Account?</Link></div>
-                <div className="forgot"><a href="#">Forgot your Password?</a></div>
+                <div className="forgot"><Link to="/Forgot">Forgot your Password</Link></div>
                 <div className="backToLog"><Link to="/home">Go back home?</Link></div>
                 </form>
               </div>      
