@@ -72,8 +72,8 @@ class Home extends Component {
                 </div>
 
                 <div class="footer">
-                    <a href="#Home">
-                        <Link to="/Home"className="active">Home</Link>
+                    <a href="#Home" className="active">
+                        <Link to="/Home">Home</Link>
                     </a>
                     <a href="#AboutUs">
                         <Link to="/About">About Us</Link>

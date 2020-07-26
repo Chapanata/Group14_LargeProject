@@ -82,8 +82,12 @@ class Dictionary extends Component {
             for (var i = 0; i < response.data.foods.length; i++) {
 
                 var option = document.createElement("option");
-
                 option.text = response.data.foods[i].description;
+                if (response.data.foods[i].dataType == "Branded")
+                {
+                    option.text = "[" + response.data.foods[i].brandOwner + "] " + response.data.foods[i].description;
+                }
+
                 option.value = response.data.foods[i].fdcId;
 
                 selectDropdown.appendChild(option);
@@ -253,10 +257,10 @@ class Dictionary extends Component {
             <div className="page">
                 <div className="nav-bar">
                     <img src={logo} className="logo"/>
-                    <a href="#Dictionary">
-                        <Link to="/Dictionary"className="active">Food Dictionary</Link>
+                    <a href="#Dictionary" className="active">
+                        <Link to="/Dictionary">Food Dictionary</Link>
                     </a>
-                    <a href="#Daily">
+                    <a href="#Daily" >
                         <Link to="/Daily">Daily Intake</Link>
                     </a>
                     <div className="nav-right">
