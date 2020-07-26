@@ -112,12 +112,12 @@ class Settings extends Component {
         let token = window.localStorage.getItem('session-token');
         const tokenHeader = { 'auth-token': token };
         // Send to Server
-        axios.post('http://localhost:8080/editUser/physical', 
+        axios.post('https://nutrition-heroku.herokuapp.com/editUser/physical', 
         {
             gender: this.state.initGender,
             weight: this.state.initWeight,
+            heightInch: this.state.initInches,
             heightFeet: this.state.initFeet,
-            heightInch: this.state.initInches
         },
         {
             headers: tokenHeader
@@ -269,7 +269,7 @@ class Settings extends Component {
 
         // Send Post to Send Name Data
         // http://localhost:8080/editUser/name
-        axios.post('http://localhost:8080/editUser/name', 
+        axios.post('https://nutrition-heroku.herokuapp.com/editUser/name', 
         {
             name: this.state.fullName,
             nameConfirm: this.state.confirmFull
@@ -303,7 +303,7 @@ class Settings extends Component {
         
         // Send Post to Send Password Data
         // http://localhost:8080/editUser/password
-        axios.post('http://localhost:8080/editUser/password', 
+        axios.post('https://nutrition-heroku.herokuapp.com/editUser/password', 
         {
             password: this.state.password,
             passwordConfirm: this.state.confirmPassword
@@ -329,8 +329,15 @@ class Settings extends Component {
         })
     }
 
+    logout() {
+        console.log("Function called")
+        window.localStorage.removeItem('session-token');
+        console.log("Function succeed");
+    }
+
     render() {
         const { errors } = this.state;
+        
         return(
         <div className="page">
             <div className="box">
@@ -346,9 +353,10 @@ class Settings extends Component {
                         <a href="#Settings">
                             <Link to="/Settings"className="active">Settings</Link>
                         </a>
-                        <a href="#Home">
+                        <a href="#Home" onclick="logout()">
                             <Link to="/Home">Log Out</Link>
                         </a>
+                        
                     </div>
                 </div>
 
@@ -423,7 +431,7 @@ class Settings extends Component {
                     <Link to="/Contact">Contact Us</Link>
                 </a>
                 <div className="fooder-right">
-                    <p>Nutrition Manager Deluxe TM</p>
+                    <p>Nutrition Manager Deluxe&trade;</p>
                 </div>
             </div>
         </div>
