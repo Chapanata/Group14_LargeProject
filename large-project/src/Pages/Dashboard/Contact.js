@@ -10,15 +10,6 @@ class Contact extends Component {
         return(
             <div className="HomePage">
                 <div className="in-container">
-                    <div class="home-nav-bar">
-                        <a href="#Login">
-                            <Link to="/Login">Login</Link>
-                        </a>
-                        <a href="#Register">
-                            <Link to="/Register">Register</Link>
-                        </a>
-                    </div>
-                    
                     <div className="contact-Box1">
                             <img src={logo} className="about-logo"/>
                     </div>
