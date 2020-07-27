@@ -12,25 +12,40 @@ class Dictionary extends Component {
             foodquery: null,
             returnedname: null,
             jsonResponse: null,
-            foodItem: '--',
-            brand: '--',
-            descript: '--',
-            ingred: '--',
-            ene: 'N/A',
-            tfat: 'N/A',
-            sat: 'N/A',
-            carbo: 'N/A',
-            tsugars: 'N/A',
-            prot: 'N/A',
-            sodium: 'N/A',
-            cal: 'N/A',
-            pot: 'N/A',
-            iro: 'N/A',
-            zin: 'N/A',
-            vitA: 'N/A',
-            vitB: 'N/A',
-            vitC: 'N/A',
-            vitD: 'N/A',
+            foodItem: 'N/A',
+            brand: 'N/A',
+            descript: 'N/A',
+            ingred: 'N/A',
+            ene: '--',
+            eneUnits: '',
+            tfat: '--',
+            tfatUnits: '',
+            sat: '--',
+            satUnits: '',
+            carbo: '--',
+            carboUnits: '',
+            tsugars: '--',
+            tsugarsUnits: '',
+            prot: '--',
+            protUnits: '',
+            sodium: '--',
+            sodiumUnits: '',
+            cal: '--',
+            calUnits: '',
+            pot: '--',
+            potUnits: '',
+            iro: '--',
+            iroUnits: '',
+            zin: '--',
+            zinUnits: '',
+            vitA: '--',
+            vitAUnits: '',
+            vitB: '--',
+            vitBUnits: '',
+            vitC: '--',
+            vitCUnits: '',
+            vitD: '--',
+            vitDUnits: '',
         }
     }
 
@@ -42,21 +57,36 @@ class Dictionary extends Component {
             brand: 'N/A',
             descript: 'N/A',
             ingred: 'N/A',
-            ene: 'N/A',
-            tfat: 'N/A',
-            sat: 'N/A',
-            carbo: 'N/A',
-            tsugars: 'N/A',
-            prot: 'N/A',
-            sodium: 'N/A',
-            cal: 'N/A',
-            pot: 'N/A',
-            iro: 'N/A',
-            zin: 'N/A',
-            vitA: 'N/A',
-            vitB: 'N/A',
-            vitC: 'N/A',
-            vitD: 'N/A',
+            ene: '--',
+            eneUnits: '',
+            tfat: '--',
+            tfatUnits: '',
+            sat: '--',
+            satUnits: '',
+            carbo: '--',
+            carboUnits: '',
+            tsugars: '--',
+            tsugarsUnits: '',
+            prot: '--',
+            protUnits: '',
+            sodium: '--',
+            sodiumUnits: '',
+            cal: '--',
+            calUnits: '',
+            pot: '--',
+            potUnits: '',
+            iro: '--',
+            iroUnits: '',
+            zin: '--',
+            zinUnits: '',
+            vitA: '--',
+            vitAUnits: '',
+            vitB: '--',
+            vitBUnits: '',
+            vitC: '--',
+            vitCUnits: '',
+            vitD: '--',
+            vitDUnits: '',
         })
 
         axios.post('https://api.nal.usda.gov/fdc/v1/foods/search?api_key=Uh00f59beCTOVOkHQvLjpO98kW6OL8aua0eiTqol&query='
@@ -158,90 +188,105 @@ class Dictionary extends Component {
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '1008')
             {
                 this.setState({ene: json.foods[foodNumber].foodNutrients[j].value})
+                this.setState({eneUnits: json.foods[foodNumber].foodNutrients[j].unitName})
             }
 
             // Total Fat
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '1004')
             {
                 this.setState({tfat: json.foods[foodNumber].foodNutrients[j].value})
+                this.setState({tfatUnits: json.foods[foodNumber].foodNutrients[j].unitName})
             }
 
             // Saturates
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '1258')
             {
                 this.setState({sat: json.foods[foodNumber].foodNutrients[j].value})
+                this.setState({satUnits: json.foods[foodNumber].foodNutrients[j].unitName})
             }
 
             // Carbohydrates
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '1005')
             {
                 this.setState({carbo: json.foods[foodNumber].foodNutrients[j].value})
+                this.setState({carboUnits: json.foods[foodNumber].foodNutrients[j].unitName})
             }
 
             // Total Sugars
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '2000')
             {
                 this.setState({tsugars: json.foods[foodNumber].foodNutrients[j].value})
+                this.setState({tsugarsUnits: json.foods[foodNumber].foodNutrients[j].unitName})
             }
 
             // Protein
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '1003')
             {
                 this.setState({prot: json.foods[foodNumber].foodNutrients[j].value})
+                this.setState({protUnits: json.foods[foodNumber].foodNutrients[j].unitName})
             }
 
             // Sodium
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '1093')
             {
                 this.setState({sodium: json.foods[foodNumber].foodNutrients[j].value})
+                this.setState({sodiumUnits: json.foods[foodNumber].foodNutrients[j].unitName})
             }
 
             // Calcium
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '1087')
             {
                 this.setState({cal: json.foods[foodNumber].foodNutrients[j].value})
+                this.setState({calUnits: json.foods[foodNumber].foodNutrients[j].unitName})
             }
 
             // Potassium
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '1092')
             {
                 this.setState({pot: json.foods[foodNumber].foodNutrients[j].value})
+                this.setState({potUnits: json.foods[foodNumber].foodNutrients[j].unitName})
             }
 
             // Iron
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '1089')
             {
                 this.setState({iro: json.foods[foodNumber].foodNutrients[j].value})
+                this.setState({iroUnits: json.foods[foodNumber].foodNutrients[j].unitName})
             }
 
             // Zinc
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '1095')
             {
                 this.setState({zin: json.foods[foodNumber].foodNutrients[j].value})
+                this.setState({zinUnits: json.foods[foodNumber].foodNutrients[j].unitName})
             }
 
             // Vitamin A
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '1106')
             {
                 this.setState({vitA: json.foods[foodNumber].foodNutrients[j].value})
+                this.setState({vitAUnits: json.foods[foodNumber].foodNutrients[j].unitName})
             }
 
             // Vitamin B12
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '1178')
             {
                 this.setState({vitB: json.foods[foodNumber].foodNutrients[j].value})
+                this.setState({vitBUnits: json.foods[foodNumber].foodNutrients[j].unitName})
             }
 
             // Vitamin C
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '1162')
             {
                 this.setState({vitC: json.foods[foodNumber].foodNutrients[j].value})
+                this.setState({vitCUnits: json.foods[foodNumber].foodNutrients[j].unitName})
             }
 
             // Vitamin D
             if (json.foods[foodNumber].foodNutrients[j].nutrientId == '1114')
             {
                 this.setState({vitD: json.foods[foodNumber].foodNutrients[j].value})
+                this.setState({vitDUnits: json.foods[foodNumber].foodNutrients[j].unitName})
             }
         }
     }
@@ -324,63 +369,63 @@ class Dictionary extends Component {
                                         </tr>
                                         <tr>
                                             <td>Calories (Energy)</td>
-                                            <td>{this.state.ene}</td>
+                                            <td>{this.state.ene} {this.state.eneUnits}</td>
                                         </tr>
                                         <tr>
                                             <td>Total Fat</td>
-                                            <td>{this.state.tfat}</td>
+                                            <td>{this.state.tfat} {this.state.tfatUnits}</td>
                                         </tr>
                                         <tr>
                                             <td>Saturates</td>
-                                            <td>{this.state.sat}</td>
+                                            <td>{this.state.sat} {this.state.satUnits}</td>
                                         </tr>
                                         <tr>
                                             <td>Carbohydrates</td>
-                                            <td>{this.state.carbo}</td>
+                                            <td>{this.state.carbo} {this.state.carboUnits}</td>
                                         </tr>
                                         <tr>
                                             <td>Total Sugars</td>
-                                            <td>{this.state.tsugars}</td>
+                                            <td>{this.state.tsugars} {this.state.tsugarsUnits}</td>
                                         </tr>
                                         <tr>
                                             <td>Protein</td>
-                                            <td>{this.state.prot}</td>
+                                            <td>{this.state.prot} {this.state.protUnits}</td>
                                         </tr>
                                         <tr>
                                             <td>Sodium</td>
-                                            <td>{this.state.sodium}</td>
+                                            <td>{this.state.sodium} {this.state.sodiumUnits}</td>
                                         </tr>
                                         <tr>
                                             <td>Calcium</td>
-                                            <td>{this.state.cal}</td>
+                                            <td>{this.state.cal} {this.state.calUnits}</td>
                                         </tr>
                                         <tr>
                                             <td>Potassium</td>
-                                            <td>{this.state.pot}</td>
+                                            <td>{this.state.pot} {this.state.potUnits}</td>
                                         </tr>
                                         <tr>
                                             <td>Iron</td>
-                                            <td>{this.state.iro}</td>
+                                            <td>{this.state.iro} {this.state.iroUnits}</td>
                                         </tr>
                                         <tr>
                                             <td>Zinc</td>
-                                            <td>{this.state.zin}</td>
+                                            <td>{this.state.zin} {this.state.zinUnits}</td>
                                         </tr>
                                         <tr>
                                             <td>Vitamin A</td>
-                                            <td>{this.state.vitA}</td>
+                                            <td>{this.state.vitA} {this.state.vitAUnits}</td>
                                         </tr>
                                         <tr>
                                             <td>Vitamin B12</td>
-                                            <td>{this.state.vitB}</td>
+                                            <td>{this.state.vitB} {this.state.vitBUnits}</td>
                                         </tr>
                                         <tr>
                                             <td>Vitamin C</td>
-                                            <td>{this.state.vitC}</td>
+                                            <td>{this.state.vitC} {this.state.vitCUnits}</td>
                                         </tr>
                                         <tr>
                                             <td>Vitamin D</td>
-                                            <td>{this.state.vitD}</td>
+                                            <td>{this.state.vitD} {this.state.vitDUnits}</td>
                                         </tr>
                                         <br></br>
                                     </table>
