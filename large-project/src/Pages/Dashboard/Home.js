@@ -78,22 +78,6 @@ class Home extends Component {
                     <a href="#ContactUs">
                         <Link to="/Contact">Contact Us</Link>
                     </a>
-                    <a href="#Food-Dictionary">
-                        <Link to="/Dictionary">Food Dictionary</Link>
-                    </a>
-                    <a href="#Daily">
-                        <Link to="/Daily">Daily</Link>
-                    </a>
-                    <a href="#Settings">
-                        <Link to="/Settings">Settings</Link>
-                    </a>
-                    <a href="#Forgot">
-                        <Link to="/Forgot">Forgot Password</Link>
-                    </a>
-                    <a href="#resetPassword">
-                        <Link to="/resetPassword">Reset Password</Link>
-                    </a>
-
                     <div className="fooder-right">
                         <p>Nutrition Manager Deluxe&trade;</p>
                     </div>
