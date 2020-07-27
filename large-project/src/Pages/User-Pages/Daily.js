@@ -5,7 +5,7 @@ import {CircularProgressbar, buildstyles} from 'react-circular-progressbar';
 import { Search, LocationOn, Notifications } from '@material-ui/icons';
 import logo from './../../Resources/spoonfork_only.png';
 import axios from 'axios';
-import { Info, AddIcon } from '@material-ui/icons';
+import { Info, AddIcon, RemoveCircle } from '@material-ui/icons';
 
 const percentage = 33;
 
@@ -65,8 +65,9 @@ class Daily extends Component {
     constructor(props) {
         super(props);
          var date = new Date();
+        console.log(date);
       var currentDate = date.toISOString().slice(0,10);
-                this.state = {
+        this.state = {
             sessiontoken: 2,
             foodquery: null,
             returnedname: null,
@@ -90,14 +91,81 @@ class Daily extends Component {
             vitB: 'N/A',
             vitC: 'N/A',
             vitD: 'N/A',
-            date: currentDate
+            date: currentDate,
+            name: 'N/A'
         }
         
     }
     componentDidMount() {
-    // setDate();
+
         var listItems = document.getElementById("list_items");
-            listItems.style.display = "none";
+        listItems.style.display = "none";
+        // Init Token
+        let token = window.localStorage.getItem('session-token');
+        const tokenHeader = { 'auth-token': token };
+
+        // Get Name
+        axios.get('https://nutrition-heroku.herokuapp.com//getName',
+        {
+            headers: tokenHeader
+        })
+        .then(response => {
+            console.log(response.data)
+            this.setState({
+                name: response.data.name
+            });
+
+        })
+        .catch(error => {
+            console.log(error.response)
+        });
+
+        // Getting Current Date as default
+        var formattedDate = new Date(this.state.date + " 0:00:00");
+        var newformattedDate = ("0" + (formattedDate.getMonth() + 1)).slice(-2) + "/" +("0" + (formattedDate.getDate())).slice(-2) + "/" + formattedDate.getFullYear();
+        var food_act_el = document.getElementById("food_activity");
+        console.log(newformattedDate.toString());
+        // Get Deficiencies & set onto progressbars
+        axios.post('https://nutrition-heroku.herokuapp.com//getDeficiencies',
+        {
+            date: newformattedDate
+        },{
+            headers: tokenHeader
+        })
+        .then(response => {
+            console.log(response.data);
+            this.setState({
+                ene: response.data.energy,
+                tfat : response.data.totalFat,
+                sat : response.data.saturates,
+                carbo : response.data.carbs,
+                tsugars : response.data.totalSugars,
+                prot : response.data.protein,
+                sodium : response.data.salt,
+            });
+        })
+        .catch(error => {
+            console.log(error.response)
+        });
+
+        // Get Food Activity
+        axios.post('https://nutrition-heroku.herokuapp.com//getFoods',
+        {
+            date: newformattedDate
+        },{
+            headers: tokenHeader
+        })
+        .then(response => {
+            console.log(response.data);
+            for(var i = 0; i < response.data.length; i++)
+            {
+                food_act_el.innerHTML += "<div class='fooditem' data-id='"+response.data[i]._id +"'><span class='food_title'>("+response.data[i].quantity+") "+ response.data[i].name +"<div class='removeFood'></div></span><br><div class='food_cat'><span class='cat_title'>Calories</span><br>"+response.data[i].energy+"</div><div class='food_cat'><span class='cat_title'>Total Fat</span><br>"+response.data[i].totalFat+"</div><div class='food_cat'><span class='cat_title'>Saturates</span><br>"+response.data[i].saturates+"</div><div class='food_cat'><span class='cat_title'>Carbs</span><br>"+response.data[i].carbs+"</div><div class='food_cat'><span class='cat_title'>Sugar</span><br>"+response.data[i].totalSugars+"</div><div class='food_cat'><span class='cat_title'>Protein</span><br>"+response.data[i].protein+"</div><div class='food_cat'><span class='cat_title'>Sodium</span><br>"+response.data[i].salt+"</div></div>";
+            }
+
+        })
+        .catch(error => {
+            console.log(error.response)
+        });
         // Fetch from DB onto Activity
         // Auto Change the Progress Bars
     }
@@ -105,28 +173,8 @@ class Daily extends Component {
        handleSearchSubmit = e => {
         e.preventDefault();
           var listItems = document.getElementById("list_items");
-            listItems.style.display = "block";
-        this.setState({
-            foodItem: 'N/A',
-            brand: 'N/A',
-            descript: 'N/A',
-            ingred: 'N/A',
-            ene: 'N/A',
-            tfat: 'N/A',
-            sat: 'N/A',
-            carbo: 'N/A',
-            tsugars: 'N/A',
-            prot: 'N/A',
-            sodium: 'N/A',
-            cal: 'N/A',
-            pot: 'N/A',
-            iro: 'N/A',
-            zin: 'N/A',
-            vitA: 'N/A',
-            vitB: 'N/A',
-            vitC: 'N/A',
-            vitD: 'N/A',
-        })
+            listItems.style.display = "inline-block";
+
 
         axios.post('https://api.nal.usda.gov/fdc/v1/foods/search?api_key=Uh00f59beCTOVOkHQvLjpO98kW6OL8aua0eiTqol&query='
         + [this.state.foodquery], {
@@ -156,6 +204,52 @@ class Daily extends Component {
                 option.className = "food_item";
                 option.setAttribute('data-foodID' , response.data.foods[i].fdcId);
                 option.setAttribute('data-foodname' , response.data.foods[i].description);
+                option.setAttribute('data-date' , this.state.date);
+                    for (var j = 0; j < response.data.foods[i].foodNutrients.length; j++)
+                    {
+                        // Energy
+                        if (response.data.foods[i].foodNutrients[j].nutrientId == '1008')
+                        {
+                            option.setAttribute('data-nutrition_energy' , response.data.foods[i].foodNutrients[j].value);
+                        }
+
+                        // Total Fat
+                        if (response.data.foods[i].foodNutrients[j].nutrientId == '1004')
+                        {
+                            option.setAttribute('data-nutrition_totalfat' , response.data.foods[i].foodNutrients[j].value);
+                        }
+
+                        // Saturates
+                        if (response.data.foods[i].foodNutrients[j].nutrientId == '1258')
+                        {
+                            option.setAttribute('data-nutrition_saturates' , response.data.foods[i].foodNutrients[j].value);
+                        }
+
+                        // Carbohydrates
+                        if (response.data.foods[i].foodNutrients[j].nutrientId == '1005')
+                        {
+                          option.setAttribute('data-nutrition_carbs' , response.data.foods[i].foodNutrients[j].value);
+                        }
+
+                        // Total Sugars
+                        if (response.data.foods[i].foodNutrients[j].nutrientId == '2000')
+                        {
+                           option.setAttribute('data-nutrition_sugar' , response.data.foods[i].foodNutrients[j].value);
+                        }
+
+                        // Protein
+                        if (response.data.foods[i].foodNutrients[j].nutrientId == '1003')
+                        {
+                            option.setAttribute('data-nutrition_protein' , response.data.foods[i].foodNutrients[j].value);
+                        }
+
+                        // Sodium
+                        if (response.data.foods[i].foodNutrients[j].nutrientId == '1093')
+                        {
+                           option.setAttribute('data-nutrition_salt' , response.data.foods[i].foodNutrients[j].value);
+                        }
+                    }
+                console.log(response.data.foods[i].foodNutrients);
                 //option.innerHTML += '<svg class="MuiSvgIcon-root refSheetbtn" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>';
                 if (response.data.foods[i].dataType == "Branded")
                 {
@@ -191,6 +285,43 @@ class Daily extends Component {
                         else
                         {
                             alert("Added " + favDrink + " " + this.dataset.foodname + " to your daily intake!");
+                            let token = window.localStorage.getItem('session-token');
+                            const tokenHeader = { 'auth-token': token };
+                            // Send to Server
+                            var formattedDate = new Date(this.dataset.date + " 0:00:00");
+
+                            var newDtTime = ("0" + (formattedDate.getMonth() + 1)).slice(-2) + "/" +("0" + (formattedDate.getDate())).slice(-2) + "/" + formattedDate.getFullYear() + " 00:00:00" ;
+
+                            var bformattedDate = new Date(newDtTime);
+                            console.log(newDtTime);
+                            console.log(bformattedDate);
+                            axios.post('https://nutrition-heroku.herokuapp.com//addFood',
+                            {
+                                foodId: this.dataset.foodid,
+                                energy: this.dataset.nutrition_energy,
+                                totalFat: this.dataset.nutrition_totalfat,
+                                saturates: this.dataset.nutrition_saturates,
+                                carbs: this.dataset.nutrition_carbs,
+                                totalSugars: this.dataset.nutrition_sugar,
+                                protein: this.dataset.nutrition_protein,
+                                salt: this.dataset.nutrition_salt,
+                                date: newDtTime.toString(),
+                                name: this.dataset.foodname,
+                                quantity: favDrink
+
+                            },
+                            {
+                                headers: tokenHeader
+                            })
+                            .then(response => {
+                                console.log(response.data);
+                                console.log(newDtTime);
+
+                            })
+                            .catch(error => {
+                                console.log(error.response);
+                                console.log(newDtTime);
+                            })
                         }
 
                     }
@@ -214,7 +345,63 @@ class Daily extends Component {
         e.preventDefault();
         this.setState ({foodquery: e.target.value});
     }
-        showReference = e => {
+    handleChange2 = e => {
+        e.preventDefault();
+        let token = window.localStorage.getItem('session-token');
+        const tokenHeader = { 'auth-token': token };
+
+        this.setState ({date: e.target.value});
+
+        var formattedDate = new Date(e.target.value + " 00:00:00");
+        var newformattedDate = ("0" + (formattedDate.getMonth() + 1)).slice(-2) + "/" +("0" + (formattedDate.getDate())).slice(-2) + "/" + formattedDate.getFullYear();
+
+        var food_act_el = document.getElementById("food_activity");
+        console.log(newformattedDate.toString());
+        console.log(formattedDate);
+        // Get Deficiencies & set onto progressbars
+        axios.post('https://nutrition-heroku.herokuapp.com//getDeficiencies',
+        {
+            date: newformattedDate
+        },{
+            headers: tokenHeader
+        })
+        .then(response => {
+            console.log(response.data);
+            this.setState({
+                ene: response.data.energy,
+                tfat : response.data.totalFat,
+                sat : response.data.saturates,
+                carbo : response.data.carbs,
+                tsugars : response.data.totalSugars,
+                prot : response.data.protein,
+                sodium : response.data.salt,
+            });
+        })
+        .catch(error => {
+            console.log(error.response)
+        });
+
+        // Get Food Activity
+        axios.post('https://nutrition-heroku.herokuapp.com//getFoods',
+        {
+            date: newformattedDate
+        },{
+            headers: tokenHeader
+        })
+        .then(response => {
+            console.log(response.data);
+            food_act_el.innerHTML = "";
+            for(var i = 0; i < response.data.length; i++)
+            {
+                food_act_el.innerHTML += "<div class='fooditem' data-id='"+response.data[i]._id +"'><span class='food_title'>("+response.data[i].quantity+") "+ response.data[i].name +"</span><br><div class='food_cat'><span class='cat_title'>Calories</span><br>"+response.data[i].energy+"</div><div class='food_cat'><span class='cat_title'>Total Fat</span><br>"+response.data[i].totalFat+"</div><div class='food_cat'><span class='cat_title'>Saturates</span><br>"+response.data[i].saturates+"</div><div class='food_cat'><span class='cat_title'>Carbs</span><br>"+response.data[i].carbs+"</div><div class='food_cat'><span class='cat_title'>Sugar</span><br>"+response.data[i].totalSugars+"</div><div class='food_cat'><span class='cat_title'>Protein</span><br>"+response.data[i].protein+"</div><div class='food_cat'><span class='cat_title'>Sodium</span><br>"+response.data[i].salt+"</div></div>";
+            }
+
+        })
+        .catch(error => {
+            console.log(error.response)
+        });
+    }
+    showReference = e => {
 // Get the modal
 var modal = document.getElementById("myModal");
 
@@ -222,11 +409,11 @@ var modal = document.getElementById("myModal");
 
 
         }
-        hideReference = e => {
+    hideReference = e => {
             var modal = document.getElementById("myModal");
             modal.style.display = "none";
         }
-        showAct = e => {
+    showAct = e => {
             var dt_val = document.getElementById("activityDate");
             var formCont = document.getElementById("inputformContainer");
             var listItems = document.getElementById("list_items");
@@ -254,25 +441,6 @@ var modal = document.getElementById("myModal");
                         </a>
                     </div>
                 </div>
-
-                    <div className="init-container">
-                        <div className="square-container1" >
-
-                            <h2 className="intake_header">Daily Intake <Info className="refSheetbtn" onClick={this.showReference}></Info></h2>
-                            <br></br>
-                            <h4 className="intake_header">Select Date</h4>
-                            <input id="activityDate" type="date" className="intake_input" placeholder="Select Date" value={this.state.date}  />
-
-
-                                <div className="food-container1">
-                                   <h4 className="intake_header">Input Food</h4>
-
-                            <input type="text" className="intake_input" placeholder="Input Food" value={this.state.foodquery}
-                                        onChange={ this.handleChange } />
-                            <br></br>
-                                        <button type="submit" className="input-food-button" onClick={this.handleSearchSubmit}>Search</button>
-                                </div>
-
                             <div id="myModal" className="modal">
 
 
@@ -286,69 +454,45 @@ var modal = document.getElementById("myModal");
                               </div>
 
                             </div>
-                            <br></br>
-                           <div id="list_items"></div>
-                            <br></br>
-                            <br></br>
+                    <div className="init-container">
+                        <div className="square-container1" >
 
-                        </div>
-
-                        <div className="square-container2">
-                            <div class="grid-container1">
-                                <div class="grid-item">
-                                    <CircularProgressbar 
-                                    value={percentage} 
-                                    text={`${percentage}%`} />
-                                    Energy
-                                </div>
-                                <div class="grid-item">
-                                    <CircularProgressbar
-                                        value={percentage} 
-                                        text={`${percentage}%`}
-                                    />
-                                    Total Fat
-                                </div>
-                                <div class="grid-item">
-                                    <CircularProgressbar 
-                                        value={percentage} 
-                                        text={`${percentage}%`}
-                                    />
-                                    Saturates
-                                </div>  
-                                <div class="grid-item">
-                                    <CircularProgressbar 
-                                        value={percentage} 
-                                        text={`${percentage}%`}
-                                    />
-                                    Carbohydrates
-                                </div>  
+                            <h2 className="intake_header">Welcome Back {this.state.name} <Info className="refSheetbtn" onClick={this.showReference}></Info></h2>
+                            <br></br>
+                            <div className="left_side">
+                                <input id="activityDate" type="date" className="intake_input" placeholder="Select Date" onChange={ this.handleChange2 } value={this.state.date}  />
                             </div>
 
-                            <div class="grid-container2">
-                                <div class="grid-item">
-                                    <CircularProgressbar 
-                                        value={percentage} 
-                                        text={`${percentage}%`}
-                                    />
-                                    Total Sugars
-                                </div>
-                                <div class="grid-item">
-                                    <CircularProgressbar 
-                                        value={percentage} 
-                                        text={`${percentage}%`}
-                                    />
-                                    Protein
-                                </div>  
-                                <div class="grid-item">
-                                    <CircularProgressbar 
-                                        value={percentage} 
-                                        text={`${percentage}%`}
-                                    />
-                                    Salt
-                                </div>  
+                            <br></br>
+                           <div class="grid-container1">
+                                <div class="grid-item"> <CircularProgressbar value={this.state.ene} text={this.state.ene + "%"}></CircularProgressbar>  Energy</div>
+                                <div class="grid-item"> <CircularProgressbar value={this.state.tfat} text={this.state.tfat + "%"}></CircularProgressbar>  Total Fat</div>
+                                <div class="grid-item"> <CircularProgressbar value={this.state.sat} text={this.state.sat + "%"}></CircularProgressbar>  Saturates</div>
+                                <div class="grid-item"> <CircularProgressbar value={this.state.carbo} text={this.state.carbo + "%"}></CircularProgressbar>  Carbohydrates</div>
+                                <div class="grid-item"> <CircularProgressbar value={this.state.tsugars} text={this.state.tsugars + "%"}></CircularProgressbar>  Total Sugars</div>
+                                <div class="grid-item"> <CircularProgressbar value={this.state.prot} text={this.state.prot + "%"}></CircularProgressbar>  Protein</div>
+                                <div class="grid-item"> <CircularProgressbar value={this.state.sodium} text={this.state.sodium + "%"}></CircularProgressbar>  Salt</div>
+
                             </div>
-                            <h2>DAILY INTAKE GOALS</h2>
+
+                            <h3 className="center_text">Food Activity</h3>
+                            <div className="right_side">
+
+                            <div id="food_activity"></div>
+                            <h4 className="intake_header center_text">Input Food</h4>
+                            <input type="text" className="intake_input center_text" placeholder="Input Food" value={this.state.foodquery} onChange={ this.handleChange } />
+                            <br></br>
+                            <button type="submit" className="input-food-button" onClick={this.handleSearchSubmit}>Search</button>
+                            <br></br>
+                            <br></br>
+                            <div id="list_items"></div>
+                            <br></br>
+                            <br></br>
+
+                            </div>
                         </div>
+
+
 
 
                     </div>
