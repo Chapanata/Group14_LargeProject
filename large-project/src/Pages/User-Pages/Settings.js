@@ -361,10 +361,10 @@ class Settings extends Component {
                 <div className="nav-bar">
                     <img src={logo} className="logo"/>
                     <a href="#Dictionary">
-                        <Link to="/Dictionary">Food Dictionary</Link>
+                        <Link to="/Dictionary" onClick={loaded = false}>Food Dictionary</Link>
                     </a>
                     <a href="#Daily">
-                        <Link to="/Daily">Daily Intake</Link>
+                        <Link to="/Daily" onClick={loaded = false}>Daily Intake</Link>
                     </a>
                     <div className="nav-right">
                         <a href="#Settings" className="active">
