@@ -470,7 +470,7 @@ input.error {
 
 .square-container1{
 
-    height: 100%;
+
 
     box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
     border-radius: 10px;
@@ -1004,7 +1004,7 @@ th, td {
 .intake_input
 {
     padding:5px;
-    width:30%;
+    width:300px;
     margin-bottom:5px;
 }
 
@@ -1014,6 +1014,7 @@ th, td {
     padding:5px;
     border:1px solid #f2f2f2;
     height:205px;
+    width:30%;
 }
 .food_item
 {
@@ -1088,7 +1089,18 @@ th, td {
     color:#d55169;
     cursor: pointer;
 }
+.removeSheetbtn{
+    color:white;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-top:-4px;
+    padding:  5px;
 
+}
+.removeSheetbtn:hover{
+      color:lightgray;
+    cursor: pointer;
+}
 .addActbtn
 {
     color:white;
@@ -1102,4 +1114,62 @@ th, td {
 {
      background-color:#d55169;
     cursor: pointer;
+}
+
+.fooditem
+{
+    background-color:#da667b;
+    border-radius:8px;
+    padding:5px;
+    display:inline-block;
+    width:470px;
+    text-align: center;
+    margin:5px;
+}
+.food_title
+{
+    font-size:14pt;
+    color:white;
+    bottom:5px;
+}
+.removeFood
+{
+    display: inline-block;
+}
+.food_cat
+{
+    background-color:white;
+    border-radius:10px;
+    display:inline-block;
+    padding:5px;
+    font-size:10pt;
+    text-align: center;
+    margin:5px;
+    color:gray;
+}
+#food_activity{
+    text-align: center;
+}
+.cat_title
+{
+    color:black;
+    border-bottom: 1px solid lightgray;
+}
+.center_text
+{
+    text-align: center;
+}
+.left_side
+{
+    text-align: center;
+}
+.right_side
+{
+    overflow:scroll;
+    max-height:600px;
+    text-align: center;
+}
+.item_descr
+{
+    text-align: left;
 }

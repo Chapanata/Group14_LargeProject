@@ -3,7 +3,7 @@
 // Returns each from a float of 0-1 representing the percentage they need
 
 function getEnergy(dbUser) {
-    return dbUser.consumed.reduce((a, {energy, quantity}) => a + (energy * quantity), 0) / 2079.3499;
+    return dbUser.consumed.reduce((a, {energy, quantity}) => a + (energy * quantity), 0) / 2000;
 }
 
 function getTotalFat(dbUser) {
@@ -11,11 +11,11 @@ function getTotalFat(dbUser) {
 }
 
 function getSaturates(dbUser) {
-    return dbUser.consumed.reduce((a, {saturates, quantity}) => a + (saturates * quantity), 0) / 24;
+    return dbUser.consumed.reduce((a, {saturates, quantity}) => a + (saturates * quantity), 0) / 20;
 }
 
 function getCarbs(dbUser) {
-    return dbUser.consumed.reduce((a, {carbs, quantity}) => a + (carbs * quantity), 0) / 310;
+    return dbUser.consumed.reduce((a, {carbs, quantity}) => a + (carbs * quantity), 0) / 260;
 }
 
 function getTotalSugars(dbUser) {
@@ -27,7 +27,7 @@ function getProtein(dbUser) {
 }
 
 function getSalt(dbUser) {
-    return dbUser.consumed.reduce((a, {salt, quantity}) => a + (salt * quantity), 0) / 2300;
+    return dbUser.consumed.reduce((a, {salt, quantity}) => a + (salt * quantity), 0) / 6;
 }
   
 module.exports.getEnergy = getEnergy;
