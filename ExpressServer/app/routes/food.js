@@ -32,6 +32,7 @@ router.route('/addFood')
         
         // Instantiate the new user
         var consumed = new Consumed();
+        consumed.name = req.body.name;
         consumed.foodId = req.body.foodId;
         consumed.date = req.body.date;
         consumed.quantity = req.body.quantity;

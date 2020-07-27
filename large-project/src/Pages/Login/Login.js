@@ -214,7 +214,6 @@ class Login extends Component {
                 <br></br>
                 <button type="submit" className="some-button" >LOGIN</button>
               
-
                 <div className="backToLog"><Link to="/register">Don't have an Account?</Link></div>
                 <div className="forgot"><Link to="/Forgot">Forgot your Password</Link></div>
                 <div className="backToLog"><Link to="/home">Go back home?</Link></div>
