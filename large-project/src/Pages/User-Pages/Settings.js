@@ -206,6 +206,7 @@ class Settings extends Component {
         console.log("Gender:" + this.state.initGender)
         console.log("Feet:" + this.state.initFeet)
         console.log("Inches:" + this.state.initInches)
+        loaded = false
         return <div class="biogrid-container1">
         <h3>Weight: 
         {
