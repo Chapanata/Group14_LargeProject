@@ -339,9 +339,9 @@ input.error {
 }
 
 .square-container1{
-    float: left;
+
     height: 100%;
-    width: 60%;
+
     box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
     border-radius: 10px;
     background-color: white;
@@ -371,7 +371,7 @@ input.error {
     display: grid;
     margin-left: auto;
     margin-right: auto;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
     padding: 10px;
     justify-content: space-evenly;
 
@@ -388,9 +388,10 @@ input.error {
 }
 
 .grid-item {
-    font-size: 40%;
+    font-size: 11pt;
     text-align: center;
-
+    width:90px;
+    margin: 0 auto;
 }
 
 .square-container3{
@@ -428,7 +429,7 @@ input.error {
     background-color: white;
     border: 3px solid #da667b;
     height: 60vh;
-    width: 70%;
+    width: 69%;
     border-radius: 10px;
     margin-top: 69px;
 }
@@ -949,6 +950,8 @@ th, td {
     cursor: pointer;
     vertical-align: middle;
     margin-top:-4px;
+    padding:  5px;
+    float: right;
 }
 .refSheetbtn:hover
 {

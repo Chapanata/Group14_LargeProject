@@ -90,7 +90,8 @@ class Daily extends Component {
             vitB: 'N/A',
             vitC: 'N/A',
             vitD: 'N/A',
-            date: currentDate
+            date: currentDate,
+            name: 'N/A'
         }
         
     }
@@ -98,6 +99,21 @@ class Daily extends Component {
     // setDate();
         var listItems = document.getElementById("list_items");
             listItems.style.display = "none";
+        let token = window.localStorage.getItem('session-token');
+        const tokenHeader = { 'auth-token': token };
+
+        axios.get('https://nutrition-heroku.herokuapp.com//getName', {
+            headers: tokenHeader
+        })
+        .then(response => {
+            console.log(response.data)
+            this.setState({
+                name: response.data.name,
+            });
+        })
+        .catch(error => {
+            console.log(error.response)
+        })
         // Fetch from DB onto Activity
         // Auto Change the Progress Bars
     }
@@ -214,6 +230,10 @@ class Daily extends Component {
         e.preventDefault();
         this.setState ({foodquery: e.target.value});
     }
+    handleChange2 = e => {
+        e.preventDefault();
+        this.setState ({date: e.target.value});
+    }
         showReference = e => {
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -258,10 +278,21 @@ var modal = document.getElementById("myModal");
                     <div className="init-container">
                         <div className="square-container1" >
 
-                            <h2 className="intake_header">Daily Intake <Info className="refSheetbtn" onClick={this.showReference}></Info></h2>
+                            <h2 className="intake_header">Welcome Back {this.state.name} <Info className="refSheetbtn" onClick={this.showReference}></Info></h2>
                             <br></br>
+                           <div class="grid-container1">
+                                <div class="grid-item"> <CircularProgressbar value={percentage} text={percentage + "%"}></CircularProgressbar>  Energy</div>
+                                <div class="grid-item"> <CircularProgressbar value={percentage} text={percentage + "%"}></CircularProgressbar>  Total Fat</div>
+                                <div class="grid-item"> <CircularProgressbar value={percentage} text={percentage + "%"}></CircularProgressbar>  Saturates</div>
+                                <div class="grid-item"> <CircularProgressbar value={percentage} text={percentage + "%"}></CircularProgressbar>  Carbohydrates</div>
+                                <div class="grid-item"> <CircularProgressbar value={percentage} text={percentage + "%"}></CircularProgressbar>  Total Sugars</div>
+                                <div class="grid-item"> <CircularProgressbar value={percentage} text={percentage + "%"}></CircularProgressbar>  Protein</div>
+                                <div class="grid-item"> <CircularProgressbar value={percentage} text={percentage + "%"}></CircularProgressbar>  Salt</div>
+
+                            </div>
+
                             <h4 className="intake_header">Select Date</h4>
-                            <input id="activityDate" type="date" className="intake_input" placeholder="Select Date" value={this.state.date}  />
+                            <input id="activityDate" type="date" className="intake_input" placeholder="Select Date" onChange={ this.handleChange2 } value={this.state.date}  />
 
 
                                 <div className="food-container1">
@@ -293,62 +324,7 @@ var modal = document.getElementById("myModal");
 
                         </div>
 
-                        <div className="square-container2">
-                            <div class="grid-container1">
-                                <div class="grid-item">
-                                    <CircularProgressbar 
-                                    value={percentage} 
-                                    text={`${percentage}%`} />
-                                    Energy
-                                </div>
-                                <div class="grid-item">
-                                    <CircularProgressbar
-                                        value={percentage} 
-                                        text={`${percentage}%`}
-                                    />
-                                    Total Fat
-                                </div>
-                                <div class="grid-item">
-                                    <CircularProgressbar 
-                                        value={percentage} 
-                                        text={`${percentage}%`}
-                                    />
-                                    Saturates
-                                </div>  
-                                <div class="grid-item">
-                                    <CircularProgressbar 
-                                        value={percentage} 
-                                        text={`${percentage}%`}
-                                    />
-                                    Carbohydrates
-                                </div>  
-                            </div>
 
-                            <div class="grid-container2">
-                                <div class="grid-item">
-                                    <CircularProgressbar 
-                                        value={percentage} 
-                                        text={`${percentage}%`}
-                                    />
-                                    Total Sugars
-                                </div>
-                                <div class="grid-item">
-                                    <CircularProgressbar 
-                                        value={percentage} 
-                                        text={`${percentage}%`}
-                                    />
-                                    Protein
-                                </div>  
-                                <div class="grid-item">
-                                    <CircularProgressbar 
-                                        value={percentage} 
-                                        text={`${percentage}%`}
-                                    />
-                                    Salt
-                                </div>  
-                            </div>
-                            <h2>DAILY INTAKE GOALS</h2>
-                        </div>
 
 
                     </div>
