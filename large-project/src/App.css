@@ -218,7 +218,7 @@ html
 .topBox2 {
     top: 0px;
     margin-right: 50px;
-    margin-top: 100px;
+    margin-top: 80px;
     border: 10px solid #ddd;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 4px;
@@ -261,6 +261,80 @@ html
   margin-right: auto;
   width: 330px;
 }
+
+/* About Us Page */
+.about-logo{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 380px;
+}
+
+.about-Box1 {
+    float: top;
+    top: 0px;
+    height: 30%;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.about-Box2 {
+    float: bottom;
+    bottom: 0px;
+    height: 70%;
+    width: 100%;
+}
+
+.about-bottomBox1 {
+    padding: 20px;
+    text-align: center;
+    margin-left: 50px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.8);
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    border: 10px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Contact Us Page */
+.contact-logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 380px;
+    margin-top: 10px;
+  }
+  
+  .contact-Box1 {
+      float: top;
+      top: 0px;
+      height: 30%;
+      width: 100%;
+  }
+  
+  .contact-Box2 {
+      float: bottom;
+      bottom: 0px;
+      height: 70%;
+      width: 100%;
+  }
+  
+  .contact-bottomBox1 {
+      padding: 20px;
+      text-align: center;
+      margin-left: 50px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.8);
+      margin-left: 100px;
+      margin-right: 100px;
+      margin-top: 10px;
+      margin-bottom: 100px;
+      border: 10px solid #ddd;
+      border-radius: 4px;
+  }
 
 /* Modals */
 .modal_logo {

@@ -13,15 +13,6 @@ class Home extends Component {
         return(
             <div className="homePage">
                 <div className="in-container">
-                    <div class="home-nav-bar">
-                        <a href="#Login">
-                            <Link to="/Login">Login</Link>
-                        </a>
-                        <a href="#Register">
-                            <Link to="/Register">Register</Link>
-                        </a>
-                    </div>
-
                     <div className="mainBox1">
                         <div className="topBox1">
                             <img src={logo} className="main-logo"/>
