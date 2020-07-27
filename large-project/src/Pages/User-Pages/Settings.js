@@ -44,7 +44,6 @@ class Settings extends Component {
         finalInches: '',
         finalBMI: '',
         isInEditMode: false,
-        loaded: true,
     }
 
     handleChange = e => {
@@ -131,7 +130,6 @@ class Settings extends Component {
             console.log(error.response)
         })
 
-        loaded = false;
 
         this.setState({
             isInEditMode: !this.state.isInEditMode
@@ -184,13 +182,14 @@ class Settings extends Component {
                 finalGender: response.data.gender,
                 finalFeet: response.data.heightFeet,
                 finalInches: response.data.heightInch,
-                finalBMI: response.data.bmi
+                finalBMI: response.data.bmi,
+                
             })
+            loaded = true;
         })
         .catch(error => {
             console.log(error.response)
         })
-        loaded = true;
     }
 
         return <div className="biogrid-container1">
@@ -361,10 +360,10 @@ class Settings extends Component {
                 <div className="nav-bar">
                     <img src={logo} className="logo"/>
                     <a href="#Dictionary">
-                        <Link to="/Dictionary" onClick={loaded = false}>Food Dictionary</Link>
+                        <Link to="/Dictionary" onClick={()=>loaded = false}>Food Dictionary</Link>
                     </a>
                     <a href="#Daily">
-                        <Link to="/Daily" onClick={loaded = false}>Daily Intake</Link>
+                        <Link to="/Daily" onClick={()=>loaded = false}>Daily Intake</Link>
                     </a>
                     <div className="nav-right">
                         <a href="#Settings" className="active">
