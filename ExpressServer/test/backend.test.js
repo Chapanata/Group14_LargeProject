@@ -58,18 +58,20 @@ describe('POST /addFood', () =>
             .post('/addFood')
             .send(
                 {
-                    foodId: "173305",
-                    quantity: "1",
-                    energy: "273.00000000",
-                    totalFat: "13.21000000",
-                    saturates: "9.365",
-                    carbs: "27.97000000",
-                    totalSugars: "3.57000000",
-                    protein: "10.43000000",
-                    salt: "624.000000"
+                    "foodId": "173305",
+                    "name" : "Mc-Chicken",
+                    "date" : "07/21/2020 05:13:00",
+                    "quantity": "5",
+                    "energy": "273.00000000",
+                    "totalFat": "13.21000000",
+                    "saturates": "9.365",
+                    "carbs": "27.97000000",
+                    "totalSugars": "3.57000000",
+                    "protein": "10.43000000",
+                    "salt": "624.00000000"
                 }
             )
-            .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjE4YjMzYzI5MDFmMjAwMDQyNDRlMGQiLCJpYXQiOjE1OTU0NTQzOTZ9.srV6mijnRTpKbflByDsUnsSQ0mwp4VVKVPP8qMgnau8')
+            .set('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjE4ODY4YzQxYzE5NTAwMDQ1MTQ3OTMiLCJuYW1lIjoiU2FtdWVsIiwiaWF0IjoxNTk1ODkzODE5LCJleHAiOjE1OTYxNTMwMTl9.zQvF8dNremvIeYXo9-wsw57VcIcRlyfIEToOerobr7c')
             .expect(200)
             .expect((res) =>
             {
@@ -78,8 +80,10 @@ describe('POST /addFood', () =>
             .end((err, res) => 
             {
                 if(err)
+                {
                     done(err);
-
+                    return;
+                }
                 
                 done();
             })
