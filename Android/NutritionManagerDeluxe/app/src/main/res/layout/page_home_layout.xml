@@ -32,7 +32,7 @@
             android:background="@color/colorPrimaryDark" />
 
         <TextView
-            android:id="@+id/txt_total_protein"
+            android:id="@+id/txt_total_calories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Calories:"
@@ -65,7 +65,9 @@
             android:layout_marginBottom="16dp"
             android:layout_weight="1"
             android:background="@drawable/menu_border_dark"
-            android:cacheColorHint="@color/black">
+            android:cacheColorHint="@color/black"
+            android:divider="@color/black"
+            android:dividerHeight="1dp">
 
         </ListView>
 

@@ -44,7 +44,6 @@ class Settings extends Component {
         finalInches: '',
         finalBMI: '',
         isInEditMode: false,
-        loaded: true,
     }
 
     handleChange = e => {
@@ -111,12 +110,13 @@ class Settings extends Component {
         let token = window.localStorage.getItem('session-token');
         const tokenHeader = { 'auth-token': token };
         // Send to Server
+
         axios.post('https://nutrition-heroku.herokuapp.com//editUser/physical',
         {
             gender: this.state.initGender,
             weight: this.state.initWeight,
+            heightInch: this.state.initInches,
             heightFeet: this.state.initFeet,
-            heightInch: this.state.initInches
         },
         {
             headers: tokenHeader
@@ -130,7 +130,6 @@ class Settings extends Component {
             console.log(error.response)
         })
 
-        loaded = false;
 
         this.setState({
             isInEditMode: !this.state.isInEditMode
@@ -183,13 +182,14 @@ class Settings extends Component {
                 finalGender: response.data.gender,
                 finalFeet: response.data.heightFeet,
                 finalInches: response.data.heightInch,
-                finalBMI: response.data.bmi
+                finalBMI: response.data.bmi,
+                
             })
+            loaded = true;
         })
         .catch(error => {
             console.log(error.response)
         })
-        loaded = true;
     }
 
         return <div className="biogrid-container1">
@@ -206,6 +206,7 @@ class Settings extends Component {
         console.log("Gender:" + this.state.initGender)
         console.log("Feet:" + this.state.initFeet)
         console.log("Inches:" + this.state.initInches)
+        loaded = false
         return <div class="biogrid-container1">
         <h3>Weight: 
         {
@@ -283,6 +284,7 @@ class Settings extends Component {
 
         // Send Post to Send Name Data
         // http://localhost:8080/editUser/name
+
         axios.post('https://nutrition-heroku.herokuapp.com//editUser/name',
         {
             name: this.state.fullName,
@@ -317,6 +319,7 @@ class Settings extends Component {
 
         // Send Post to Send Password Data
         // http://localhost:8080/editUser/password
+
         axios.post('https://nutrition-heroku.herokuapp.com//editUser/password',
         {
             password: this.state.password,
@@ -343,26 +346,34 @@ class Settings extends Component {
         })
     }
 
+    logout() {
+        console.log("Function called")
+        window.localStorage.removeItem('session-token');
+        console.log("Function succeed");
+    }
+
     render() {
         const { errors } = this.state;
+        
         return(
         <div className="page">
             <div className="box">
                 <div className="nav-bar">
                     <img src={logo} className="logo"/>
                     <a href="#Dictionary">
-                        <Link to="/Dictionary">Food Dictionary</Link>
+                        <Link to="/Dictionary" onClick={()=>loaded = false}>Food Dictionary</Link>
                     </a>
                     <a href="#Daily">
-                        <Link to="/Daily">Daily Intake</Link>
+                        <Link to="/Daily" onClick={()=>loaded = false}>Daily Intake</Link>
                     </a>
                     <div className="nav-right">
                         <a href="#Settings" className="active">
                             <Link to="/Settings">Settings</Link>
                         </a>
-                        <a href="#Home">
+                        <a href="#Home" onclick="logout()">
                             <Link to="/Home">Log Out</Link>
                         </a>
+                        
                     </div>
                 </div>
 
@@ -437,7 +448,7 @@ class Settings extends Component {
                     <Link to="/Contact">Contact Us</Link>
                 </a>
                 <div className="fooder-right">
-                    <p>Nutrition Manager Deluxe TM</p>
+                    <p>Nutrition Manager Deluxe&trade;</p>
                 </div>
             </div>
         </div>

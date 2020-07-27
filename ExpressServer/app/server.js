@@ -62,7 +62,9 @@ const passRoute = require('./routes/pass');
 // Route for user: Deals with editing user info and BMI info
 const userRoute = require('./routes/editUser');
 // Route for getting biometric information
-const biomRoute  = require('./routes/getBio');
+const biomRoute = require('./routes/getBio');
+// Route for getting user's name
+const nameRoute = require('./routes/getName');
 // Route for food: Deals with food calls
 const foodRoute = require('./routes/food');
 
@@ -73,6 +75,7 @@ app.use('', authRoute);
 app.use('', passRoute);
 app.use('', userRoute);
 app.use('', biomRoute);
+app.use('', nameRoute);
 app.use('', foodRoute);
 
 //START THE SERVER

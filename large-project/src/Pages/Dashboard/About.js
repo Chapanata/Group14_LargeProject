@@ -1,40 +1,32 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-
-
 import logo from './../../Resources/spoonfork_only.png';
 
 class About extends Component { 
     render() {
         return(
             <div className="in-container">
-                <div class="home-nav-bar">
-                    <a href="#Login">
-                        <Link to="/Login">Login</Link>
-                    </a>
-                    <a href="#Register">
-                        <Link to="/Register">Register</Link>
-                    </a>
+                <div className="about-Box1">
+                        <img src={logo} className="about-logo"/>
                 </div>
-                <div className="mainBox">
 
-                    <div className="mainText">
+                <div className="about-Box2">
+                    <div className="about-bottomBox1">
                         <h1>About Us</h1>
-                            <p>
-                            Nutrition Manager Deluxe&trade; was designed by a group of health conscious students
-                            <br></br>
+                        <p>
+                            Nutrition Manager Deluxe&trade; was designed by a group of health conscious students 
                             that weren't satisfied with the nutrition apps currently available. So we decided to create our own!
-                            <br></br>
                             Using our 200 years of combined experience we developed an app that could compete with current nutrition apps.
                             <br></br>
-                            <ul>
-                                <li>Front End Designers: Tommy To, Samantha Chou, Kris Choudhury</li>
-                                <li>Back End Designers: Aaron Koo, Samuel Arminana</li>
-                                <li>Mobile Designers: Cameron Lindsey, Jordy Pantonja</li>
-                            </ul>
-                            </p>
+                            <br></br>
+                            <h4>Front End Developers: </h4> Tommy To, Samantha Chou, Kris Choudhury, Jordy Pantonja
+                            <br></br>
+                            <h4>Back End Developers: </h4> Aaron Koo, Samuel Arminana
+                            <br></br>
+                            <h4>Mobile Developers: </h4> Cameron Lindsey
+                        </p>
                     </div>
-                 </div>
+                </div>
 
                 <div class="footer">
                     <a href="#Home">
@@ -47,7 +39,7 @@ class About extends Component {
                         <Link to="/Contact">Contact Us</Link>
                     </a>
                     <div className="fooder-right">
-                        <p>Nutrition Manager Deluxe TM</p>
+                        <p>Nutrition Manager Deluxe&trade;</p>
                     </div>
                 </div>
                  
