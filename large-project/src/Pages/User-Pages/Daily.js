@@ -137,13 +137,13 @@ class Daily extends Component {
         .then(response => {
             console.log(response.data);
             this.setState({
-                ene: response.data.energy.toFixed(2) * 100,
-                tfat : response.data.totalFat.toFixed(2) * 100,
-                sat : response.data.saturates.toFixed(2) * 100,
-                carbo : response.data.carbs.toFixed(2) * 100,
-                tsugars : response.data.totalSugars.toFixed(2) * 100,
-                prot : response.data.protein.toFixed(2) * 100,
-                sodium : response.data.salt.toFixed(2) * 100,
+                ene: Math.round(response.data.energy.toFixed(2) * 100),
+                tfat : Math.round(response.data.totalFat.toFixed(2) * 100),
+                sat : Math.round(response.data.saturates.toFixed(2) * 100),
+                carbo : Math.round(response.data.carbs.toFixed(2) * 100),
+                tsugars : Math.round(response.data.totalSugars.toFixed(2) * 100),
+                prot : Math.round(response.data.protein.toFixed(2) * 100),
+                sodium : Math.round(response.data.salt.toFixed(2) * 100),
             });
         })
         .catch(error => {
@@ -167,6 +167,7 @@ class Daily extends Component {
                 var foodItem = document.createElement("div");
                 foodItem.className= "fooditem";
                 foodItem.setAttribute('data-id' , response.data[i]._id);
+                foodItem.setAttribute('data-date' , newformattedDate);
                 foodItem.innerHTML += "<span class='food_title'>("+response.data[i].quantity+") "+ response.data[i].name +"<div class='removeFood'>"+'<svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"></path></svg>'+" </div></span><br><div class='food_cat'><span class='cat_title'>Calories</span><br>"+response.data[i].energy+"</div><div class='food_cat'><span class='cat_title'>Total Fat</span><br>"+response.data[i].totalFat+"</div><div class='food_cat'><span class='cat_title'>Saturates</span><br>"+response.data[i].saturates+"</div><div class='food_cat'><span class='cat_title'>Carbs</span><br>"+response.data[i].carbs+"</div><div class='food_cat'><span class='cat_title'>Sugar</span><br>"+response.data[i].totalSugars+"</div><div class='food_cat'><span class='cat_title'>Protein</span><br>"+response.data[i].protein+"</div><div class='food_cat'><span class='cat_title'>Sodium</span><br>"+response.data[i].salt+"</div>";
 
                 foodItem.addEventListener("click",function(){
@@ -182,6 +183,7 @@ class Daily extends Component {
                             var newformattedDate = ("0" + (formattedDate.getMonth() + 1)).slice(-2) + "/" +("0" + (formattedDate.getDate())).slice(-2) + "/" + formattedDate.getFullYear();
                             var newDtTime = ("0" + (formattedDate.getMonth() + 1)).slice(-2) + "/" +("0" + (formattedDate.getDate())).slice(-2) + "/" + formattedDate.getFullYear() + " 01:01:01" ;
                             var bformattedDate = new Date(newDtTime);
+                             this.style.display = "none";
                             axios.post('https://nutrition-heroku.herokuapp.com//removeFood',
                             {
                                 _id: this.dataset.id
@@ -192,7 +194,8 @@ class Daily extends Component {
                             })
                             .then(response => {
                                 console.log(response.data);
-                                console.log(newDtTime);
+                                console.log(newformattedDate);
+                                console.log("Attempting to getDeficiences after Remove");
                                         // Get Deficiencies & set onto progressbars
                                 axios.post('https://nutrition-heroku.herokuapp.com//getDeficiencies',
                                 {
@@ -232,7 +235,38 @@ class Daily extends Component {
             console.log(error.response)
         });
     }
-
+    test = e =>
+    {
+        e.preventDefault();
+        let token = window.localStorage.getItem('session-token');
+        const tokenHeader = { 'auth-token': token };
+        var formattedDate = new Date(this.state.date + " 01:01:01");
+        var newformattedDate = ("0" + (formattedDate.getMonth() + 1)).slice(-2) + "/" +("0" + (formattedDate.getDate())).slice(-2) + "/" + formattedDate.getFullYear();
+        console.log("test()");
+        console.log(newformattedDate);
+        axios.post('https://nutrition-heroku.herokuapp.com//getDeficiencies',
+        {
+        date: newformattedDate
+        },
+        {
+        headers: tokenHeader
+        })
+        .then(response => {
+            console.log(response.data);
+            this.setState({
+                ene: Math.round(response.data.energy.toFixed(2) * 100),
+                tfat : Math.round(response.data.totalFat.toFixed(2) * 100),
+                sat : Math.round(response.data.saturates.toFixed(2) * 100),
+                carbo : Math.round(response.data.carbs.toFixed(2) * 100),
+                tsugars : Math.round(response.data.totalSugars.toFixed(2) * 100),
+                prot : Math.round(response.data.protein.toFixed(2) * 100),
+                sodium : Math.round(response.data.salt.toFixed(2) * 100),
+            });
+        })
+        .catch(error => {
+        console.log(error.response);
+        });
+    }
     handleSearchSubmit = e => {
         e.preventDefault();
         var listItems = document.getElementById("list_items");
@@ -337,19 +371,28 @@ class Daily extends Component {
                                 // Send to Server
                                 var formattedDate = new Date(this.dataset.date + " 01:00:00");
                                 var newformattedDate = ("0" + (formattedDate.getMonth() + 1)).slice(-2) + "/" +("0" + (formattedDate.getDate())).slice(-2) + "/" + formattedDate.getFullYear();
+
                                 var newDtTime = ("0" + (formattedDate.getMonth() + 1)).slice(-2) + "/" +("0" + (formattedDate.getDate())).slice(-2) + "/" + formattedDate.getFullYear() + " 01:01:01" ;
                                 var food_act_el = document.getElementById("food_activity");
                                 var bformattedDate = new Date(newDtTime);
+                                var energy = (this.dataset.nutrition_energy == null)? 0 : this.dataset.nutrition_energy;
+                                var totalFat = (this.dataset.nutrition_totalfat == null)? 0 : this.dataset.nutrition_totalfat;
+                                var saturates = (this.dataset.nutrition_saturates == null)? 0 : this.dataset.nutrition_saturates;
+                                var carbs = (this.dataset.nutrition_carbs == null)? 0 : this.dataset.nutrition_carbs;
+                                var totalSugars = (this.dataset.nutrition_sugar == null)? 0 : this.dataset.nutrition_sugar;
+                                var protein = (this.dataset.nutrition_protein == null)? 0 : this.dataset.nutrition_protein;
+                                var salt = (this.dataset.nutrition_salt == null)? 0 : this.dataset.nutrition_salt;
+
                                 axios.post('https://nutrition-heroku.herokuapp.com//addFood',
                                 {
                                     foodId: this.dataset.foodid,
-                                    energy: this.dataset.nutrition_energy,
-                                    totalFat: this.dataset.nutrition_totalfat,
-                                    saturates: this.dataset.nutrition_saturates,
-                                    carbs: this.dataset.nutrition_carbs,
-                                    totalSugars: this.dataset.nutrition_sugar,
-                                    protein: this.dataset.nutrition_protein,
-                                    salt: this.dataset.nutrition_salt,
+                                    energy: energy,
+                                    totalFat: totalFat,
+                                    saturates: saturates,
+                                    carbs: carbs,
+                                    totalSugars: totalSugars,
+                                    protein: protein,
+                                    salt: salt,
                                     date: newDtTime.toString(),
                                     name: this.dataset.foodname,
                                     quantity: qtyVal
@@ -360,19 +403,112 @@ class Daily extends Component {
                                 })
                                 .then(response => {
                                     console.log(response.data);
-                                    console.log(newDtTime);
+                                    console.log(newformattedDate);
+                                    console.log("Add Food API");
                                             // Get Deficiencies & set onto progressbars
-                                    axios.post('https://nutrition-heroku.herokuapp.com//getDeficiencies',
+
+
+                                    // Get Food Activity
+                                    axios.post('https://nutrition-heroku.herokuapp.com//getFoods',
                                     {
                                         date: newformattedDate
-                                    },{
+                                    },
+                                    {
                                         headers: tokenHeader
                                     })
                                     .then(response => {
+                                        console.log("Get Food Activity API");
                                         console.log(response.data);
+                                        var food_act_el = document.getElementById("food_activity");
+                                        food_act_el.innerHTML = "";
+                                        for(var i = 0; i < response.data.length; i++)
+                                        {
+                                            var foodItem = document.createElement("div");
+                                            foodItem.className= "fooditem";
+                                            foodItem.setAttribute('data-id' , response.data[i]._id);
+                                            foodItem.innerHTML += "<span class='food_title'>("+response.data[i].quantity+") "+ response.data[i].name +"<div class='removeFood'>"+'<svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"></path></svg>'+" </div></span><br><div class='food_cat'><span class='cat_title'>Calories</span><br>"+response.data[i].energy+"</div><div class='food_cat'><span class='cat_title'>Total Fat</span><br>"+response.data[i].totalFat+"</div><div class='food_cat'><span class='cat_title'>Saturates</span><br>"+response.data[i].saturates+"</div><div class='food_cat'><span class='cat_title'>Carbs</span><br>"+response.data[i].carbs+"</div><div class='food_cat'><span class='cat_title'>Sugar</span><br>"+response.data[i].totalSugars+"</div><div class='food_cat'><span class='cat_title'>Protein</span><br>"+response.data[i].protein+"</div><div class='food_cat'><span class='cat_title'>Sodium</span><br>"+response.data[i].salt+"</div>";
+
+                                            foodItem.addEventListener("click",function(){
+                                                var qtyVal = window.confirm("Would you like to remove this item?");
+                                                if (qtyVal == true)
+                                                {
+
+
+                                                        let token = window.localStorage.getItem('session-token');
+                                                        const tokenHeader = { 'auth-token': token };
+                                                        // Send to Server
+                                                        var formattedDate = new Date(this.dataset.date + " 01:00:00");
+                                                        var newformattedDate = ("0" + (formattedDate.getMonth() + 1)).slice(-2) + "/" +("0" + (formattedDate.getDate())).slice(-2) + "/" + formattedDate.getFullYear();
+                                                        var newDtTime = ("0" + (formattedDate.getMonth() + 1)).slice(-2) + "/" +("0" + (formattedDate.getDate())).slice(-2) + "/" + formattedDate.getFullYear() + " 01:01:01" ;
+                                                         this.style.display = "none";
+                                                        var bformattedDate = new Date(newDtTime);
+                                                        axios.post('https://nutrition-heroku.herokuapp.com//removeFood',
+                                                        {
+                                                            _id: this.dataset.id
+
+                                                        },
+                                                        {
+                                                            headers: tokenHeader
+                                                        })
+                                                        .then(response => {
+                                                            console.log(response.data);
+                                                            console.log(newformattedDate);
+                                                            console.log("Remove Food API");
+
+                                                                    // Get Deficiencies & set onto progressbars
+                                                            axios.post('https://nutrition-heroku.herokuapp.com//getDeficiencies',
+                                                            {
+                                                                date: newformattedDate
+                                                            },
+                                                            {
+                                                                headers: tokenHeader
+                                                            })
+                                                            .then(response => {
+                                                                console.log(response.data);
+                                                                console.log("Get Deficiencies API ");
+                                                                this.setState({
+                                                                    ene: response.data.energy.toFixed(2) * 100,
+                                                                    tfat : response.data.totalFat.toFixed(2) * 100,
+                                                                    sat : response.data.saturates.toFixed(2) * 100,
+                                                                    carbo : response.data.carbs.toFixed(2) * 100,
+                                                                    tsugars : response.data.totalSugars.toFixed(2) * 100,
+                                                                    prot : response.data.protein.toFixed(2) * 100,
+                                                                    sodium : response.data.salt.toFixed(2) * 100,
+                                                                });
+                                                            })
+                                                            .catch(error => {
+                                                                console.log(error.response);
+                                                            });
+                                                        })
+                                                        .catch(error => {
+                                                            console.log(error.response);
+                                                        })
+
+                                                }
+
+                                            })
+                                            food_act_el.append(foodItem);
+                                        }
+
+                                    })
+                                    .catch(error => {
+                                        console.log(error.response)
+                                    });
+
+                                    axios.post('https://nutrition-heroku.herokuapp.com//getDeficiencies',
+                                    {
+                                        date: newformattedDate
+                                    },
+                                    {
+                                        headers: tokenHeader
+                                    })
+                                    .then(response => {
+                                         console.log(newformattedDate);
+                                        console.log(response.data);
+                                        console.log("Get Deficiencies API");
                                         this.setState({
-                                            ene: response.data.energy.toFixed(2) * 100,
-                                            tfat : response.data.totalFat.toFixed(2) * 100,
+                                            ene: 0,
+                                            tfat : 0,
                                             sat : response.data.saturates.toFixed(2) * 100,
                                             carbo : response.data.carbs.toFixed(2) * 100,
                                             tsugars : response.data.totalSugars.toFixed(2) * 100,
@@ -384,91 +520,8 @@ class Daily extends Component {
                                         console.log(error.response);
                                     });
 
-                                          // Get Food Activity
-        axios.post('https://nutrition-heroku.herokuapp.com//getFoods',
-        {
-            date: newformattedDate
-        },
-        {
-            headers: tokenHeader
-        })
-        .then(response => {
-            console.log(response.data);
-            var food_act_el = document.getElementById("food_activity");
-            food_act_el.innerHTML = "";
-            for(var i = 0; i < response.data.length; i++)
-            {
-                var foodItem = document.createElement("div");
-                foodItem.className= "fooditem";
-                foodItem.setAttribute('data-id' , response.data[i]._id);
-                foodItem.innerHTML += "<span class='food_title'>("+response.data[i].quantity+") "+ response.data[i].name +"<div class='removeFood'>"+'<svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"></path></svg>'+" </div></span><br><div class='food_cat'><span class='cat_title'>Calories</span><br>"+response.data[i].energy+"</div><div class='food_cat'><span class='cat_title'>Total Fat</span><br>"+response.data[i].totalFat+"</div><div class='food_cat'><span class='cat_title'>Saturates</span><br>"+response.data[i].saturates+"</div><div class='food_cat'><span class='cat_title'>Carbs</span><br>"+response.data[i].carbs+"</div><div class='food_cat'><span class='cat_title'>Sugar</span><br>"+response.data[i].totalSugars+"</div><div class='food_cat'><span class='cat_title'>Protein</span><br>"+response.data[i].protein+"</div><div class='food_cat'><span class='cat_title'>Sodium</span><br>"+response.data[i].salt+"</div>";
 
-                foodItem.addEventListener("click",function(){
-                    var qtyVal = window.confirm("Would you like to remove this item?");
-                    if (qtyVal == true)
-                    {
-
-
-                            let token = window.localStorage.getItem('session-token');
-                            const tokenHeader = { 'auth-token': token };
-                            // Send to Server
-                            var formattedDate = new Date(this.dataset.date + " 01:00:00");
-                            var newformattedDate = ("0" + (formattedDate.getMonth() + 1)).slice(-2) + "/" +("0" + (formattedDate.getDate())).slice(-2) + "/" + formattedDate.getFullYear();
-                            var newDtTime = ("0" + (formattedDate.getMonth() + 1)).slice(-2) + "/" +("0" + (formattedDate.getDate())).slice(-2) + "/" + formattedDate.getFullYear() + " 01:01:01" ;
-
-                            var bformattedDate = new Date(newDtTime);
-                            axios.post('https://nutrition-heroku.herokuapp.com//removeFood',
-                            {
-                                _id: this.dataset.id
-
-                            },
-                            {
-                                headers: tokenHeader
-                            })
-                            .then(response => {
-                                console.log(response.data);
-                                console.log(newDtTime);
-                                        // Get Deficiencies & set onto progressbars
-                                axios.post('https://nutrition-heroku.herokuapp.com//getDeficiencies',
-                                {
-                                    date: newformattedDate
-                                },
-                                {
-                                    headers: tokenHeader
-                                })
-                                .then(response => {
-                                    console.log(response.data);
-                                    this.setState({
-                                        ene: response.data.energy.toFixed(2) * 100,
-                                        tfat : response.data.totalFat.toFixed(2) * 100,
-                                        sat : response.data.saturates.toFixed(2) * 100,
-                                        carbo : response.data.carbs.toFixed(2) * 100,
-                                        tsugars : response.data.totalSugars.toFixed(2) * 100,
-                                        prot : response.data.protein.toFixed(2) * 100,
-                                        sodium : response.data.salt.toFixed(2) * 100,
-                                    });
-                                })
-                                .catch(error => {
-                                    console.log(error.response);
-                                });
-                            })
-                            .catch(error => {
-                                console.log(error.response);
-                            })
-
-                    }
-
-                })
-                food_act_el.append(foodItem);
-            }
-
-        })
-        .catch(error => {
-            console.log(error.response)
-        });
-
-                                })
-                                .catch(error => {
+                                }).catch(error => {
                                     console.log(error.response);
                                 })
                             }
@@ -521,13 +574,13 @@ class Daily extends Component {
         .then(response => {
             console.log(response.data);
             this.setState({
-                ene: response.data.energy.toFixed(2) * 100,
-                tfat : response.data.totalFat.toFixed(2) * 100,
-                sat : response.data.saturates.toFixed(2) * 100,
-                carbo : response.data.carbs.toFixed(2) * 100,
-                tsugars : response.data.totalSugars.toFixed(2) * 100,
-                prot : response.data.protein.toFixed(2) * 100,
-                sodium : response.data.salt.toFixed(2) * 100,
+                ene: Math.round(response.data.energy.toFixed(2) * 100),
+                tfat : Math.round(response.data.totalFat.toFixed(2) * 100),
+                sat : Math.round(response.data.saturates.toFixed(2) * 100),
+                carbo : Math.round(response.data.carbs.toFixed(2) * 100),
+                tsugars : Math.round(response.data.totalSugars.toFixed(2) * 100),
+                prot : Math.round(response.data.protein.toFixed(2) * 100),
+                sodium : Math.round(response.data.salt.toFixed(2) * 100),
             });
             //console.log((response.data.energy).toFixed(2));
         })
@@ -552,6 +605,7 @@ class Daily extends Component {
                 var foodItem = document.createElement("div");
                 foodItem.className= "fooditem";
                 foodItem.setAttribute('data-id' , response.data[i]._id);
+                foodItem.setAttribute('data-date' , newformattedDate);
                 foodItem.innerHTML += "<span class='food_title'>("+response.data[i].quantity+") "+ response.data[i].name +"<div class='removeFood'>"+'<svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"></path></svg>'+" </div></span><br><div class='food_cat'><span class='cat_title'>Calories</span><br>"+response.data[i].energy+"</div><div class='food_cat'><span class='cat_title'>Total Fat</span><br>"+response.data[i].totalFat+"</div><div class='food_cat'><span class='cat_title'>Saturates</span><br>"+response.data[i].saturates+"</div><div class='food_cat'><span class='cat_title'>Carbs</span><br>"+response.data[i].carbs+"</div><div class='food_cat'><span class='cat_title'>Sugar</span><br>"+response.data[i].totalSugars+"</div><div class='food_cat'><span class='cat_title'>Protein</span><br>"+response.data[i].protein+"</div><div class='food_cat'><span class='cat_title'>Sodium</span><br>"+response.data[i].salt+"</div>";
 
                 foodItem.addEventListener("click",function(){
@@ -559,7 +613,10 @@ class Daily extends Component {
                     if (qtyVal == true)
                     {
 
-
+                            var evt = document.createEvent("HTMLEvents");
+                            evt.initEvent("mouseover", false, true);
+                            listItems.dispatchEvent(evt);
+                            console.log("Event Dispatched");
                             let token = window.localStorage.getItem('session-token');
                             const tokenHeader = { 'auth-token': token };
                             // Send to Server
@@ -567,6 +624,7 @@ class Daily extends Component {
                             var newformattedDate = ("0" + (formattedDate.getMonth() + 1)).slice(-2) + "/" +("0" + (formattedDate.getDate())).slice(-2) + "/" + formattedDate.getFullYear();
                             var newDtTime = ("0" + (formattedDate.getMonth() + 1)).slice(-2) + "/" +("0" + (formattedDate.getDate())).slice(-2) + "/" + formattedDate.getFullYear() + " 01:01:01" ;
                             var bformattedDate = new Date(newDtTime);
+                            this.style.display = "none";
                             axios.post('https://nutrition-heroku.herokuapp.com//removeFood',
                             {
                                 _id: this.dataset.id
@@ -579,28 +637,7 @@ class Daily extends Component {
                                 console.log(response.data);
                                 console.log(newDtTime);
                                         // Get Deficiencies & set onto progressbars
-                                axios.post('https://nutrition-heroku.herokuapp.com//getDeficiencies',
-                                {
-                                    date: newformattedDate
-                                },
-                                {
-                                    headers: tokenHeader
-                                })
-                                .then(response => {
-                                    console.log(response.data);
-                                    this.setState({
-                                        ene: response.data.energy.toFixed(2) * 100,
-                                        tfat : response.data.totalFat.toFixed(2) * 100,
-                                        sat : response.data.saturates.toFixed(2) * 100,
-                                        carbo : response.data.carbs.toFixed(2) * 100,
-                                        tsugars : response.data.totalSugars.toFixed(2) * 100,
-                                        prot : response.data.protein.toFixed(2) * 100,
-                                        sodium : response.data.salt.toFixed(2) * 100,
-                                    });
-                                })
-                                .catch(error => {
-                                    console.log(error.response);
-                                });
+
                             })
                             .catch(error => {
                                 console.log(error.response);
@@ -671,7 +708,7 @@ var modal = document.getElementById("myModal");
 
                             </div>
                     <div className="init-container">
-                        <div className="square-container1" >
+                        <div className="square-container1" onClick={this.test}>
 
                             <h2 className="intake_header">Welcome Back {this.state.name} <Info className="refSheetbtn" onClick={this.showReference}></Info></h2>
                             <br></br>
@@ -680,7 +717,6 @@ var modal = document.getElementById("myModal");
                             </div>
 
                             <br></br>
-                            <RemoveCircle></RemoveCircle>
                            <div class="grid-container1">
                                 <div class="grid-item"> <CircularProgressbar value={this.state.ene} text={this.state.ene + "%"}></CircularProgressbar>  Energy</div>
                                 <div class="grid-item"> <CircularProgressbar value={this.state.tfat} text={this.state.tfat + "%"}></CircularProgressbar>  Total Fat</div>
@@ -702,7 +738,7 @@ var modal = document.getElementById("myModal");
                             <button type="submit" className="input-food-button" onClick={this.handleSearchSubmit}>Search</button>
                             <br></br>
                             <br></br>
-                            <div id="list_items"></div>
+                            <div id="list_items" onClick={this.test}></div>
                             <br></br>
                             <br></br>
 
